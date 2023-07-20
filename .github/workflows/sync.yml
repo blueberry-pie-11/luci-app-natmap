@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
 
       - name: Fetch feeds
-        uses: ekkog/feed-builder@main
+        uses: Purple-wind-bell/feed-builder@main
 
       - name: Commit
         run: |
