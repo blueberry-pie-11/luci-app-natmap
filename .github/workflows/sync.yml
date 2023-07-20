@@ -1,7 +1,5 @@
 name: Upstream Packages Version Check
 on:
-  workflow_dispatch: null
-
   push:
     branches: main
     paths:
