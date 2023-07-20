@@ -33,4 +33,4 @@ jobs:
             exit 0
           fi
           git commit -m "Sync $(TZ='Asia/Shanghai' date +@%Y%m%d-%H%M%S)"
-          git push --quiet "https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/$GITHUB_REPOSITORY" HEAD:main
+          git push -f --quiet "https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/$GITHUB_REPOSITORY" HEAD:main
