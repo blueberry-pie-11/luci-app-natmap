@@ -63,8 +63,12 @@ msgid "IPv6 only"
 msgstr "仅 IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
-msgid "Interface"
-msgstr "接口"
+msgid "Source_Interface"
+msgstr "源接口"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:76
+msgid "Target_Interface"
+msgstr "目标接口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
