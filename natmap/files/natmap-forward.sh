@@ -5,6 +5,8 @@ outter_port=$2
 ip4p=$3
 inner_port=$4
 protocol=$5
+source_interface=$6
+target_interface=$7
 
 if [ ! -z $FORWARD_USE_NATMAP ] && [ $FORWARD_USE_NATMAP = '1' ]; then
 	exit 0
@@ -27,8 +29,8 @@ fi
 uci set firewall.$rule_name=redirect
 uci set firewall.$rule_name.name="$NAT_NAME"
 uci set firewall.$rule_name.proto=$protocol
-uci set firewall.$rule_name.src='wan'
-uci set firewall.$rule_name.dest='lan'
+uci set firewall.$rule_name.src=$source_interface
+uci set firewall.$rule_name.dest=$target_interface
 uci set firewall.$rule_name.target='DNAT'
 uci set firewall.$rule_name.src_dport="${inner_port}"
 uci set firewall.$rule_name.dest_ip="${FORWARD_TARGET}"
