@@ -21,7 +21,8 @@ validate_section_natmap() {
 		'family:string' \
 		'mode:string:general' \
 		'udp_mode:bool:0' \
-		'interface:string' \
+		'source_interface:string' \
+		'target_interface:string' \
 		'nat_name:string' \
 		'interval:uinteger' \
 		'stun_server:host' \
@@ -76,10 +77,18 @@ natmap_instance() {
 	[ "${family}" = ipv6 ] && procd_append_param command -6
 	[ "${udp_mode}" = 1 ] && procd_append_param command -u
 
-	[ -n "${interface}" ] && {
+	[ -n "${source_interface}" ] && {
 		local ifname
 
-		network_get_device ifname "$interface" || ifname="$interface"
+		network_get_device ifname "$source_interface" || ifname="$source_interface"
+		procd_append_param command -i "$ifname"
+		procd_append_param netdev "$ifname"
+	}
+
+	[ -n "${target_interface}" ] && {
+		local ifname
+
+		network_get_device ifname "$target_interface" || ifname="$target_interface"
 		procd_append_param command -i "$ifname"
 		procd_append_param netdev "$ifname"
 	}
