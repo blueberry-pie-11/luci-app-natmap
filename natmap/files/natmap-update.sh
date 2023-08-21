@@ -9,8 +9,8 @@
 	json_add_int inner_port "$4"
 	json_add_string protocol "$5"
 	json_add_string name "$NAT_NAME"
- 	json_add_string source_interface "$6"
-	json_add_string target_interface "$7"
+ 	json_add_string source_interface "$SOURCE_INTERFACE"
+	json_add_string target_interface "$TARGET_INTERFACE"
 	json_dump > /var/run/natmap/$PPID.json
 )
 
