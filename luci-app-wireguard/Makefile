@@ -10,6 +10,6 @@ LUCI_TITLE:=WireGuard Status
 LUCI_DEPENDS:=+luci-proto-wireguard
 LUCI_PKGARCH:=all
 
-include ../../luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
