@@ -55,7 +55,8 @@ validate_section_natmap() {
 		'cloudflare_api_key:string' \
 		'cloudflare_zone_id:string' \
 		'cloudflare_rule_target_url:string' \
-		'cloudflare_rule_name:string'
+		'cloudflare_rule_name:string' \
+		'proxy:string'
 }
 
 natmap_instance() {
@@ -71,7 +72,7 @@ natmap_instance() {
 		${interval:+-k "$interval"} \
 		${stun_server:+-s "$stun_server"} \
 		${http_server:+-h "$http_server"} \
-		${port:+-b "$port"} \
+		${port:+-b "$port"}
 
 	[ "${family}" = ipv4 ] && procd_append_param command -4
 	[ "${family}" = ipv6 ] && procd_append_param command -6
@@ -128,7 +129,7 @@ service_triggers() {
 	config_foreach load_interfaces natmap
 
 	[ -n "${interfaces}" ] && {
-		for n in $interfaces ; do
+		for n in $interfaces; do
 			procd_add_reload_interface_trigger $n
 		done
 	}

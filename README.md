@@ -1,1 +1,1 @@
-src-git zzz https://github.com/Purple-wind-bell/openwrt-package-self
+src-git zzz https://github.com/blueberry-pie-11/openwrt-package-self

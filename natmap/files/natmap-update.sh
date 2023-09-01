@@ -9,9 +9,7 @@
 	json_add_int inner_port "$4"
 	json_add_string protocol "$5"
 	json_add_string name "$NAT_NAME"
- 	json_add_string source_interface "$SOURCE_INTERFACE"
-	json_add_string target_interface "$TARGET_INTERFACE"
-	json_dump > /var/run/natmap/$PPID.json
+	json_dump >/var/run/natmap/$PPID.json
 )
 
 [ -n "${NOTIFY_SCRIPT}" ] && {
@@ -19,11 +17,11 @@
 	source "${NOTIFY_SCRIPT}" "$@"
 }
 
-source /usr/lib/natmap/notify.sh "$@"
-
 if [ ! -z $INTERNAL_DEFINE_SCRIPT ]; then
 	echo "$NAT_NAME Excute internal define script: $INTERNAL_DEFINE_SCRIPT"
 	$INTERNAL_DEFINE_SCRIPT "$@"
 fi
 
 source /usr/lib/natmap/forward.sh "$@"
+
+source /usr/lib/natmap/notify.sh "$@"
