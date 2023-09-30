@@ -6,18 +6,6 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
-if [ ! -z $FORWARD_USE_NATMAP ] && [ $FORWARD_USE_NATMAP = '1' ]; then
-	exit 0
-fi
-
-if [ -z "$FORWARD_PORT" ]; then
-	exit 0
-fi
-
-if [ -z "$FORWARD_TARGET" ]; then
-	exit 0
-fi
-
 rule_name=$(echo "${NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 final_forward_port=$FORWARD_PORT
 if [ $final_forward_port = 0 ]; then
