@@ -110,13 +110,7 @@ natmap_instance() {
 		fi
 	done
 
-	[ $link_mode == 'qbittorrent' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/qb.sh
-	[ $link_mode == 'transmission' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/tr.sh
-	[ $link_mode == 'emby' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/emby.sh
-	[ $link_mode == 'cloudflare_origin_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_origin_rule.sh
-	[ $link_mode == 'cloudflare_redirect_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh
 	procd_append_param command -e /usr/lib/natmap/update.sh
-
 	procd_set_param respawn
 	procd_set_param stdout 1
 	procd_set_param stderr 1
