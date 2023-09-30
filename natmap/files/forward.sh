@@ -22,9 +22,11 @@ if [ -z "$FORWARD_PORT" ] || [ -z "$FORWARD_TARGET" ]; then
 	exit 0
 fi
 
-if [$FORWARD_MODE = 'local']; then
-	source /usr/lib/natmap/plugin-forward/natmap-forward.sh "$@"
-fi
-if [$FORWARD_MODE = 'ikuai']; then
-	source /usr/lib/natmap/plugin-forward/ikuai-forward.sh "$@"
-fi
+case $FORWARD_MODE in
+    "local")
+        source /usr/lib/natmap/plugin-forward/natmap-forward.sh "$@"
+        ;;
+    "ikuai")
+        source /usr/lib/natmap/plugin-forward/ikuai-forward.sh "$@"
+        ;;
+esac
