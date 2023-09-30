@@ -18,25 +18,32 @@ load_interfaces() {
 validate_section_natmap() {
 	uci_load_validate "${NAME}" natmap "$1" "$2" \
 		'enable:bool:0' \
-		'family:string' \
-		'mode:string:general' \
-		'udp_mode:bool:0' \
+		'ip_address_family:string' \
+		'link_mode:string:general' \
+		'nat_protocol:bool:0' \
 		'wan_interface:string' \
-		'target_interface:string' \
 		'nat_name:string' \
 		'interval:uinteger' \
 		'stun_server:host' \
 		'http_server:host' \
 		'bind_port:port' \
+		'notify_script:file' \
+		'forward_enable:bool:0' \
 		'forward_target:host' \
 		'forward_port:port' \
-		'notify_script:file' \
+		'forward_mode:string' \
+		'target_interface:string' \
 		'forward_use_natmap:bool:0' \
-		'im_notify_enable:bool:0' \
-		'im_notify_channel:string' \
-		'im_notify_channel_telegram_bot_chat_id:string' \
-		'im_notify_channel_telegram_bot_token:string' \
-		'im_notify_channel_pushplus_token:string' \
+		'ikuai_web_url:string' \
+		'ikuai_username:string' \
+		'ikuai_password:string' \
+		'ikuai_mapping_protocol:string' \
+		'ikuai_mapping_wan_interface:string' \
+		'notify_enable:bool:0' \
+		'notify_channel:string' \
+		'notify_channel_telegram_bot_chat_id:string' \
+		'notify_channel_telegram_bot_token:string' \
+		'notify_channel_pushplus_token:string' \
 		'emby_url:string' \
 		'emby_api_key:string' \
 		'emby_use_https:bool:0' \
@@ -74,9 +81,9 @@ natmap_instance() {
 		${http_server:+-h "$http_server"} \
 		${bind_port:+-b "$bind_port"}
 
-	[ "${family}" = ipv4 ] && procd_append_param command -4
-	[ "${family}" = ipv6 ] && procd_append_param command -6
-	[ "${udp_mode}" = 1 ] && procd_append_param command -u
+	[ "${ip_address_family}" = ipv4 ] && procd_append_param command -4
+	[ "${ip_address_family}" = ipv6 ] && procd_append_param command -6
+	[ "${nat_protocol}" = 1 ] && procd_append_param command -u
 
 	[ -n "${wan_interface}" ] && {
 		local ifname
@@ -86,7 +93,7 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ -n "${target_interface}" ] && {
+	[ $forward_enable == "1" ] && [ -n "${target_interface}" ] && {
 		local ifname
 
 		network_get_device ifname "$target_interface" || ifname="$target_interface"
@@ -94,7 +101,7 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ $forward_enable == "1" ] && [ $_forward_mode = 'local' ] && [ -n "${forward_target}" ] && [ $forward_use_natmap == "1" ] && procd_append_param command -t "$forward_target" -p "$forward_port"
+	[ "${forward_enable}" == 1 ] && [ $forward_mode = 'local' ] && [ -n "${forward_target}" ] && [ "${forward_use_natmap}" == 1 ] && procd_append_param command -t "$forward_target" -p "$forward_port"
 	for e in $EXTRA_ENV; do
 		eval value=\$${e}
 		option_name=$(echo "$e" | tr 'a-z' 'A-Z')
@@ -102,11 +109,12 @@ natmap_instance() {
 			procd_append_param env $option_name="$value"
 		fi
 	done
-	[ $mode == 'qbittorrent' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/qb.sh
-	[ $mode == 'transmission' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/tr.sh
-	[ $mode == 'emby' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/emby.sh
-	[ $mode == 'cloudflare_origin_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_origin_rule.sh
-	[ $mode == 'cloudflare_redirect_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh
+
+	[ $link_mode == 'qbittorrent' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/qb.sh
+	[ $link_mode == 'transmission' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/tr.sh
+	[ $link_mode == 'emby' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/emby.sh
+	[ $link_mode == 'cloudflare_origin_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_origin_rule.sh
+	[ $link_mode == 'cloudflare_redirect_rule' ] && procd_append_param env INTERNAL_DEFINE_SCRIPT=/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh
 	procd_append_param command -e /usr/lib/natmap/update.sh
 
 	procd_set_param respawn

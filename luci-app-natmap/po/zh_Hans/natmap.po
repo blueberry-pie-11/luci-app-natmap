@@ -155,3 +155,10 @@ msgstr "爱快用户名"
 
 msgid "Ikuai Password"
 msgstr "爱快密码"
+
+msgid "Ikuai Mapping Protocol"
+msgstr "爱快端口映射协议"
+
+msgid "Ikuai Mapping Wan Interface"
+msgstr "爱快端口映射外网接口"
+

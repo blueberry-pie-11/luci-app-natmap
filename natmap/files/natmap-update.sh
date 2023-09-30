@@ -17,11 +17,14 @@
 	source "${NOTIFY_SCRIPT}" "$@"
 }
 
+# link setting
 if [ ! -z $INTERNAL_DEFINE_SCRIPT ]; then
 	echo "$NAT_NAME Excute internal define script: $INTERNAL_DEFINE_SCRIPT"
 	$INTERNAL_DEFINE_SCRIPT "$@"
 fi
 
+# forward setting
 source /usr/lib/natmap/forward.sh "$@"
 
+# notify setting
 source /usr/lib/natmap/notify.sh "$@"
