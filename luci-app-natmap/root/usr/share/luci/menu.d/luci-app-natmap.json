@@ -6,7 +6,9 @@
 			"path": "natmap"
 		},
 		"depends": {
-			"acl": [ "luci-app-natmap" ]
+			"acl": [
+				"luci-app-natmap"
+			]
 		}
 	}
 }

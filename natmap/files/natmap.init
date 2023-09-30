@@ -21,13 +21,13 @@ validate_section_natmap() {
 		'family:string' \
 		'mode:string:general' \
 		'udp_mode:bool:0' \
-		'source_interface:string' \
+		'wan_interface:string' \
 		'target_interface:string' \
 		'nat_name:string' \
 		'interval:uinteger' \
 		'stun_server:host' \
 		'http_server:host' \
-		'port:port' \
+		'bind_port:port' \
 		'forward_target:host' \
 		'forward_port:port' \
 		'notify_script:file' \
@@ -72,16 +72,16 @@ natmap_instance() {
 		${interval:+-k "$interval"} \
 		${stun_server:+-s "$stun_server"} \
 		${http_server:+-h "$http_server"} \
-		${port:+-b "$port"}
+		${bind_port:+-b "$bind_port"}
 
 	[ "${family}" = ipv4 ] && procd_append_param command -4
 	[ "${family}" = ipv6 ] && procd_append_param command -6
 	[ "${udp_mode}" = 1 ] && procd_append_param command -u
 
-	[ -n "${source_interface}" ] && {
+	[ -n "${wan_interface}" ] && {
 		local ifname
 
-		network_get_device ifname "$source_interface" || ifname="$source_interface"
+		network_get_device ifname "$wan_interface" || ifname="$wan_interface"
 		procd_append_param command -i "$ifname"
 		procd_append_param netdev "$ifname"
 	}
@@ -94,7 +94,7 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ -n "${forward_target}" ] && [ $forward_use_natmap == "1" ] && procd_append_param command -t "$forward_target" -p "$forward_port"
+	[ $forward_enable == "1" ] && [ $_forward_mode = 'local' ] && [ -n "${forward_target}" ] && [ $forward_use_natmap == "1" ] && procd_append_param command -t "$forward_target" -p "$forward_port"
 	for e in $EXTRA_ENV; do
 		eval value=\$${e}
 		option_name=$(echo "$e" | tr 'a-z' 'A-Z')
