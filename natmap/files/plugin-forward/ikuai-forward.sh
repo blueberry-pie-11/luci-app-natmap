@@ -52,6 +52,7 @@ login_params='{
 
 echo "call_url: $call_url"
 echo "login_url: $login_url"
+echo "login_params: $login_params"
 echo "nat_name: $NAT_NAME"
 
 # Send the login request and store the response headers
