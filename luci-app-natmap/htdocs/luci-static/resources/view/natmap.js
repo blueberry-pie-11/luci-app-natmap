@@ -141,13 +141,12 @@ return view.extend({
 		o.depends('forward_mode', 'local');
 
 		o = s.taboption('forward', form.Flag, 'forward_use_natmap', _('Forward use natmap'));
-		o.editable = true;
 		o.default = false;
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 
 		// forward_ikuai
-		o = s.taboption('forward', form.Value, 'ikuai_web_url', _('Ikuai Web URL'));
+		o = s.taboption('forward', form.Value, 'ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -164,7 +163,7 @@ return view.extend({
 
 		o = s.taboption('forward', form.ListValue, 'ikuai_mapping_protocol', _('Ikuai Mapping Protocol'));
 		o.modalonly = true;
-		o.value('', _('TCP+UDP'));
+		o.value('tcp+udp', _('TCP+UDP'));
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.depends('forward_mode', 'ikuai');
