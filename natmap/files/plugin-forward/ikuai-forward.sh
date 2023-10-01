@@ -116,7 +116,7 @@ else
 
   # 删除对应端口映射
   delete_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$delete_payload" "$call_url")
-  if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" == "Success" ]; then
+  if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
     echo "Port mapping deleted successfully"
   else
     echo "Failed to delete the port mapping"
@@ -146,7 +146,7 @@ add_payload='{
 add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$call_url")
 
 # Check if the modification was successful
-if [ "$(echo "$add_response" | jq -r '.ErrMsg')" == "Success" ]; then
+if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
   echo "Port mapping modified successfully"
 else
   echo "Failed to modify the port mapping"
