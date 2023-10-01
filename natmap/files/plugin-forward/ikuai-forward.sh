@@ -64,7 +64,7 @@ login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_u
 cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
 
 # Print the session ID
-# echo "cookie: $cookie"
+echo "cookie: $cookie"
 
 # Set the parameters for the port mapping modification
 enabled="yes"
@@ -86,11 +86,9 @@ show_payload='{
   }
 }'
 
-# 输出show_payload
-# echo "show_payload: $show_payload"
-
 show_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$show_payload" "$call_url")
-# echo "show_response: $(echo "$show_response" | sed 's/,/,\\n/g')"
+
+echo "show_response: $(echo "$show_response" | sed 's/,/,\\n/g')"
 
 # 获取$dnat_id
 dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
@@ -114,6 +112,10 @@ else
 
   # 删除对应端口映射
   delete_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$delete_payload" "$call_url")
+
+  # 打印delete_response
+  echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
+
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
     echo "Port mapping deleted successfully"
   else
@@ -142,6 +144,9 @@ add_payload='{
 
 # Send the port mapping modification request and store the response
 add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$call_url")
+
+# Print the port mapping modification response
+echo "add_response: $(echo "$add_response" | sed 's/,/,\\n/g')"
 
 # Check if the modification was successful
 if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
