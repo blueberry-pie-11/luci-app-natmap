@@ -16,7 +16,14 @@ mapping_wan_interface=$IKUAL_MAPPING_WAN_INTERFACE
 mapping_wan_port=$BIND_PORT
 mapping_lan_addr=$FORWARD_TARGET
 # 单独配置mapping_lan_port
-mapping_lan_port=$outter_port
+# mapping_lan_port=""
+# if [ "${FORWARD_PORT}" == 0 ] || [ "${FORWARD_PORT}" == "" ]; then
+#   mapping_lan_port=$outter_port
+# else
+#   mapping_lan_port=${FORWARD_PORT}
+# fi
+mapping_lan_port="${FORWARD_PORT:-$outter_port}"
+
 # url
 ikuai_login_api="/Action/login"
 ikuai_call_api="/Action/call"
