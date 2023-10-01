@@ -50,6 +50,9 @@ login_params='{
     "remember_password": ""
     }'
 
+echo "ikuai_passwd: $ikual_passwd"
+echo "login_params: $login_params"
+
 # Send the login request and store the response headers
 login_response=$(curl -s -D - -X POST -H "$headers" -d "$login_params" "$login_url")
 
