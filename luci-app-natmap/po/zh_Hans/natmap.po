@@ -93,8 +93,8 @@ msgstr "STUN 服务器"
 msgid "General Settings"
 msgstr "常规设置"
 
-msgid "Source_Interface"
-msgstr "源接口"
+msgid "Wan_Interface"
+msgstr "wan接口"
 
 msgid "Target_Interface"
 msgstr "目标接口"
@@ -140,3 +140,27 @@ msgstr "IPv6地址"
 
 msgid "API Key"
 msgstr "API密钥"
+
+msgid "Forward Enable"
+msgstr "启用转发"
+
+msgid "Forward Settings"
+msgstr "转发设置"
+
+msgid "Ikuai Web URL"
+msgstr "爱快web地址"
+
+msgid "Ikuai Username"
+msgstr "爱快用户名"
+
+msgid "Ikuai Password"
+msgstr "爱快密码"
+
+msgid "Ikuai Mapping Protocol"
+msgstr "爱快端口映射协议"
+
+msgid "Ikuai Mapping Wan Interface"
+msgstr "爱快端口映射外网接口"
+
+msgid "such as http://127.0.0.1:8080"
+msgstr "例如： http://127.0.0.1:8080"

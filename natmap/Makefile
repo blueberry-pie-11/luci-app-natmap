@@ -35,18 +35,22 @@ define Package/natmap/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/natmap $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/
-	$(INSTALL_BIN) ./files/natmap-update.sh $(1)/usr/lib/natmap/update.sh
-	$(INSTALL_BIN) ./files/natmap-notify.sh $(1)/usr/lib/natmap/notify.sh
-	$(INSTALL_BIN) ./files/natmap-forward.sh $(1)/usr/lib/natmap/forward.sh
+	$(INSTALL_BIN) ./files/update.sh $(1)/usr/lib/natmap/update.sh
+	$(INSTALL_BIN) ./files/notify.sh $(1)/usr/lib/natmap/notify.sh
+	$(INSTALL_BIN) ./files/forward.sh $(1)/usr/lib/natmap/forward.sh
+	$(INSTALL_BIN) ./files/link.sh $(1)/usr/lib/natmap/link.sh
+	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-forward
+	$(INSTALL_BIN) ./filesplugin-forward/ikuai-forward.sh $(1)/usr/lib/natmap/plugin-forward
+	$(INSTALL_BIN) ./filesplugin-forward/natmap-forward.sh $(1)/usr/lib/natmap/plugin-forward
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_BIN) ./files/telegram_bot.sh $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_BIN) ./files/pushplus.sh $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/qb.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/tr.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/emby.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/cloudflare_origin_rule.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/cloudflare_redirect_rule.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-notify/telegram_bot.sh $(1)/usr/lib/natmap/plugin-notify
+	$(INSTALL_BIN) ./files/plugin-notify/pushplus.sh $(1)/usr/lib/natmap/plugin-notify
+	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-link
+	$(INSTALL_BIN) ./files/plugin-link/qb.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-link/tr.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-link/emby.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-link/cloudflare_origin_rule.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-link/cloudflare_redirect_rule.sh $(1)/usr/lib/natmap/plugin
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(INSTALL_CONF) ./files/natmap.config $(1)/etc/config/natmap
 	$(INSTALL_DIR) $(1)/etc/init.d/
