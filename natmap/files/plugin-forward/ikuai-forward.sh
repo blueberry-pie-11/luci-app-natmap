@@ -107,7 +107,7 @@ else
 
   # 删除对应端口映射
   delete_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$delete_payload" "$call_url")
-  if echo "$delete_response" | grep -q "\"ErrMsg\":\"Success\""; then
+  if [[ $(echo "$delete_response" | jq -r '.ErrMsg') == "Success" ]]; then
     echo "Port mapping deleted successfully"
   else
     echo "Failed to delete the port mapping"
