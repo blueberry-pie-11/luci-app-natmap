@@ -38,6 +38,7 @@ define Package/natmap/install
 	$(INSTALL_BIN) ./files/natmap-update.sh $(1)/usr/lib/natmap/update.sh
 	$(INSTALL_BIN) ./files/natmap-notify.sh $(1)/usr/lib/natmap/notify.sh
 	$(INSTALL_BIN) ./files/forward.sh $(1)/usr/lib/natmap/forward.sh
+	$(INSTALL_BIN) ./files/link.sh $(1)/usr/lib/natmap/link.sh
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-forward
 	$(INSTALL_BIN) ./files/ikuai-forward.sh $(1)/usr/lib/natmap/plugin-forward
 	$(INSTALL_BIN) ./files/natmap-forward.sh $(1)/usr/lib/natmap/plugin-forward
