@@ -40,8 +40,8 @@ define Package/natmap/install
 	$(INSTALL_BIN) ./files/forward.sh $(1)/usr/lib/natmap/forward.sh
 	$(INSTALL_BIN) ./files/link.sh $(1)/usr/lib/natmap/link.sh
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-forward
-	$(INSTALL_BIN) ./filesplugin-forward/ikuai-forward.sh $(1)/usr/lib/natmap/plugin-forward
-	$(INSTALL_BIN) ./filesplugin-forward/natmap-forward.sh $(1)/usr/lib/natmap/plugin-forward
+	$(INSTALL_BIN) ./files/plugin-forward/ikuai-forward.sh $(1)/usr/lib/natmap/plugin-forward
+	$(INSTALL_BIN) ./files/plugin-forward/natmap-forward.sh $(1)/usr/lib/natmap/plugin-forward
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-notify
 	$(INSTALL_BIN) ./files/plugin-notify/telegram_bot.sh $(1)/usr/lib/natmap/plugin-notify
 	$(INSTALL_BIN) ./files/plugin-notify/pushplus.sh $(1)/usr/lib/natmap/plugin-notify
