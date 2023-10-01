@@ -46,11 +46,11 @@ define Package/natmap/install
 	$(INSTALL_BIN) ./files/plugin-notify/telegram_bot.sh $(1)/usr/lib/natmap/plugin-notify
 	$(INSTALL_BIN) ./files/plugin-notify/pushplus.sh $(1)/usr/lib/natmap/plugin-notify
 	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/qb.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/plugin-link/tr.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/plugin-link/emby.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/plugin-link/cloudflare_origin_rule.sh $(1)/usr/lib/natmap/plugin
-	$(INSTALL_BIN) ./files/plugin-link/cloudflare_redirect_rule.sh $(1)/usr/lib/natmap/plugin
+	$(INSTALL_BIN) ./files/plugin-link/qb.sh $(1)/usr/lib/natmap/plugin-link
+	$(INSTALL_BIN) ./files/plugin-link/tr.sh $(1)/usr/lib/natmap/plugin-link
+	$(INSTALL_BIN) ./files/plugin-link/emby.sh $(1)/usr/lib/natmap/plugin-link
+	$(INSTALL_BIN) ./files/plugin-link/cloudflare_origin_rule.sh $(1)/usr/lib/natmap/plugin-link
+	$(INSTALL_BIN) ./files/plugin-link/cloudflare_redirect_rule.sh $(1)/usr/lib/natmap/plugin-link
 	$(INSTALL_DIR) $(1)/etc/config/
 	$(INSTALL_CONF) ./files/natmap.config $(1)/etc/config/natmap
 	$(INSTALL_DIR) $(1)/etc/init.d/
