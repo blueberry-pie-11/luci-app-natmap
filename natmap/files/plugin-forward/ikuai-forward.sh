@@ -30,14 +30,17 @@ ikuai_call_api="/Action/call"
 call_url="${ikuai_url}/${ikuai_call_api}"
 login_url="${ikuai_url}/${ikuai_login_api}"
 # 浏览器headers
-headers = '"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+headers = '{"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
     "Content-type": "application/json;charset=utf-8",
-    "Accept-Language": "zh-CN",'
+    "Accept-Language": "zh-CN",}'
 
 # Set the login parameters
-passwd=$(echo -n "$ikual_passwd" | md5sum | awk '{print $1}')
-pass=$(echo -n "salt_11$password" | base64)
+# 计算密码的 MD5 哈希值并转为十六进制
+passwd=$(echo -n "$ikual_passwd" | openssl dgst -md5 -hex | awk '{print $2}')
+
+# 拼接 salt_11 和密码，并使用 base64 进行编码
+pass=$(echo -n "salt_11$passwd" | openssl enc -base64)
 
 # Create the JSON payload for the login request
 login_params='{
