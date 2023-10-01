@@ -8,11 +8,11 @@ inner_port=$4
 protocol=$5
 
 # ikuai
-ikuai_url=$IKUAI_WEB_UI_URL
+ikuai_url=$IKUAI_WEB_URL
 ikuai_user=$IKUAI_USERNAME
 ikual_passwd=$IKUAI_PASSWORD
-mapping_protocol=$IKUAL_MAPPING_PROTOCOL
-mapping_wan_interface=$IKUAL_MAPPING_WAN_INTERFACE
+mapping_protocol=$IKUAI_MAPPING_PROTOCOL
+mapping_wan_interface=$IKUAI_MAPPING_WAN_INTERFACE
 mapping_wan_port=$BIND_PORT
 mapping_lan_addr=$FORWARD_TARGET
 # 单独配置mapping_lan_port
@@ -52,21 +52,19 @@ login_params='{
 
 echo "call_url: $call_url"
 echo "login_url: $login_url"
-echo "ikuai_passwd: $ikual_passwd"
-echo "login_params: $login_params"
 echo "nat_name: $NAT_NAME"
 
 # Send the login request and store the response headers
 login_response=$(curl -s -D - -X POST -d "$login_params" "$login_url")
 
 # Print the login response
-echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
+# echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
 # Extract the session ID (cookie) from the response headers
 cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
 
 # Print the session ID
-echo "cookie: $cookie"
+# echo "cookie: $cookie"
 
 # Set the parameters for the port mapping modification
 enabled="yes"
