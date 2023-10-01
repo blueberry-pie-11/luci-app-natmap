@@ -50,6 +50,8 @@ login_params='{
     "remember_password": ""
     }'
 
+echo "call_url: $call_url"
+echo "login_url: $login_url"
 echo "ikuai_passwd: $ikual_passwd"
 echo "login_params: $login_params"
 
