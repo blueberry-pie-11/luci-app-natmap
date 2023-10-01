@@ -6,17 +6,29 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
-declare -A SCRIPTS=(
-    ['qbittorrent']='/usr/lib/natmap/plugin/qb.sh'
-    ['transmission']='/usr/lib/natmap/plugin/tr.sh'
-    ['emby']='/usr/lib/natmap/plugin/emby.sh'
-    ['cloudflare_origin_rule']='/usr/lib/natmap/plugin/cloudflare_origin_rule.sh'
-    ['cloudflare_redirect_rule']='/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh'
-)
+INTERNAL_DEFINE_SCRIPT=""
+case $LINK_MODE in
+"qbittorrent")
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/qb.sh"
+    ;;
+"transmission")
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/tr.sh"
+    ;;
+"emby")
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/emby.sh"
+    ;;
+"cloudflare_origin_rule")
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/cloudflare_origin_rule.sh"
+    ;;
+"cloudflare_redirect_rule")
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh"
+    ;;
+*)
+    INTERNAL_DEFINE_SCRIPT=""
+    ;;
+esac
 
-INTERNAL_DEFINE_SCRIPT=${SCRIPTS[$link_mode]}
-
-if [ -n "$INTERNAL_DEFINE_SCRIPT" ]; then
+if [ ! -z "$INTERNAL_DEFINE_SCRIPT" ]; then
     echo "$NAT_NAME Execute internal define script: $INTERNAL_DEFINE_SCRIPT"
-    "$INTERNAL_DEFINE_SCRIPT" "$@"
+    source $INTERNAL_DEFINE_SCRIPT "$@"
 fi

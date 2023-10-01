@@ -54,7 +54,7 @@ enabled="yes"
 comment="natmap-$NAT_NAME"
 src_addr=""
 
-# 通过mapping_wan_port查询端口映射
+# 通过$comment查询端口映射
 # 创建show_payload字典
 show_payload='{
   "func_name": "dnat",
