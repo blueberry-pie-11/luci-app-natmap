@@ -4,7 +4,7 @@ text="$1"
 id=$2
 chat_id=$3
 token=$4
-function curl_proxy() {
+curl_proxy() {
     if [ -z "$PROXY" ]; then
         curl "$@"
     else
