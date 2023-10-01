@@ -5,7 +5,11 @@ outter_ip=$1
 outter_port=$2
 
 get_current_rule() {
-    curl --request GET \
+  # Function to get the current rule
+  #
+  # Returns:
+  #   string: The current rule
+  curl --request GET \
     --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/rulesets/phases/http_request_origin/entrypoint \
     --header "X-Auth-Key: $CLOUDFLARE_API_KEY" \
     --header "X-Auth-Email: $CLOUDFLARE_EMAIL" \

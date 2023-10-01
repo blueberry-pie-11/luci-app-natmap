@@ -27,8 +27,8 @@ mapping_lan_port="${FORWARD_PORT:-$outter_port}"
 # url
 ikuai_login_api="/Action/login"
 ikuai_call_api="/Action/call"
-call_url="$ikuai_url/$ikuai_call_api"
-login_url="$ikuai_url/$ikuai_login_api"
+call_url="${ikuai_url}/${ikuai_call_api}"
+login_url="${ikuai_url}/${ikuai_login_api}"
 # 浏览器headers
 headers = '"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
@@ -58,7 +58,7 @@ cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}'
 
 # Set the parameters for the port mapping modification
 enabled="yes"
-comment="natmap-$NAT_NAME"
+comment="natmap-${NAT_NAME}"
 src_addr=""
 
 # 通过$comment查询端口映射

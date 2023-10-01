@@ -164,3 +164,6 @@ msgstr "爱快端口映射外网接口"
 
 msgid "such as http://127.0.0.1:8080"
 msgstr "例如： http://127.0.0.1:8080"
+
+msgid "http proxy"
+msgstr "http代理"

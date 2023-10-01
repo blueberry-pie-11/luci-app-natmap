@@ -9,19 +9,19 @@ protocol=$5
 INTERNAL_DEFINE_SCRIPT=""
 case $LINK_MODE in
 "qbittorrent")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/qb.sh"
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/qb.sh"
     ;;
 "transmission")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/tr.sh"
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/tr.sh"
     ;;
 "emby")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/emby.sh"
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/emby.sh"
     ;;
 "cloudflare_origin_rule")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/cloudflare_origin_rule.sh"
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/cloudflare_origin_rule.sh"
     ;;
 "cloudflare_redirect_rule")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin/cloudflare_redirect_rule.sh"
+    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/cloudflare_redirect_rule.sh"
     ;;
 *)
     INTERNAL_DEFINE_SCRIPT=""
