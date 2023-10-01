@@ -54,7 +54,7 @@ login_response=$(curl -s -D - -X POST -H "$headers" -d "$login_params" "$login_u
 cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
 
 # Print the session ID
-# echo "cookie: $cookie"
+echo "cookie: $cookie"
 
 # Set the parameters for the port mapping modification
 enabled="yes"
