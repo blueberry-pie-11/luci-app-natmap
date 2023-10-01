@@ -202,9 +202,10 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
 
-		o = s.taboption('notify', form.Value, 'proxy', _('http proxy'));
+		o = s.taboption('notify', form.Value, 'tg_proxy', _('http proxy'));
 		o.datatype = 'string';
 		o.modalonly = true;
+		o.depends('notify_channel', 'telegram_bot');
 
 		// link
 		o = s.taboption('link', form.Flag, '_link_to', _('Change another service\'s config'));
