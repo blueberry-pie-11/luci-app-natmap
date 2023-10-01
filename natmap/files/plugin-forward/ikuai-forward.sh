@@ -70,7 +70,6 @@ echo "cookie: $cookie"
 # Set the parameters for the port mapping modification
 enabled="yes"
 comment="natmap-${NAT_NAME}"
-src_addr=""
 
 # 通过$comment查询端口映射
 # 创建show_payload字典
@@ -139,9 +138,12 @@ add_payload='{
     "protocol": "'"$mapping_protocol"'",
     "wan_port": "'"$mapping_wan_port"'",
     "lan_port": "'"$mapping_lan_port"'",
-    "src_addr": "'"$src_addr"'"
-  }
+    "src_addr": ""
+    }
 }'
+
+# 打印add_payload字典
+echo "add_payload: $add_payload"
 
 # Send the port mapping modification request and store the response
 add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$call_url")
