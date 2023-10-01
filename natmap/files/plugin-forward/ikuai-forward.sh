@@ -48,10 +48,13 @@ login_params='{
     "passwd": "'"$passwd"'",
     "pass": "'"$pass"'",
     "remember_password": ""
-}'
+    }'
 
 # Send the login request and store the response headers
 login_response=$(curl -s -D - -X POST -H "$headers" -d "$login_params" "$login_url")
+
+# Print the login response
+echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
 # Extract the session ID (cookie) from the response headers
 cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
@@ -107,7 +110,7 @@ else
 
   # 删除对应端口映射
   delete_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$delete_payload" "$call_url")
-  if [[ $(echo "$delete_response" | jq -r '.ErrMsg') == "Success" ]]; then
+  if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" == "Success" ]; then
     echo "Port mapping deleted successfully"
   else
     echo "Failed to delete the port mapping"
@@ -137,7 +140,7 @@ add_payload='{
 add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$call_url")
 
 # Check if the modification was successful
-if [[ $(echo "$add_response" | jq -r '.ErrMsg') == "Success" ]]; then
+if [ "$(echo "$add_response" | jq -r '.ErrMsg')" == "Success" ]; then
   echo "Port mapping modified successfully"
 else
   echo "Failed to modify the port mapping"
