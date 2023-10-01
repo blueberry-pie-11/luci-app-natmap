@@ -6,11 +6,11 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
-if [ -z "$FORWARD_MODE" ] || [ "$FORWARD_MODE" != 'local' ]; then
+if [ "$FORWARD_MODE" != local ]; then
 	exit 0
 fi
 
-if [ ! -z $FORWARD_USE_NATMAP ] && [ $FORWARD_USE_NATMAP = '1' ]; then
+if [ ! -z "$FORWARD_USE_NATMAP" ] && [ "$FORWARD_USE_NATMAP" = 1 ]; then
 	exit 0
 fi
 
@@ -23,6 +23,10 @@ if [ -z "$FORWARD_TARGET" ]; then
 fi
 
 rule_name=$(echo "${NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
+
+# printf $rule_name
+echo "rule_name: $rule_name"
+
 final_forward_port=$FORWARD_PORT
 if [ $final_forward_port = 0 ]; then
 	final_forward_port=$outter_port
