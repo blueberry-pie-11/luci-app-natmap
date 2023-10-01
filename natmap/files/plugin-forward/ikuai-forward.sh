@@ -27,8 +27,8 @@ mapping_lan_port="${FORWARD_PORT:-$outter_port}"
 # url
 ikuai_login_api="/Action/login"
 ikuai_call_api="/Action/call"
-call_url="${ikuai_url}/${ikuai_call_api}"
-login_url="${ikuai_url}/${ikuai_login_api}"
+call_url="${ikuai_url}${ikuai_call_api}"
+login_url="${ikuai_url}${ikuai_login_api}"
 # 浏览器headers
 headers='{"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
@@ -54,9 +54,10 @@ echo "call_url: $call_url"
 echo "login_url: $login_url"
 echo "ikuai_passwd: $ikual_passwd"
 echo "login_params: $login_params"
+echo "nat_name: $NAT_NAME"
 
 # Send the login request and store the response headers
-login_response=$(curl -s -D - -X POST -H "$headers" -d "$login_params" "$login_url")
+login_response=$(curl -s -D - -X POST -d "$login_params" "$login_url")
 
 # Print the login response
 echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
