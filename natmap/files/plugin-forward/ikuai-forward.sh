@@ -96,12 +96,12 @@ else
 
   # 创建delete_payload字典
   delete_payload='{
-  "func_name": "dnat",
-  "action": "del",
+    "func_name": "dnat",
+    "action": "del",
     "param": {
-        "id": "'"$dnat_id"'"
+      "id": "'"$dnat_id"'"
     }
-}'
+  }'
   # 打印delete_payload字典
   # echo "delete_payload: $delete_payload"
 
