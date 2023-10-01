@@ -55,7 +55,7 @@ echo "login_url: $login_url"
 echo "nat_name: $NAT_NAME"
 
 # Send the login request and store the response headers
-login_response=$(curl -s -D - -X POST -d "$login_params" "$login_url")
+login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
 
 # Print the login response
 # echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
