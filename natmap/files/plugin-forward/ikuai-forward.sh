@@ -8,20 +8,20 @@ inner_port=$4
 protocol=$5
 
 # ikuai
-ikuai_url=$IKUAI_WEB_URL
-ikuai_user=$IKUAI_USERNAME
-ikual_passwd=$IKUAI_PASSWORD
-mapping_protocol=$IKUAI_MAPPING_PROTOCOL
-mapping_wan_interface=$IKUAI_MAPPING_WAN_INTERFACE
+ikuai_url=$FORWARD_IKUAI_WEB_URL
+ikuai_user=$FORWARD_IKUAI_USERNAME
+ikual_passwd=$FORWARD_IKUAI_PASSWORD
+mapping_protocol=$FORWARD_IKUAI_MAPPING_PROTOCOL
+mapping_wan_interface=$FORWARD_IKUAI_MAPPING_WAN_INTERFACE
 mapping_wan_port=$BIND_PORT
-mapping_lan_addr=$FORWARD_TARGET
+mapping_lan_addr=$FORWARD_TARGET_IP
 
 # 单独配置mapping_lan_port
 mapping_lan_port=""
-if [ -z "${FORWARD_PORT}" ] || [ "${FORWARD_PORT}" -eq 0 ]; then
+if [ -z "${FORWARD_TARGET_PORT}" ] || [ "${FORWARD_TARGET_PORT}" -eq 0 ]; then
   mapping_lan_port=$outter_port
 else
-  mapping_lan_port=${FORWARD_PORT}
+  mapping_lan_port=${FORWARD_TARGET_PORT}
 fi
 
 # url

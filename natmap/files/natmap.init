@@ -10,14 +10,14 @@ STATUS_PATH=/var/run/natmap
 
 load_interfaces() {
 	config_get interface "$1" interface
-	config_get enable "$1" enable 1
+	config_get natmap_enable "$1" natmap_enable 1
 
-	[ "${enable}" = "1" ] && interfaces=" ${interface} ${interfaces}"
+	[ "${natmap_enable}" = "1" ] && interfaces=" ${interface} ${interfaces}"
 }
 
 validate_section_natmap() {
 	uci_load_validate "${NAME}" natmap "$1" "$2" \
-		'enable:bool:0' \
+		'natmap_enable:bool:0' \
 		'ip_address_family:string' \
 		'link_mode:string:general' \
 		'nat_protocol:bool:0' \
@@ -29,16 +29,16 @@ validate_section_natmap() {
 		'bind_port:port' \
 		'notify_script:file' \
 		'forward_enable:bool:0' \
-		'forward_target:host' \
-		'forward_port:port' \
+		'forward_target_ip:host' \
+		'forward_target_port:port' \
 		'forward_mode:string' \
-		'target_interface:string' \
+		'forward_target_interface:string' \
 		'forward_use_natmap:bool:0' \
-		'ikuai_web_url:string' \
-		'ikuai_username:string' \
-		'ikuai_password:string' \
-		'ikuai_mapping_protocol:string' \
-		'ikuai_mapping_wan_interface:string' \
+		'forward_ikuai_web_url:string' \
+		'forward_ikuai_username:string' \
+		'forward_ikuai_password:string' \
+		'forward_ikuai_mapping_protocol:string' \
+		'forward_ikuai_mapping_wan_interface:string' \
 		'notify_enable:bool:0' \
 		'notify_channel:string' \
 		'notify_channel_telegram_bot_chat_id:string' \
@@ -63,7 +63,7 @@ validate_section_natmap() {
 		'cloudflare_zone_id:string' \
 		'cloudflare_rule_target_url:string' \
 		'cloudflare_rule_name:string' \
-		'tg_proxy:string'
+		'notify_channel_telegram_bot_proxy:string'
 }
 
 natmap_instance() {
@@ -72,7 +72,7 @@ natmap_instance() {
 		return 1
 	}
 
-	[ "${enable}" = 0 ] && return 1
+	[ "${natmap_enable}" = 0 ] && return 1
 
 	procd_open_instance "$1"
 	procd_set_param command "$PROG" \
@@ -93,15 +93,15 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ -n "${target_interface}" ] && {
+	[ -n "${forward_target_interface}" ] && {
 		local ifname
 
-		network_get_device ifname "$target_interface" || ifname="$target_interface"
+		network_get_device ifname "$forward_target_interface" || ifname="$forward_target_interface"
 		procd_append_param command -i "$ifname"
 		procd_append_param netdev "$ifname"
 	}
 
-	[ "${forward_enable}" = 1 ] && [ "${forward_mode}" = local ] && [ -n "${forward_target}" ] && [ "${forward_use_natmap}" = 1 ] && procd_append_param command -t "$forward_target" -p "$forward_port"
+	[ "${forward_enable}" = 1 ] && [ "${forward_mode}" = local ] && [ -n "${forward_target_ip}" ] && [ "${forward_use_natmap}" = 1 ] && procd_append_param command -t "$forward_target_ip" -p "$forward_target_port"
 	for e in $EXTRA_ENV; do
 		eval value=\$${e}
 		option_name=$(echo "$e" | tr 'a-z' 'A-Z')

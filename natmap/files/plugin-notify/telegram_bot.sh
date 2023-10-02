@@ -5,10 +5,10 @@ id=$2
 chat_id=$3
 token=$4
 curl_proxy() {
-    if [ -z "$TG_PROXY" ]; then
+    if [ -z "$NOTIFY_CHANNEL_TELEGRAM_BOT_PROXY" ]; then
         curl "$@"
     else
-        curl -x $TG_PROXY "$@"
+        curl -x $NOTIFY_CHANNEL_TELEGRAM_BOT_PROXY "$@"
     fi
 }
 

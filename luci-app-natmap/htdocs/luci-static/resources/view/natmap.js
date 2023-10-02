@@ -124,19 +124,19 @@ return view.extend({
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
-		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
+		o = s.taboption('forward', form.Value, 'forward_target_ip', _('Forward target'));
 		o.datatype = 'host';
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'), _('0 will forward to the out port get from STUN'));
+		o = s.taboption('forward', form.Value, 'forward_target_port', _('Forward target port'), _('0 will forward to the out port get from STUN'));
 		o.datatype = 'port';
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', widgets.NetworkSelect, 'target_interface', _('Target_Interface'));
+		o = s.taboption('forward', widgets.NetworkSelect, 'forward_target_interface', _('Target_Interface'));
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 
@@ -146,29 +146,29 @@ return view.extend({
 		o.depends('forward_mode', 'local');
 
 		// forward_ikuai
-		o = s.taboption('forward', form.Value, 'ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_username', _('Ikuai Username'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_username', _('Ikuai Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_password', _('Ikuai Password'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_password', _('Ikuai Password'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.ListValue, 'ikuai_mapping_protocol', _('Ikuai Mapping Protocol'));
+		o = s.taboption('forward', form.ListValue, 'forward_ikuai_mapping_protocol', _('Ikuai Mapping Protocol'));
 		o.modalonly = true;
 		o.value('tcp+udp', _('TCP+UDP'));
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -197,18 +197,18 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
+		o = s.taboption('notify', form.Value, 'notify_channel_telegram_bot_proxy', _('http proxy'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_channel', 'telegram_bot');
+
 		o = s.taboption('notify', form.Value, 'notify_channel_pushplus_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
 
-		o = s.taboption('notify', form.Value, 'tg_proxy', _('http proxy'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
-
 		// link
-		o = s.taboption('link', form.Flag, '_link_to', _('Change another service\'s config'));
+		o = s.taboption('link', form.Flag, 'link_enable', _('Change another service\'s config'));
 		o.modalonly = true;
 		o.ucioption = 'link_mode';
 		o.load = function (section_id) {
@@ -224,7 +224,7 @@ return view.extend({
 		o.value('transmission', _('Transmission'));
 		o.value('cloudflare_origin_rule', _('Cloudflare Origin Rule'));
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
-		o.depends('_link_to', '1');
+		o.depends('link_enable', '1');
 
 		o = s.taboption('link', form.Value, 'cloudflare_email', _('Email'));
 		o.datatype = 'string';
@@ -339,7 +339,7 @@ return view.extend({
 			if (s) return s.port;
 		};
 
-		o = s.option(form.Flag, 'enable', _('Enable'));
+		o = s.option(form.Flag, 'natmap_enable', _('ENABLE NATMap'));
 		o.editable = true;
 		o.modalonly = false;
 

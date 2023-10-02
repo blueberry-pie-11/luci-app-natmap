@@ -15,7 +15,7 @@ msgid "Bind port"
 msgstr "Vincular puerto"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "Enable"
+msgid "natmap_enable"
 msgstr "Activar"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
