@@ -56,13 +56,13 @@ Name 请保持唯一，否则会出现奇怪的问题
 
 ### 使用
 
-openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap
+1. openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap 
 
 ```
 src-git zzz https://github.com/blueberry-pie-11/openwrt-package-self
 ```
 
-编译源码，尽量使用编译固件而非插件安装
+2. 编译源码，尽量使用编译固件而非插件安装
 
 ```
 ./scripts/feeds update -a
