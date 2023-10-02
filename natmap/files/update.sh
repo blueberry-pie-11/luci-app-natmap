@@ -12,6 +12,8 @@
 	json_dump >/var/run/natmap/$PPID.json
 )
 
+echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
+
 [ -n "${NOTIFY_SCRIPT}" ] && {
 	export -n NOTIFY_SCRIPT
 	source "${NOTIFY_SCRIPT}" "$@"

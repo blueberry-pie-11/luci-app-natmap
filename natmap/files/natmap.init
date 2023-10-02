@@ -41,9 +41,10 @@ validate_section_natmap() {
 		'forward_ikuai_mapping_wan_interface:string' \
 		'notify_enable:bool:0' \
 		'notify_channel:string' \
-		'notify_channel_telegram_bot_chat_id:string' \
-		'notify_channel_telegram_bot_token:string' \
-		'notify_channel_pushplus_token:string' \
+		'notify_telegram_bot_chat_id:string' \
+		'notify_telegram_bot_token:string' \
+		'notify_pushplus_token:string' \
+		'link_enable:bool:0' \
 		'link_emby_url:string' \
 		'link_emby_api_key:string' \
 		'link_emby_use_https:bool:0' \
@@ -63,7 +64,7 @@ validate_section_natmap() {
 		'link_cloudflare_zone_id:string' \
 		'link_cloudflare_rule_target_url:string' \
 		'link_cloudflare_rule_name:string' \
-		'notify_channel_telegram_bot_proxy:string'
+		'notify_telegram_bot_proxy:string'
 }
 
 natmap_instance() {
