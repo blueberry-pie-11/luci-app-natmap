@@ -113,11 +113,11 @@ return view.extend({
 		//
 		// 
 		// forward
-		o = s.taboption('forward', form.Flag, 'forward_enable', _('Forward Enable'));
+		o = s.taboption('forward', form.Flag, 'forward_enable', _('Forward Enable'), _('forward with natmap or firewall of openwrt'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
 		o.default = false;
 		o.modalonly = true;
 
-		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'), _('forward with natmap or firewall of openwrt'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
+		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		o.default = 'local';
 		o.value('local', _('local'));
 		o.value('ikuai', _('ikuai'));
@@ -339,7 +339,7 @@ return view.extend({
 			if (s) return s.port;
 		};
 
-		o = s.option(form.Flag, 'natmap_enable', _('ENABLE NATMap'));
+		o = s.option(form.Flag, 'natmap_enable', _('ENABLE'));
 		o.editable = true;
 		o.modalonly = false;
 
