@@ -186,12 +186,6 @@ msgstr "例如：tcp 或 udp 或 tcp+udp"
 msgid "Set to False if you want to use HTTP"
 msgstr "如果使用http，请勿勾选"
 
-msgid "local"
-msgstr "本地"
-
-msgid "ikuai"
-msgstr "爱快"
-
 msgid "forward with natmap or firewall of openwrt"
 msgstr "使用 natmap 转发或 openwrt 的防火墙转发"
 

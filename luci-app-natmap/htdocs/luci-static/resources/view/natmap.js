@@ -117,10 +117,10 @@ return view.extend({
 		o.default = false;
 		o.modalonly = true;
 
-		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
+		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'), _('forward with natmap or firewall of openwrt'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
 		o.default = 'local';
-		o.value('local', _('local'), _('forward with natmap or firewall of openwrt'));
-		o.value('ikuai', _('ikuai'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
+		o.value('local', _('local'));
+		o.value('ikuai', _('ikuai'));
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
