@@ -119,8 +119,8 @@ return view.extend({
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		o.default = 'local';
-		o.value('local', _('local'));
-		o.value('ikuai', _('ikuai'));
+		o.value('local', _('local'), _('forward with natmap or firewall of openwrt'));
+		o.value('ikuai', _('ikuai'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
@@ -136,11 +136,11 @@ return view.extend({
 		o.depends('forward_mode', 'local');
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', widgets.NetworkSelect, 'forward_target_interface', _('Target_Interface'));
+		o = s.taboption('forward', widgets.NetworkSelect, 'forward_natmap_target_interface', _('Target_Interface'));
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 
-		o = s.taboption('forward', form.Flag, 'forward_use_natmap', _('Forward use natmap'));
+		o = s.taboption('forward', form.Flag, 'forward_natmap_use_natmap', _('Forward use natmap'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
@@ -226,51 +226,51 @@ return view.extend({
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
 		o.depends('link_enable', '1');
 
-		o = s.taboption('link', form.Value, 'cloudflare_email', _('Email'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_email', _('Email'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_api_key', _('API Key'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_api_key', _('API Key'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_zone_id', _('Zone ID'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_zone_id', _('Zone ID'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_rule_name', _('Rule Name'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_rule_name', _('Rule Name'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_rule_target_url', _('Target URL'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_rule_target_url', _('Target URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'emby_url', _('EMBY URL'));
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'emby_api_key', _('API Key'));
+		o = s.taboption('link', form.Value, 'link_emby_api_key', _('API Key'));
 		o.datatype = 'host';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Flag, 'emby_use_https', _('Update HTTPS Port'), _('Set to False if you want to use HTTP'));
+		o = s.taboption('link', form.Flag, 'link_emby_use_https', _('Update HTTPS Port'), _('Set to False if you want to use HTTP'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Flag, 'emby_update_host_with_ip', _('Update host with IP'));
+		o = s.taboption('link', form.Flag, 'link_emby_update_host_with_ip', _('Update host with IP'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');

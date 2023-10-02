@@ -32,8 +32,8 @@ validate_section_natmap() {
 		'forward_target_ip:host' \
 		'forward_target_port:port' \
 		'forward_mode:string' \
-		'forward_target_interface:string' \
-		'forward_use_natmap:bool:0' \
+		'forward_natmap_target_interface:string' \
+		'forward_natmap_use_natmap:bool:0' \
 		'forward_ikuai_web_url:string' \
 		'forward_ikuai_username:string' \
 		'forward_ikuai_password:string' \
@@ -44,10 +44,10 @@ validate_section_natmap() {
 		'notify_channel_telegram_bot_chat_id:string' \
 		'notify_channel_telegram_bot_token:string' \
 		'notify_channel_pushplus_token:string' \
-		'emby_url:string' \
-		'emby_api_key:string' \
-		'emby_use_https:bool:0' \
-		'emby_update_host_with_ip:bool:0' \
+		'link_emby_url:string' \
+		'link_emby_api_key:string' \
+		'link_emby_use_https:bool:0' \
+		'link_emby_update_host_with_ip:bool:0' \
 		'link_qb_web_url:string' \
 		'link_qb_username:string' \
 		'link_qb_password:string' \
@@ -58,11 +58,11 @@ validate_section_natmap() {
 		'link_tr_password:string' \
 		'link_tr_allow_ipv6:bool:0' \
 		'link_tr_ipv6_address:string' \
-		'cloudflare_email:string' \
-		'cloudflare_api_key:string' \
-		'cloudflare_zone_id:string' \
-		'cloudflare_rule_target_url:string' \
-		'cloudflare_rule_name:string' \
+		'link_cloudflare_email:string' \
+		'link_cloudflare_api_key:string' \
+		'link_cloudflare_zone_id:string' \
+		'link_cloudflare_rule_target_url:string' \
+		'link_cloudflare_rule_name:string' \
 		'notify_channel_telegram_bot_proxy:string'
 }
 
@@ -93,15 +93,15 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ -n "${forward_target_interface}" ] && {
+	[ -n "${forward_natmap_target_interface}" ] && {
 		local ifname
 
-		network_get_device ifname "$forward_target_interface" || ifname="$forward_target_interface"
+		network_get_device ifname "$forward_natmap_target_interface" || ifname="$forward_natmap_target_interface"
 		procd_append_param command -i "$ifname"
 		procd_append_param netdev "$ifname"
 	}
 
-	[ "${forward_enable}" = 1 ] && [ "${forward_mode}" = local ] && [ -n "${forward_target_ip}" ] && [ "${forward_use_natmap}" = 1 ] && procd_append_param command -t "$forward_target_ip" -p "$forward_target_port"
+	[ "${forward_enable}" = 1 ] && [ "${forward_mode}" = local ] && [ -n "${forward_target_ip}" ] && [ "${forward_natmap_use_natmap}" = 1 ] && procd_append_param command -t "$forward_target_ip" -p "$forward_target_port"
 	for e in $EXTRA_ENV; do
 		eval value=\$${e}
 		option_name=$(echo "$e" | tr 'a-z' 'A-Z')

@@ -10,7 +10,7 @@ if [ "$FORWARD_MODE" != local ]; then
 	exit 0
 fi
 
-if [ ! -z "$FORWARD_USE_NATMAP" ] && [ "$FORWARD_USE_NATMAP" = 1 ]; then
+if [ ! -z "$FORWARD_NATMAP_USE_NATMAP" ] && [ "$FORWARD_NATMAP_USE_NATMAP" = 1 ]; then
 	exit 0
 fi
 
