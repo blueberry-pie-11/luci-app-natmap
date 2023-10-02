@@ -16,11 +16,12 @@
 	export -n NOTIFY_SCRIPT
 	source "${NOTIFY_SCRIPT}" "$@"
 }
-# link setting
-source /usr/lib/natmap/link.sh "$@"
 
 # forward setting
 source /usr/lib/natmap/forward.sh "$@"
+
+# link setting
+source /usr/lib/natmap/link.sh "$@"
 
 # notify setting
 source /usr/lib/natmap/notify.sh "$@"
