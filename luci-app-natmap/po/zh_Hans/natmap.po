@@ -169,7 +169,10 @@ msgid "http proxy"
 msgstr "http 代理"
 
 msgid "Rule Name"
-msgstr "rule 名称"
+msgstr "Rule 名称"
+
+msgid "Target URL"
+msgstr "目标 URL"
 
 msgid "Update HTTPS Port"
 msgstr "更新 HTTPS 端口"

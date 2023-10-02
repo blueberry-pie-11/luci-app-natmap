@@ -1,33 +1,30 @@
+##  介绍
+
+### 本脚本为 `natmap` 插件
+### 基于 openwrt master 分支
 ### natmap相关功能依据以下代码改写
+1.  ```https://github.com/EkkoG/luci-app-natmap```
+2.  ```https://github.com/EkkoG/openwrt-natmap```
+3.  ```https://github.com/loyux/ikuai_local_api```
+4.  ```https://github.com/ztc1997/ikuai-bypass```
 
-1. https://github.com/EkkoG/luci-app-natmap
-2. https://github.com/EkkoG/openwrt-natmap
-3. https://github.com/loyux/ikuai_local_api
-4. https://github.com/ztc1997/ikuai-bypass
+## 基本功能
 
-### 新功能
-
-1. 内置两种消息通知方式，Telegram Bot 和 PushPlus，可以为任何每一个打洞单独配置, PushPlus 支持推送到微信且不需要翻墙
-2. 内置多种配置模式，常用功能无需写脚本就能使用，详见内置模式
-
-### 内置模式
-
-#### qBittorrent
+### 目前支持第三方服务调用功能，支持自定义脚本
+####    qBittorrent
 
 打洞成功后，自动修改 qBittorrent 的端口号，并配置转发（可选）
 
 需要配置 qBittorrent 地址、账号、密码用于修改端口
 需要配置 qBittorrent 使用网卡的 IP 用于配置转发，端口填 0，会转发到修改后的端口
 
-#### Transmission
-
+####    Transmission
 打洞成功后，自动修改 Transmission 的端口号，并配置转发（可选）
 
 需要配置 Transmission 地址、账号、密码用于修改端口
 需要配置 Transmission 使用网卡的 IP 用于配置转发，端口填 0，会转发到修改后的端口
 
-#### Emby
-
+####    Emby
 配合 Emby Connect 使用时，用户登录账号后，会从服务器获取最新的连接地址信息，此模式就是用于配置这些信息的
 
 需要配置 Emby 地址和 API Key 用于修改连接地址信息
@@ -40,9 +37,7 @@
 
 若对外提供的是 HTTPS 服务，需要勾选 「Update HTTPS Port」
 
-
-#### Cloudflare Origin Rules
-
+####    Cloudflare Origin Rules
 Cloudflare Origin Rules 可以设置回源端口，配合 DDNS 使用时，可以将 DDNS 域名指向 Cloudflare，然后将回源端口设置为打洞后的端口，这样就可以通过 Cloudflare 的 CDN 加速访问了
 
 需要配置 Cloudflare 的 API Key，邮箱 和 Zone ID，Zone ID 可以在 Cloudflare 的域名首页找到
@@ -53,19 +48,41 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 
 Name 请保持唯一，否则会出现奇怪的问题
 
+####    Cloudflare Redirect Rules
+    
+### 目前支持的通知功能
+1.  Telegram Bot
+2.  PushPlus
 
-### 使用
+###  端口转发功能
+####    本地转发
+支持使用openwrt自身防火墙转发tcp和udp，支持natmap自带转发功能。支持自动设置目标端口，可搭配第三方调用使用。
 
-1. openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap 
+####    ikuai端口映射
+当前仅支持使用爱快系统作为主路由，其他路由不支持。可以自动设置主网关爱快系统的端口映射。
+
+## 使用
+
+### openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap 
 
 ```
 src-git zzz https://github.com/blueberry-pie-11/openwrt-package-self
 ```
 
-2. 编译源码，尽量使用编译固件而非插件安装
+### 编译源码，尽量使用编译固件而非插件安装
 
 ```
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 make
 ```
+
+## 新功能
+
+1.  内置两种消息通知方式，Telegram Bot 和 PushPlus，可以为任何每一个打洞单独配置, PushPlus 支持推送到微信且不需要翻墙。
+2.  内置多种配置模式，常用功能无需写脚本就能使用，详见内置模式。
+3.  转发功能支持爱快主路由。
+
+
+
+
