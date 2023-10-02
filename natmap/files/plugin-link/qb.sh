@@ -8,12 +8,12 @@ outter_port=$2
 ip4p=$3
 
 rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
-QB_WEB_UI_URL=$(echo $QB_WEB_UI_URL | sed 's/\/$//')
+LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 # update port
 qbcookie=$(
     curl -Ssi -X POST \
-        -d "username=${QB_USERNAME}&password=${QB_PASSWORD}" \
-        "$QB_WEB_UI_URL/api/v2/auth/login" |
+        -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
+        "$LINK_QB_WEB_URL/api/v2/auth/login" |
         sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
 )
 echo "qbcookie: $qbcookie"
@@ -21,10 +21,10 @@ echo "outter_port: $outter_port"
 curl -X POST \
     -b "${qbcookie}" \
     -d 'json={"listen_port":"'${outter_port}'"}' \
-    "$QB_WEB_UI_URL/api/v2/app/setPreferences"
+    "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
 
 # qb_allow_ipv6
-if [ $QB_ALLOW_IPV6 = 1 ]; then
+if [ $LINK_QB_ALLOW_IPV6 = 1 ]; then
     echo "rule_name: $rule_name"
     # ipv6 allow
     uci set firewall.$rule_name=rule
@@ -40,7 +40,7 @@ if [ $QB_ALLOW_IPV6 = 1 ]; then
     fi
 
     # add dest_ip list
-    for ip in $QB_IPV6_ADDRESS; do
+    for ip in $LINK_QB_IPV6_ADDRESS; do
         uci add_list firewall.$rule_name.dest_ip="${ip}"
     done
 

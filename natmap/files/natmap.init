@@ -48,16 +48,16 @@ validate_section_natmap() {
 		'emby_api_key:string' \
 		'emby_use_https:bool:0' \
 		'emby_update_host_with_ip:bool:0' \
-		'qb_web_ui_url:string' \
-		'qb_username:string' \
-		'qb_password:string' \
-		'qb_ipv6_address:string' \
-		'qb_allow_ipv6:bool:0' \
-		'tr_rpc_url:string' \
-		'tr_username:string' \
-		'tr_password:string' \
-		'tr_allow_ipv6:bool:0' \
-		'tr_ipv6_address:string' \
+		'link_qb_web_url:string' \
+		'link_qb_username:string' \
+		'link_qb_password:string' \
+		'link_qb_ipv6_address:string' \
+		'link_qb_allow_ipv6:bool:0' \
+		'link_tr_rpc_url:string' \
+		'link_tr_username:string' \
+		'link_tr_password:string' \
+		'link_tr_allow_ipv6:bool:0' \
+		'link_tr_ipv6_address:string' \
 		'cloudflare_email:string' \
 		'cloudflare_api_key:string' \
 		'cloudflare_zone_id:string' \

@@ -161,14 +161,14 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.ListValue, 'forward_ikuai_mapping_protocol', _('Ikuai Mapping Protocol'));
+		o = s.taboption('forward', form.ListValue, 'forward_ikuai_mapping_protocol', _('Ikuai Mapping Protocol'), _('such as tcp or udp or tcp+udp'));
 		o.modalonly = true;
 		o.value('tcp+udp', _('TCP+UDP'));
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'), _('such as adsl_1 or wan'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -255,7 +255,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'emby_url', _('URL'));
+		o = s.taboption('link', form.Value, 'emby_url', _('EMBY URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
@@ -275,55 +275,55 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'qb_web_ui_url', _('Web UI URL'));
+		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_username', _('Username'));
+		o = s.taboption('link', form.Value, 'link_qb_username', _('Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_password', _('Password'));
+		o = s.taboption('link', form.Value, 'link_qb_password', _('Password'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Flag, 'qb_allow_ipv6', _('Allow IPv6'));
+		o = s.taboption('link', form.Flag, 'link_qb_allow_ipv6', _('Allow IPv6'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_ipv6_address', _('IPv6 Address'));
+		o = s.taboption('link', form.Value, 'link_qb_ipv6_address', _('IPv6 Address'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('qb_allow_ipv6', '1');
+		o.depends('link_qb_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Value, 'tr_rpc_url', _('RPC URL'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('link_mode', 'transmission');
-
-		o = s.taboption('link', form.Value, 'tr_username', _('Username'));
+		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Value, 'tr_password', _('Password'));
+		o = s.taboption('link', form.Value, 'link_tr_username', _('Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Flag, 'tr_allow_ipv6', _('Allow IPv6'));
+		o = s.taboption('link', form.Value, 'link_tr_password', _('Password'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_mode', 'transmission');
+
+		o = s.taboption('link', form.Flag, 'link_tr_allow_ipv6', _('Allow IPv6'));
 		o.modalonly = true;
 		o.default = false;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Value, 'tr_ipv6_address', _('IPv6 Address'));
+		o = s.taboption('link', form.Value, 'link_tr_ipv6_address', _('IPv6 Address'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('tr_allow_ipv6', '1');
+		o.depends('link_tr_allow_ipv6', '1');
 
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
 		o.modalonly = false;
