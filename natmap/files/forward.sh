@@ -14,11 +14,11 @@ if [ -z "$FORWARD_MODE" ]; then
     exit 0
 fi
 
-if [ $FORWARD_USE_NATMAP == 1 ]; then
+if [ $FORWARD_NATMAP_USE_NATMAP == 1 ]; then
     exit 0
 fi
 
-if [ -z "$FORWARD_PORT" ] || [ -z "$FORWARD_TARGET" ]; then
+if [ -z "$FORWARD_TARGET_PORT" ] || [ -z "$FORWARD_TARGET_IP" ]; then
     exit 0
 fi
 

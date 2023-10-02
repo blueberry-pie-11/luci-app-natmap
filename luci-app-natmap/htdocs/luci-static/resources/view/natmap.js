@@ -119,56 +119,56 @@ return view.extend({
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		o.default = 'local';
-		o.value('local', _('local'));
-		o.value('ikuai', _('ikuai'));
+		o.value('local', _('local'), _('forward with natmap or firewall of openwrt'));
+		o.value('ikuai', _('ikuai'), _('If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode'));
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
-		o = s.taboption('forward', form.Value, 'forward_target', _('Forward target'));
+		o = s.taboption('forward', form.Value, 'forward_target_ip', _('Forward target'));
 		o.datatype = 'host';
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_port', _('Forward target port'), _('0 will forward to the out port get from STUN'));
+		o = s.taboption('forward', form.Value, 'forward_target_port', _('Forward target port'), _('0 will forward to the out port get from STUN'));
 		o.datatype = 'port';
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', widgets.NetworkSelect, 'target_interface', _('Target_Interface'));
+		o = s.taboption('forward', widgets.NetworkSelect, 'forward_natmap_target_interface', _('Target_Interface'));
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 
-		o = s.taboption('forward', form.Flag, 'forward_use_natmap', _('Forward use natmap'));
+		o = s.taboption('forward', form.Flag, 'forward_natmap_use_natmap', _('Forward use natmap'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('forward_mode', 'local');
 
 		// forward_ikuai
-		o = s.taboption('forward', form.Value, 'ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_username', _('Ikuai Username'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_username', _('Ikuai Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_password', _('Ikuai Password'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_password', _('Ikuai Password'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.ListValue, 'ikuai_mapping_protocol', _('Ikuai Mapping Protocol'));
+		o = s.taboption('forward', form.ListValue, 'forward_ikuai_mapping_protocol', _('Ikuai Mapping Protocol'), _('such as tcp or udp or tcp+udp'));
 		o.modalonly = true;
 		o.value('tcp+udp', _('TCP+UDP'));
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'), _('such as adsl_1 or wan'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -197,18 +197,18 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
+		o = s.taboption('notify', form.Value, 'notify_channel_telegram_bot_proxy', _('http proxy'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_channel', 'telegram_bot');
+
 		o = s.taboption('notify', form.Value, 'notify_channel_pushplus_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
 
-		o = s.taboption('notify', form.Value, 'tg_proxy', _('http proxy'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
-
 		// link
-		o = s.taboption('link', form.Flag, '_link_to', _('Change another service\'s config'));
+		o = s.taboption('link', form.Flag, 'link_enable', _('Change another service\'s config'));
 		o.modalonly = true;
 		o.ucioption = 'link_mode';
 		o.load = function (section_id) {
@@ -224,106 +224,106 @@ return view.extend({
 		o.value('transmission', _('Transmission'));
 		o.value('cloudflare_origin_rule', _('Cloudflare Origin Rule'));
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
-		o.depends('_link_to', '1');
+		o.depends('link_enable', '1');
 
-		o = s.taboption('link', form.Value, 'cloudflare_email', _('Email'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_email', _('Email'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_api_key', _('API Key'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_api_key', _('API Key'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_zone_id', _('Zone ID'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_zone_id', _('Zone ID'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_rule_name', _('Rule Name'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_rule_name', _('Rule Name'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'cloudflare_rule_target_url', _('Target URL'));
+		o = s.taboption('link', form.Value, 'link_cloudflare_rule_target_url', _('Target URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'emby_url', _('URL'));
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'emby_api_key', _('API Key'));
+		o = s.taboption('link', form.Value, 'link_emby_api_key', _('API Key'));
 		o.datatype = 'host';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Flag, 'emby_use_https', _('Update HTTPS Port'), _('Set to False if you want to use HTTP'));
+		o = s.taboption('link', form.Flag, 'link_emby_use_https', _('Update HTTPS Port'), _('Set to False if you want to use HTTP'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Flag, 'emby_update_host_with_ip', _('Update host with IP'));
+		o = s.taboption('link', form.Flag, 'link_emby_update_host_with_ip', _('Update host with IP'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'qb_web_ui_url', _('Web UI URL'));
+		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_username', _('Username'));
+		o = s.taboption('link', form.Value, 'link_qb_username', _('Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_password', _('Password'));
+		o = s.taboption('link', form.Value, 'link_qb_password', _('Password'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Flag, 'qb_allow_ipv6', _('Allow IPv6'));
+		o = s.taboption('link', form.Flag, 'link_qb_allow_ipv6', _('Allow IPv6'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'qb_ipv6_address', _('IPv6 Address'));
+		o = s.taboption('link', form.Value, 'link_qb_ipv6_address', _('IPv6 Address'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('qb_allow_ipv6', '1');
+		o.depends('link_qb_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Value, 'tr_rpc_url', _('RPC URL'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('link_mode', 'transmission');
-
-		o = s.taboption('link', form.Value, 'tr_username', _('Username'));
+		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Value, 'tr_password', _('Password'));
+		o = s.taboption('link', form.Value, 'link_tr_username', _('Username'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Flag, 'tr_allow_ipv6', _('Allow IPv6'));
+		o = s.taboption('link', form.Value, 'link_tr_password', _('Password'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_mode', 'transmission');
+
+		o = s.taboption('link', form.Flag, 'link_tr_allow_ipv6', _('Allow IPv6'));
 		o.modalonly = true;
 		o.default = false;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Value, 'tr_ipv6_address', _('IPv6 Address'));
+		o = s.taboption('link', form.Value, 'link_tr_ipv6_address', _('IPv6 Address'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('tr_allow_ipv6', '1');
+		o.depends('link_tr_allow_ipv6', '1');
 
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
 		o.modalonly = false;
@@ -339,7 +339,7 @@ return view.extend({
 			if (s) return s.port;
 		};
 
-		o = s.option(form.Flag, 'enable', _('Enable'));
+		o = s.option(form.Flag, 'natmap_enable', _('ENABLE NATMap'));
 		o.editable = true;
 		o.modalonly = false;
 

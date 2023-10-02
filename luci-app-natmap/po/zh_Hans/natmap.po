@@ -15,7 +15,7 @@ msgid "Bind port"
 msgstr "绑定端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "Enable"
+msgid "natmap_enable"
 msgstr "启用"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
@@ -130,7 +130,7 @@ msgid "Service"
 msgstr "服务"
 
 msgid "Web UI URL"
-msgstr "web地址"
+msgstr "WEB URL"
 
 msgid "Allow IPv6"
 msgstr "允许IPv6"
@@ -157,13 +157,43 @@ msgid "Ikuai Password"
 msgstr "爱快密码"
 
 msgid "Ikuai Mapping Protocol"
-msgstr "爱快端口映射协议"
+msgstr "端口映射协议"
 
 msgid "Ikuai Mapping Wan Interface"
-msgstr "爱快端口映射外网接口"
+msgstr "端口映射外网接口"
 
 msgid "such as http://127.0.0.1:8080"
 msgstr "例如： http://127.0.0.1:8080"
 
 msgid "http proxy"
-msgstr "http代理"
+msgstr "http 代理"
+
+msgid "Rule Name"
+msgstr "rule 名称"
+
+msgid "Update HTTPS Port"
+msgstr "更新 HTTPS 端口"
+
+msgid "Update host with IP"
+msgstr "使用 IP 更新 HOST"
+
+msgid "such as adsl_1 or wan"
+msgstr "例如：adsl_1 或 wan"
+
+msgid "such as tcp or udp or tcp+udp"
+msgstr "例如：tcp 或 udp 或 tcp+udp"
+
+msgid "Set to False if you want to use HTTP"
+msgstr "如果使用http，请勿勾选"
+
+msgid "local"
+msgstr "本地"
+
+msgid "ikuai"
+msgstr "爱快"
+
+msgid "forward with natmap or firewall of openwrt"
+msgstr "使用 natmap 转发或 openwrt 的防火墙转发"
+
+msgid "If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode"
+msgstr "如果 natmap 部署在旁路 openwrt 或内网设备，且主网关是爱快路由器，可以使用 ikuai 模式"
