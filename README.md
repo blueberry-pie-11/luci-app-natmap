@@ -1,8 +1,8 @@
 ##  介绍
 
-####    本脚本为基于 openwrt master 分支的 natmap 插件
+####    * 本脚本为基于 openwrt master 分支的 natmap 插件
 
-####    本脚本相关功能依据以下代码改写：
+####    * 本脚本相关功能依据以下代码改写：
 1.  https://github.com/EkkoG/luci-app-natmap
 2.  https://github.com/EkkoG/openwrt-natmap
 3.  https://github.com/loyux/ikuai_local_api
