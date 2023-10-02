@@ -6,6 +6,10 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
+if [ "$LINK_ENABLE" != 1 ]; then
+    exit 0
+fi
+
 INTERNAL_DEFINE_SCRIPT=""
 case $LINK_MODE in
 "qbittorrent")

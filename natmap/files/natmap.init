@@ -44,6 +44,7 @@ validate_section_natmap() {
 		'notify_channel_telegram_bot_chat_id:string' \
 		'notify_channel_telegram_bot_token:string' \
 		'notify_channel_pushplus_token:string' \
+		'link_enable:bool:0' \
 		'link_emby_url:string' \
 		'link_emby_api_key:string' \
 		'link_emby_use_https:bool:0' \
