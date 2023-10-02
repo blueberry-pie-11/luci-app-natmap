@@ -15,7 +15,7 @@ msgid "Bind port"
 msgstr "绑定端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "enable"
+msgid "ENABLE"
 msgstr "启用"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119

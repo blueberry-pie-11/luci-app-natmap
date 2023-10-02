@@ -6,33 +6,33 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
-if [ "$LINK_ENABLE" != 1 ]; then
+if [ ! -n "$FORWARD_MODE" ]; then
     exit 0
 fi
 
-INTERNAL_DEFINE_SCRIPT=""
+internal_define_script=""
 case $LINK_MODE in
 "qbittorrent")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/qb.sh"
+    internal_define_script="/usr/lib/natmap/plugin-link/qb.sh"
     ;;
 "transmission")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/tr.sh"
+    internal_define_script="/usr/lib/natmap/plugin-link/tr.sh"
     ;;
 "emby")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/emby.sh"
+    internal_define_script="/usr/lib/natmap/plugin-link/emby.sh"
     ;;
 "cloudflare_origin_rule")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/cloudflare_origin_rule.sh"
+    internal_define_script="/usr/lib/natmap/plugin-link/cloudflare_origin_rule.sh"
     ;;
 "cloudflare_redirect_rule")
-    INTERNAL_DEFINE_SCRIPT="/usr/lib/natmap/plugin-link/cloudflare_redirect_rule.sh"
+    internal_define_script="/usr/lib/natmap/plugin-link/cloudflare_redirect_rule.sh"
     ;;
 *)
-    INTERNAL_DEFINE_SCRIPT=""
+    internal_define_script=""
     ;;
 esac
 
-if [ ! -z "$INTERNAL_DEFINE_SCRIPT" ]; then
-    echo "$NAT_NAME Execute internal define script: $INTERNAL_DEFINE_SCRIPT"
-    source $INTERNAL_DEFINE_SCRIPT "$@"
+if [ ! -z "$internal_define_script" ]; then
+    echo "$NAT_NAME Execute internal define script: $internal_define_script"
+    source "$internal_define_script" "$@"
 fi

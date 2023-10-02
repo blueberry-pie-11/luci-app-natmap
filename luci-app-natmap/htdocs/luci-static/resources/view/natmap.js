@@ -117,7 +117,7 @@ return view.extend({
 		o.default = false;
 		o.modalonly = true;
 
-		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'), _('use mode local when forward with natmap or firewall;\n use mode ikuai when natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router'));
+		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		o.default = 'local';
 		o.value('local', _('local'));
 		o.value('ikuai', _('ikuai'));
@@ -187,22 +187,22 @@ return view.extend({
 		o.value('pushplus', _('PushPlus'));
 		o.depends('notify_enable', '1');
 
-		o = s.taboption('notify', form.Value, 'notify_channel_telegram_bot_chat_id', _('Chat ID'));
+		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
-		o = s.taboption('notify', form.Value, 'notify_channel_telegram_bot_token', _('Token'));
+		o = s.taboption('notify', form.Value, 'notify_telegram_bot_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
-		o = s.taboption('notify', form.Value, 'notify_channel_telegram_bot_proxy', _('http proxy'));
+		o = s.taboption('notify', form.Value, 'notify_telegram_bot_proxy', _('http proxy'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
-		o = s.taboption('notify', form.Value, 'notify_channel_pushplus_token', _('Token'));
+		o = s.taboption('notify', form.Value, 'notify_pushplus_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
