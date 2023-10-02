@@ -29,4 +29,5 @@ case $FORWARD_MODE in
 "ikuai")
     source /usr/lib/natmap/plugin-forward/ikuai-forward.sh "$@"
     ;;
+*) ;;
 esac

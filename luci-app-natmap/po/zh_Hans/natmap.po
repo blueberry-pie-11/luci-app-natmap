@@ -186,8 +186,8 @@ msgstr "例如：tcp 或 udp 或 tcp+udp"
 msgid "Set to False if you want to use HTTP"
 msgstr "如果使用http，请勿勾选"
 
-msgid "forward with natmap or firewall if use this mode"
-msgstr "此模式使用 natmap 转发或防火墙转发"
+msgid "use mode local when forward with natmap or firewall;"
+msgstr "当通过 natmap 转发或防火墙转发时，使用 local 模式；"
 
-msgid "If natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router, you can use ikuai mode"
-msgstr "如果 natmap 部署在旁路 openwrt 或内网设备，且主网关是爱快路由器，可以使用 ikuai 模式"
+msgid "use mode ikuai when natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router"
+msgstr "当 natmap 部署在旁路 openwrt 或内网设备，且主网关是爱快路由器时，使用 ikuai 模式"
