@@ -66,7 +66,7 @@ while true; do
   # echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
   # Extract the session ID (cookie) from the response headers
-  cookie=$(echo "$login_response" | jq -r '.Set-Cookie')
+  cookie=$(echo "$login_response" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
   # Print the session ID
   if [ -z "$cookie" ]; then
