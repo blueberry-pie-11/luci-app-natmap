@@ -55,9 +55,14 @@ login_params='{
 # echo "login_params: $login_params"
 # echo "nat_name: $NAT_NAME"
 
-# 循环登录，直至成功
+# 获取cookie，直至重试次数用尽
+max_retries=10
+retry_count=0
+sleep_time=5
+# 初始化cookie
 cookie=""
 
+# 登录
 while true; do
   # Send the login request and store the response headers
   login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
@@ -70,10 +75,19 @@ while true; do
 
   # Print the session ID
   if [ -z "$cookie" ]; then
-    echo "ikuai登录失败,正在重试..."
-    sleep 3
+    echo "$NAT_NAME 登录失败,正在重试..."
+    # Increment the retry count
+    retry_count=$((retry_count + 1))
+
+    # Check if maximum retries reached
+    if [ $retry_count -eq $max_retries ]; then
+      echo "$NAT_NAME 达到最大重试次数，无法登录"
+      exit 1
+    fi
+    echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+    sleep $sleep_time
   else
-    echo "ikuai登录成功"
+    echo "$NAT_NAME 登录成功"
     break
   fi
 done

@@ -6,7 +6,6 @@ outter_port=$2
 ip4p=$3
 inner_port=$4
 protocol=$5
-env
 
 LINK_TR_RPC_URL=$(echo $LINK_TR_RPC_URL | sed 's/\/$//')
 url="$LINK_TR_RPC_URL/transmission/rpc"
@@ -14,24 +13,37 @@ url="$LINK_TR_RPC_URL/transmission/rpc"
 trauth="-u $LINK_TR_USERNAME:$LINK_TR_PASSWORD"
 trsid=""
 
-# 获取trsid，直至成功
+# # 获取trsid，直至重试次数用尽
+max_retries=10
+retry_count=0
+sleep_time=5
+
 while true; do
     trsid=$(curl -s $trauth $url | sed 's/.*<code>//g;s/<\/code>.*//g')
 
-    echo "trsid: $trsid"
-    #!bin/sh
+    # echo "trsid: $trsid"
+
     if (echo $trsid | grep -q "X-Transmission-Session-Id"); then
-        echo "transmission登录成功"
+        echo "$NAT_NAME 登录成功"
         break
     else
-        echo "transmission登录失败,正在重试..."
-        sleep 3
+        echo "$NAT_NAME 登录失败,正在重试..."
+        # Increment the retry count
+        retry_count=$((retry_count + 1))
+
+        # Check if maximum retries reached
+        if [ $retry_count -eq $max_retries ]; then
+            echo "$NAT_NAME 达到最大重试次数，无法登录"
+            exit 1
+        fi
+        echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+        sleep $sleep_time
     fi
 done
 
 # 修改端口
 while true; do
-    tr_result=$(curl -X POST \
+    tr_result=$(curl -s -X POST \
         -H "${trsid}" $trauth \
         -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
         "$url")

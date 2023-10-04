@@ -10,10 +10,15 @@ ip4p=$3
 rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
+# 获取qbcookie，直至重试次数用尽
+max_retries=10
+retry_count=0
+sleep_time=5
 # 初始化qbcookie
 qbcookie=""
+
 while true; do
-    # update port
+    # 获取qbcookie
     qbcookie=$(
         curl -Ssi -X POST \
             -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
@@ -22,18 +27,28 @@ while true; do
     )
 
     # echo "qbcookie: $qbcookie"
-    # echo "outter_port: $outter_port"
 
-    if [ $qbcookie = "" ]; then
-        echo "qbittorrent登录失败,正在重试..."
-        sleep 3
+    if [ -z "$qbcookie" ]; then
+
+        echo "$NAT_NAME 登录失败,正在重试..."
+        # Increment the retry count
+        retry_count=$((retry_count + 1))
+
+        # Check if maximum retries reached
+        if [ $retry_count -eq $max_retries ]; then
+            echo "$NAT_NAME 达到最大重试次数，无法登录"
+            exit 1
+        fi
+        echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+        sleep $sleep_time
     else
-        echo "qbittorrent登录成功"
+        echo "$NAT_NAME 登录成功"
         break
     fi
 done
 
-curl -X POST \
+# 修改端口
+curl -s -X POST \
     -b "${qbcookie}" \
     -d 'json={"listen_port":"'${outter_port}'"}' \
     "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
