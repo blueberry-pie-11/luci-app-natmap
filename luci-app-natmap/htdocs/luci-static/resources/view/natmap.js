@@ -255,7 +255,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'));
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8096'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');

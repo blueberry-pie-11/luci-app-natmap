@@ -129,6 +129,9 @@ msgstr "例如：http://192.168.1.100:9091"
 msgid "such as http://192.168.1.100:8080"
 msgstr "例如：http://192.168.1.100:8080"
 
+msgid "such as http://192.168.1.100:8096"
+msgstr "例如：http://192.168.1.100:8096"
+
 msgid "Service"
 msgstr "服务"
 
