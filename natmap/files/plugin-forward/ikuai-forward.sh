@@ -55,20 +55,28 @@ login_params='{
 # echo "login_params: $login_params"
 # echo "nat_name: $NAT_NAME"
 
-# Send the login request and store the response headers
-login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
+# 循环登录，直至成功
+cookie=""
 
-# Print the login response
-# echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
+while true; do
+  # Send the login request and store the response headers
+  login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
 
-# Extract the session ID (cookie) from the response headers
-cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
+  # Print the login response
+  # echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
-# Print the session ID
-if [ -z "$cookie" ]; then
-  echo "登录失败"
-  exit 1
-fi
+  # Extract the session ID (cookie) from the response headers
+  cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
+
+  # Print the session ID
+  if [ -z "$cookie" ]; then
+    echo "ikuai登录失败,正在重试..."
+    sleep 3
+  else
+    echo "ikuai登录成功"
+    break
+  fi
+done
 
 # Set the parameters for the port mapping modification
 enabled="yes"

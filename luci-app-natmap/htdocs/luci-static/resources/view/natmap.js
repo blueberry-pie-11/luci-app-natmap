@@ -255,7 +255,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'));
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8096'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
@@ -275,7 +275,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'));
+		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'), _('such as http://192.168.1.100:8080'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
@@ -300,7 +300,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_qb_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'));
+		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://192.168.1.100:9091'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');

@@ -10,8 +10,10 @@ while true; do
         "http://www.pushplus.plus/send"
     status=$?
     if [ $status -eq 0 ]; then
+        echo "pushplus发送成功"
         break
     else
+        echo "pushplus发送失败，正在重试..."
         sleep 3
     fi
 done

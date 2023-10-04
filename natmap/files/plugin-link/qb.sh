@@ -9,20 +9,35 @@ ip4p=$3
 
 rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
-# update port
-qbcookie=$(
-    curl -Ssi -X POST \
-        -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
-        "$LINK_QB_WEB_URL/api/v2/auth/login" |
-        sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
-)
-echo "qbcookie: $qbcookie"
-echo "outter_port: $outter_port"
+
+# 初始化qbcookie
+qbcookie=""
+while true; do
+    # update port
+    qbcookie=$(
+        curl -Ssi -X POST \
+            -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
+            "$LINK_QB_WEB_URL/api/v2/auth/login" |
+            sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
+    )
+
+    # echo "qbcookie: $qbcookie"
+    # echo "outter_port: $outter_port"
+
+    if [ $qbcookie = "" ]; then
+        echo "qbittorrent登录失败,正在重试..."
+        sleep 3
+    else
+        echo "qbittorrent登录成功"
+        break
+    fi
+done
+
 curl -X POST \
     -b "${qbcookie}" \
     -d 'json={"listen_port":"'${outter_port}'"}' \
     "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
-
+#
 # qb_allow_ipv6
 if [ $LINK_QB_ALLOW_IPV6 = 1 ]; then
     echo "rule_name: $rule_name"

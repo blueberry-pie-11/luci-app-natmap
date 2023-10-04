@@ -20,8 +20,10 @@ while true; do
         "https://api.telegram.org/bot${NOTIFY_TELEGRAM_BOT_TOKEN}/sendMessage"
     status=$?
     if [ $status -eq 0 ]; then
+        echo "telegram发送成功"
         break
     else
+        echo "telegram发送失败，正在重试..."
         sleep 3
     fi
 done
