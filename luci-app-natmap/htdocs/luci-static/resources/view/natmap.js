@@ -146,7 +146,7 @@ return view.extend({
 		o.depends('forward_mode', 'local');
 
 		// forward_ikuai
-		o = s.taboption('forward', form.Value, 'forward_ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -172,6 +172,22 @@ return view.extend({
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
+
+		o = s.taboption('forward', form.Flag, 'forward_ikuai_advanced_enable', _('Ikuai Advanced Settings'));
+		o.datatype = 'uinteger';
+		o.default = false;
+		o.modalonly = true;
+		o.depends('forward_mode', 'ikuai');
+
+		o = s.taboption('forward', form.Value, 'forward_ikuai_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('forward_ikuai_advanced_enable', '1');
+
+		o = s.taboption('forward', form.Value, 'forward_ikuai_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('forward_ikuai_advanced_enable', '1');
 
 		//
 		// 
@@ -226,6 +242,7 @@ return view.extend({
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
 		o.depends('link_enable', '1');
 
+		// link_cloudflare
 		o = s.taboption('link', form.Value, 'link_cloudflare_email', _('Email'));
 		o.datatype = 'string';
 		o.modalonly = true;
@@ -255,7 +272,8 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8096'));
+		// link_emby
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8096 or	http://emby.lan:8096.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
@@ -275,7 +293,8 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
 
-		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'), _('such as http://192.168.1.100:8080'));
+		// link_qbittorrent
+		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'), _('such as http://192.168.1.100:8080 or http://qbittorrent.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
@@ -300,7 +319,26 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_qb_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://192.168.1.100:9091'));
+		o = s.taboption('link', form.Flag, 'link_qb_advanced_enable', _('Qbittorrent Advanced Settings'));
+		o.datatype = 'uinteger';
+		o.default = false;
+		o.modalonly = true;
+		o.depends('link_mode', 'qbittorrent');
+
+		o = s.taboption('link', form.Value, 'link_qb_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_qb_advanced_enable', '1');
+
+		o = s.taboption('link', form.Value, 'link_qb_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_qb_advanced_enable', '1');
+
+
+
+		// link_transmission
+		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://192.168.1.100:9091 or http://transmission.lan:9091.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
@@ -325,6 +363,25 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_tr_allow_ipv6', '1');
 
+		o = s.taboption('link', form.Flag, 'link_tr_advanced_enable', _('Transmission Advanced Settings'));
+		o.datatype = 'uinteger';
+		o.default = false;
+		o.modalonly = true;
+		o.depends('link_mode', 'transmission');
+
+		o = s.taboption('link', form.Value, 'link_tr_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_tr_advanced_enable', '1');
+
+		o = s.taboption('link', form.Value, 'link_tr_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('link_tr_advanced_enable', '1');
+
+
+
+		// status
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
 		o.modalonly = false;
 		o.textvalue = function (section_id) {

@@ -39,6 +39,9 @@ validate_section_natmap() {
 		'forward_ikuai_password:string' \
 		'forward_ikuai_mapping_protocol:string' \
 		'forward_ikuai_mapping_wan_interface:string' \
+		'forward_ikuai_advanced_enable:bool:0' \
+		'forward_ikuai_max_retries:uinteger' \
+		'forward_ikuai_sleep_time:uinteger' \
 		'notify_enable:bool:0' \
 		'notify_channel:string' \
 		'notify_telegram_bot_chat_id:string' \
@@ -54,11 +57,17 @@ validate_section_natmap() {
 		'link_qb_password:string' \
 		'link_qb_ipv6_address:string' \
 		'link_qb_allow_ipv6:bool:0' \
+		'link_qb_advanced_enable:bool:0' \
+		'link_qb_max_retries:uinteger' \
+		'link_qb_sleep_time:uinteger' \
 		'link_tr_rpc_url:string' \
 		'link_tr_username:string' \
 		'link_tr_password:string' \
 		'link_tr_allow_ipv6:bool:0' \
 		'link_tr_ipv6_address:string' \
+		'link_tr_advanced_enable:bool:0' \
+		'link_tr_max_retries:uinteger' \
+		'link_tr_sleep_time:uinteger' \
 		'link_cloudflare_email:string' \
 		'link_cloudflare_api_key:string' \
 		'link_cloudflare_zone_id:string' \

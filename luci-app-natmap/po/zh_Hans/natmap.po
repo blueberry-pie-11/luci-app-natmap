@@ -132,6 +132,30 @@ msgstr "例如：http://192.168.1.100:8080"
 msgid "such as http://192.168.1.100:8096"
 msgstr "例如：http://192.168.1.100:8096"
 
+msgid "if use host,must close Rebind protection in DHCP and DNS"
+msgstr "如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
+
+msgid "Ikuai Advanced Settings"
+msgstr "ikuai 高级设置"
+
+msgid "max retries, 0 means no limit,default 1 means execute only once"
+msgstr "最大重试次数，0 表示无限重试，默认 1 表示仅执行一次调用"
+
+msgid "Max Retries"
+msgstr "最大重试次数"
+
+msgid "Sleep Time"
+msgstr "休眠时间"
+
+msgid "Single sleep time, unit is seconds, default is 3 seconds"
+msgstr "单次休眠等待时间，单位是秒，默认3秒"
+
+msgid "Qbittorrent Advanced Settings"
+msgstr "qbittorrent 高级设置"
+
+
+
+
 msgid "Service"
 msgstr "服务"
 
