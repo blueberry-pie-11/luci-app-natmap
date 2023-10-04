@@ -8,7 +8,7 @@ inner_port=$4
 protocol=$5
 
 # ikuai
-ikuai_url=$FORWARD_IKUAI_WEB_URL
+ikuai_url=$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')
 ikuai_user=$FORWARD_IKUAI_USERNAME
 ikual_passwd=$FORWARD_IKUAI_PASSWORD
 mapping_protocol=$FORWARD_IKUAI_MAPPING_PROTOCOL

@@ -3,6 +3,7 @@
 # NATMap
 outter_ip=$1
 outter_port=$2
+LINK_EMBY_URL=$(echo $LINK_EMBY_URL | sed 's/\/$//')
 
 current_cfg=$(curl -v $LINK_EMBY_URL/emby/System/Configuration?api_key=$LINK_EMBY_API_KEY)
 new_cfg=$current_cfg
