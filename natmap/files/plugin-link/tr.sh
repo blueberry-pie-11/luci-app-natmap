@@ -17,7 +17,7 @@ trsid=""
 while true; do
     trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
 
-    if [[ echo "$trsid" | grep -qF "X-Transmission-Session-Id" ]]; then
+    if [[ $trsid == *"X-Transmission-Session-Id"* ]]; then
         echo "transmission登录成功"
         break
     else

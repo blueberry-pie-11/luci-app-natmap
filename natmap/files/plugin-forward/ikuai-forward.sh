@@ -66,7 +66,7 @@ while true; do
   # echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
   # Extract the session ID (cookie) from the response headers
-  cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
+  cookie=$(echo "$login_response" | jq -r '.Set-Cookie')
 
   # Print the session ID
   if [ -z "$cookie" ]; then
@@ -106,9 +106,9 @@ dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
 
 # 判断$dnat_id是否为空
 if [ -z "$dnat_id" ]; then
-  echo "查询无端口映射"
+  echo "ikuai查询无 $comment 端口映射"
 else
-  echo "dnat_id: $dnat_id"
+  # echo "ikuai 端口映射 dnat_id: $dnat_id"
 
   # 创建delete_payload字典
   delete_payload='{
@@ -128,9 +128,9 @@ else
   # echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
 
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
-    echo "Port mapping deleted successfully"
+    # echo "ikuai $comment Port mapping deleted successfully"
   else
-    echo "Failed to delete the port mapping"
+    # echo "Failed to delete the port mapping $comment"
     # echo "Delete_response: $delete_response"
     exit 1
   fi
@@ -164,9 +164,9 @@ add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$ca
 
 # Check if the modification was successful
 if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
-  echo "Port mapping modified successfully"
+  echo "ikuai $comment Port mapping modified successfully"
 else
-  echo "Failed to modify the port mapping"
+  echo "ikuai Failed to modify the port mapping $comment"
   # echo "Response: $response"
   exit 1
 fi
