@@ -17,8 +17,10 @@ trsid=""
 while true; do
     trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
     if [ echo "$cookie" | grep -qF "X-Transmission-Session-Id" ]; then
+        echo "登录成功"
         break
     else
+        echo "登录失败,正在重试..."
         sleep 3
     fi
 done
