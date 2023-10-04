@@ -70,10 +70,10 @@ while true; do
 
   # Print the session ID
   if [ -z "$cookie" ]; then
-    echo "登录失败,正在重试..."
+    echo "ikuai登录失败,正在重试..."
     sleep 3
   else
-    echo "登录成功"
+    echo "ikuai登录成功"
     break
   fi
 done

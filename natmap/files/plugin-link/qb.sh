@@ -25,8 +25,10 @@ while true; do
     # echo "outter_port: $outter_port"
 
     if [ $qbcookie = "" ]; then
+        echo "qbittorrent登录失败,正在重试..."
         sleep 3
     else
+        echo "qbittorrent登录成功"
         break
     fi
 done

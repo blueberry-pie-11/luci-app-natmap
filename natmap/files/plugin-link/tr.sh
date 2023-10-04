@@ -16,19 +16,30 @@ trsid=""
 # 获取trsid，直至成功
 while true; do
     trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
-    if [ echo "$cookie" | grep -qF "X-Transmission-Session-Id" ]; then
-        echo "登录成功"
+    if [ echo "$trsid" | grep -qF "X-Transmission-Session-Id" ]; then
+        echo "transmission登录成功"
         break
     else
-        echo "登录失败,正在重试..."
+        echo "transmission登录失败,正在重试..."
         sleep 3
     fi
 done
 
-curl -X POST \
-    -H "${trsid}" $trauth \
-    -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
-    "$LINK_TR_RPC_URL/transmission/rpc"
+# 修改端口
+while true; do
+    tr_result=$(curl -X POST \
+        -H "${trsid}" $trauth \
+        -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
+        "$LINK_TR_RPC_URL/transmission/rpc")
+
+    if [ "$(echo "$tr_result" | jq -r '.result')" = "success" ]; then
+        echo "transmission port modified successfully"
+        break
+    else
+        echo "Failed to modify the port"
+        sleep 3
+    fi
+done
 
 if [ $LINK_TR_ALLOW_IPV6 = 1 ]; then
     rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
