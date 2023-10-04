@@ -9,14 +9,16 @@ protocol=$5
 env
 
 LINK_TR_RPC_URL=$(echo $LINK_TR_RPC_URL | sed 's/\/$//')
+url="$LINK_TR_RPC_URL/transmission/rpc"
 # update port
 trauth="-u $LINK_TR_USERNAME:$LINK_TR_PASSWORD"
 trsid=""
 
 # 获取trsid，直至成功
 while true; do
-    trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
+    trsid=$(curl -s $trauth $url | sed 's/.*<code>//g;s/<\/code>.*//g')
 
+    echo "trsid: $trsid"
     #!bin/sh
     if (echo $trsid | grep -q "X-Transmission-Session-Id"); then
         echo "transmission登录成功"
@@ -32,13 +34,13 @@ while true; do
     tr_result=$(curl -X POST \
         -H "${trsid}" $trauth \
         -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
-        "$LINK_TR_RPC_URL/transmission/rpc")
+        "$url")
 
     if [ "$(echo "$tr_result" | jq -r '.result')" = "success" ]; then
         echo "transmission port modified successfully"
         break
     else
-        echo "Failed to modify the port"
+        echo "transmission Failed to modify the port"
         sleep 3
     fi
 done

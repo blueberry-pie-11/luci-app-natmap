@@ -128,9 +128,9 @@ else
   # echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
 
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
-    # echo "ikuai $comment Port mapping deleted successfully"
+    echo "ikuai $comment Port mapping deleted successfully"
   else
-    # echo "Failed to delete the port mapping $comment"
+    echo "Failed to delete the port mapping $comment"
     # echo "Delete_response: $delete_response"
     exit 1
   fi
