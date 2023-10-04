@@ -11,12 +11,47 @@ LINK_TR_RPC_URL=$(echo $LINK_TR_RPC_URL | sed 's/\/$//')
 url="$LINK_TR_RPC_URL/transmission/rpc"
 # update port
 trauth="-u $LINK_TR_USERNAME:$LINK_TR_PASSWORD"
-trsid=""
 
 # # 获取trsid，直至重试次数用尽
-max_retries=10
+# 默认重试次数为1，休眠时间为3s
+max_retries=1
+sleep_time=3
+
+# 初始化参数
+trsid=""
 retry_count=0
-sleep_time=5
+
+# 判断是否开启transmission的高级功能
+if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
+    # 获取transmission的最大重试次数
+    case "$LINK_TR_MAX_RETRIES" in
+    "")
+        max_retries=1
+        ;;
+    "0")
+        max_retries=1
+        ;;
+    *)
+        max_retries=$LINK_TR_MAX_RETRIES
+        ;;
+    esac
+
+    # 获取transmission的休眠时间
+    case "$LINK_TR_SLEEP_TIME" in
+    "")
+        sleep_time=3
+        ;;
+    "0")
+        sleep_time=3
+        ;;
+    *)
+        sleep_time=$LINK_TR_SLEEP_TIME
+        ;;
+    esac
+else
+    max_retries=1
+    sleep_time=3
+fi
 
 while true; do
     trsid=$(curl -s $trauth $url | sed 's/.*<code>//g;s/<\/code>.*//g')

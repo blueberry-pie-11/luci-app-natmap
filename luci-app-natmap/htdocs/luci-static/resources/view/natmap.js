@@ -179,12 +179,12 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_ikuai_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_ikuai_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_ikuai_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o = s.taboption('forward', form.Value, 'forward_ikuai_sleep_time', _('Sleep Time'), _('max retries,dSingle sleep time, unit is seconds, default 0 is 3 secondsefault 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('forward_ikuai_advanced_enable', '1');
@@ -325,12 +325,12 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
 
-		o = s.taboption('link', form.Value, 'link_qb_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o = s.taboption('link', form.Value, 'link_qb_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_qb_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_qb_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_qb_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_qb_advanced_enable', '1');
@@ -369,12 +369,12 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
 
-		o = s.taboption('link', form.Value, 'link_tr_max_retries', _('Max Retries'), _('max retries, 0 means no limit,default 1 means execute only once'));
+		o = s.taboption('link', form.Value, 'link_tr_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_tr_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_tr_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_tr_sleep_time', _('Sleep Time'), _('max retries,dSingle sleep time, unit is seconds, default 0 is 3 secondsefault 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_tr_advanced_enable', '1');

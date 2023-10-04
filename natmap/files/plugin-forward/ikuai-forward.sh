@@ -56,11 +56,45 @@ login_params='{
 # echo "nat_name: $NAT_NAME"
 
 # 获取cookie，直至重试次数用尽
-max_retries=10
-retry_count=0
-sleep_time=5
-# 初始化cookie
+# 默认重试次数为1，休眠时间为3s
+max_retries=1
+sleep_time=3
+
+# 初始化参数
 cookie=""
+retry_count=0
+
+# 判断是否开启IKUAI的高级功能
+if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
+  # 获取IKUAI的最大重试次数
+  case "$FORWARD_IKUAI_MAX_RETRIES" in
+  "")
+    max_retries=1
+    ;;
+  "0")
+    max_retries=1
+    ;;
+  *)
+    max_retries=$FORWARD_IKUAI_MAX_RETRIES
+    ;;
+  esac
+
+  # 获取IKUAI的休眠时间
+  case "$FORWARD_IKUAI_SLEEP_TIME" in
+  "")
+    sleep_time=3
+    ;;
+  "0")
+    sleep_time=3
+    ;;
+  *)
+    sleep_time=$FORWARD_IKUAI_SLEEP_TIME
+    ;;
+  esac
+else
+  max_retries=1
+  sleep_time=3
+fi
 
 # 登录
 while true; do

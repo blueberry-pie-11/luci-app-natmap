@@ -11,11 +11,45 @@ rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
 # 获取qbcookie，直至重试次数用尽
-max_retries=10
-retry_count=0
-sleep_time=5
-# 初始化qbcookie
+# 默认重试次数为1，休眠时间为3s
+max_retries=1
+sleep_time=3
+
+# 初始化参数
 qbcookie=""
+retry_count=0
+
+# 判断是否开启qbittorrent的高级功能
+if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
+    # 获取qbittorrent的最大重试次数
+    case "$LINK_QB_MAX_RETRIES" in
+    "")
+        max_retries=1
+        ;;
+    "0")
+        max_retries=1
+        ;;
+    *)
+        max_retries=$LINK_QB_MAX_RETRIES
+        ;;
+    esac
+
+    # 获取qbittorrent的休眠时间
+    case "$LINK_QB_SLEEP_TIME" in
+    "")
+        sleep_time=3
+        ;;
+    "0")
+        sleep_time=3
+        ;;
+    *)
+        sleep_time=$LINK_QB_SLEEP_TIME
+        ;;
+    esac
+else
+    max_retries=1
+    sleep_time=3
+fi
 
 while true; do
     # 获取qbcookie
