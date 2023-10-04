@@ -11,7 +11,18 @@ env
 LINK_TR_RPC_URL=$(echo $LINK_TR_RPC_URL | sed 's/\/$//')
 # update port
 trauth="-u $LINK_TR_USERNAME:$LINK_TR_PASSWORD"
-trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
+trsid=""
+
+# 获取trsid，直至成功
+while true; do
+    trsid=$(curl -s $trauth $LINK_TR_RPC_URL/transmission/rpc | sed 's/.*<code>//g;s/<\/code>.*//g')
+    if [ echo "$cookie" | grep -qF "X-Transmission-Session-Id" ]; then
+        break
+    else
+        sleep 3
+    fi
+done
+
 curl -X POST \
     -H "${trsid}" $trauth \
     -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
