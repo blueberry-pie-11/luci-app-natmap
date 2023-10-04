@@ -87,9 +87,6 @@ msgstr "地址族限制"
 msgid "STUN server"
 msgstr "STUN 服务器"
 
-
-
-
 msgid "General Settings"
 msgstr "常规设置"
 
@@ -125,6 +122,12 @@ msgstr "关联设置"
 
 msgid "Change another service's config"
 msgstr "修改其它服务设置"
+
+msgid "such as http://192.168.1.100:9091"
+msgstr "例如：http://192.168.1.100:9091"
+
+msgid "such as http://192.168.1.100:8080"
+msgstr "例如：http://192.168.1.100:8080"
 
 msgid "Service"
 msgstr "服务"
