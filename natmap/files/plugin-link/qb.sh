@@ -22,7 +22,8 @@ retry_count=0
 # 判断是否开启qbittorrent的高级功能
 if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
     # 获取qbittorrent的最大重试次数
-    case "$LINK_QB_MAX_RETRIES" in
+    qb_max_retries=$(echo $LINK_QB_MAX_RETRIES | sed 's/\/$//')
+    case "$qb_max_retries" in
     "")
         max_retries=1
         ;;
@@ -30,12 +31,13 @@ if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
         max_retries=1
         ;;
     *)
-        max_retries=$LINK_QB_MAX_RETRIES
+        max_retries=$qb_max_retries
         ;;
     esac
 
     # 获取qbittorrent的休眠时间
-    case "$LINK_QB_SLEEP_TIME" in
+    qb_sleep_time=$(echo $LINK_QB_SLEEP_TIME | sed 's/\/$//')
+    case "$qb_sleep_time" in
     "")
         sleep_time=3
         ;;
@@ -43,7 +45,7 @@ if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
         sleep_time=3
         ;;
     *)
-        sleep_time=$LINK_QB_SLEEP_TIME
+        sleep_time=$qb_sleep_time
         ;;
     esac
 else

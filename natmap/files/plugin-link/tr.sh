@@ -24,7 +24,8 @@ retry_count=0
 # 判断是否开启transmission的高级功能
 if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
     # 获取transmission的最大重试次数
-    case "$LINK_TR_MAX_RETRIES" in
+    tr_max_retries=$(echo $LINK_TR_MAX_RETRIES | sed 's/\/$//')
+    case "$tr_max_retries" in
     "")
         max_retries=1
         ;;
@@ -32,12 +33,13 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
         max_retries=1
         ;;
     *)
-        max_retries=$LINK_TR_MAX_RETRIES
+        max_retries=$tr_max_retries
         ;;
     esac
 
     # 获取transmission的休眠时间
-    case "$LINK_TR_SLEEP_TIME" in
+    tr_sleep_time=$(echo $LINK_TR_SLEEP_TIME | sed 's/\/$//')
+    case "$tr_sleep_time" in
     "")
         sleep_time=3
         ;;
@@ -45,7 +47,7 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
         sleep_time=3
         ;;
     *)
-        sleep_time=$LINK_TR_SLEEP_TIME
+        sleep_time=$tr_sleep_time
         ;;
     esac
 else

@@ -67,7 +67,8 @@ retry_count=0
 # 判断是否开启IKUAI的高级功能
 if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
   # 获取IKUAI的最大重试次数
-  case "$FORWARD_IKUAI_MAX_RETRIES" in
+  ikuai_max_retries=$(echo $FORWARD_IKUAI_MAX_RETRIES | sed 's/\/$//')
+  case "$ikuai_max_retries" in
   "")
     max_retries=1
     ;;
@@ -75,12 +76,13 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
     max_retries=1
     ;;
   *)
-    max_retries=$FORWARD_IKUAI_MAX_RETRIES
+    max_retries=$ikuai_max_retries
     ;;
   esac
 
   # 获取IKUAI的休眠时间
-  case "$FORWARD_IKUAI_SLEEP_TIME" in
+  ikuai_sleep_time=$(echo $FORWARD_IKUAI_SLEEP_TIME | sed 's/\/$//')
+  case "$ikuai_sleep_time" in
   "")
     sleep_time=3
     ;;
@@ -88,7 +90,7 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
     sleep_time=3
     ;;
   *)
-    sleep_time=$FORWARD_IKUAI_SLEEP_TIME
+    sleep_time=$ikuai_sleep_time
     ;;
   esac
 else
