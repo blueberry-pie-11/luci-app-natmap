@@ -3,7 +3,6 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-natmap
-PKG_VERSION:=v1.2.0
 PKG_RELEASE:=2
 
 LUCI_TITLE:=LuCI Support for natmap
