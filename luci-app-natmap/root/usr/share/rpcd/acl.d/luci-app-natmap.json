@@ -13,13 +13,11 @@
 				]
 			},
 			"uci": [
-				"luci-app-natmap",
 				"natmap"
 			]
 		},
 		"write": {
 			"uci": [
-				"luci-app-natmap",
 				"natmap"
 			]
 		}
