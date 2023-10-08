@@ -120,6 +120,7 @@ natmap_instance() {
 		fi
 	done
 
+	console.log "natmap"
 	procd_append_param command -e /usr/share/natmap/update.sh
 
 	procd_set_param respawn
