@@ -13,19 +13,19 @@ fi
 internal_define_script=""
 case $LINK_MODE in
 "qbittorrent")
-    internal_define_script="/usr/lib/natmap/plugin-link/qb.sh"
+    internal_define_script="/usr/share/natmap/plugin-link/qb.sh"
     ;;
 "transmission")
-    internal_define_script="/usr/lib/natmap/plugin-link/tr.sh"
+    internal_define_script="/usr/share/natmap/plugin-link/tr.sh"
     ;;
 "emby")
-    internal_define_script="/usr/lib/natmap/plugin-link/emby.sh"
+    internal_define_script="/usr/share/natmap/plugin-link/emby.sh"
     ;;
 "cloudflare_origin_rule")
-    internal_define_script="/usr/lib/natmap/plugin-link/cloudflare_origin_rule.sh"
+    internal_define_script="/usr/share/natmap/plugin-link/cloudflare_origin_rule.sh"
     ;;
 "cloudflare_redirect_rule")
-    internal_define_script="/usr/lib/natmap/plugin-link/cloudflare_redirect_rule.sh"
+    internal_define_script="/usr/share/natmap/plugin-link/cloudflare_redirect_rule.sh"
     ;;
 *)
     internal_define_script=""

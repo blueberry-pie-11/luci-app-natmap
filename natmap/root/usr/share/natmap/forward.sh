@@ -28,10 +28,10 @@ fi
 
 case $FORWARD_MODE in
 "local")
-    source /usr/lib/natmap/plugin-forward/natmap-forward.sh "$@"
+    source /usr/share/natmap/plugin-forward/natmap-forward.sh "$@"
     ;;
 "ikuai")
-    source /usr/lib/natmap/plugin-forward/ikuai-forward.sh "$@"
+    source /usr/share/natmap/plugin-forward/ikuai-forward.sh "$@"
     ;;
 *) ;;
 esac

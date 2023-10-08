@@ -17,6 +17,6 @@ if [ ! -z "$MSG_OVERRIDE" ]; then
 	msg="$MSG_OVERRIDE"
 fi
 
-if [ -f "/usr/lib/natmap/plugin-notify/$NOTIFY_CHANNEL.sh" ]; then
-	source "/usr/lib/natmap/plugin-notify/$NOTIFY_CHANNEL.sh" "$msg"
+if [ -f "/usr/share/natmap/plugin-notify/$NOTIFY_CHANNEL.sh" ]; then
+	source "/usr/share/natmap/plugin-notify/$NOTIFY_CHANNEL.sh" "$msg"
 fi

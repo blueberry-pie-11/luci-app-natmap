@@ -19,10 +19,10 @@ echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
 	source "${NOTIFY_SCRIPT}" "$@"
 }
 # link setting
-source /usr/lib/natmap/link.sh "$@"
+source /usr/share/natmap/link.sh "$@"
 
 # forward setting
-source /usr/lib/natmap/forward.sh "$@"
+source /usr/share/natmap/forward.sh "$@"
 
 # notify setting
-source /usr/lib/natmap/notify.sh "$@"
+source /usr/share/natmap/notify.sh "$@"
