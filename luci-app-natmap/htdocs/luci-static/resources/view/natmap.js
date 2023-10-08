@@ -273,7 +273,7 @@ return view.extend({
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
 		// link_emby
-		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8096 or	http://emby.lan:8096.if use host,must close Rebind protection in DHCP and DNS'));
+		o = s.taboption('link', form.Value, 'link_emby_url', _('EMBY URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'emby');
@@ -294,7 +294,7 @@ return view.extend({
 		o.depends('link_mode', 'emby');
 
 		// link_qbittorrent
-		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'), _('such as http://192.168.1.100:8080 or http://qbittorrent.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
+		o = s.taboption('link', form.Value, 'link_qb_web_url', _('Web UI URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
@@ -338,7 +338,7 @@ return view.extend({
 
 
 		// link_transmission
-		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://192.168.1.100:9091 or http://transmission.lan:9091.if use host,must close Rebind protection in DHCP and DNS'));
+		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
