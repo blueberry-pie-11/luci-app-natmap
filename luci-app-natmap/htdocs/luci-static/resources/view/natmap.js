@@ -115,7 +115,7 @@ return view.extend({
 
 		// ----------------------------------------
 		// forward
-		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'), _('use mode ikuai when use ikuai as the main gateway'));
+		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
 		o.ucioption = 'forward_mode';
 		o.default = false;
 		o.modalonly = true;
