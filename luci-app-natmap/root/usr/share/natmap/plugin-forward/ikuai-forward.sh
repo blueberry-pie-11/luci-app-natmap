@@ -16,7 +16,7 @@ ikuai_url=$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')
 ikuai_user=$FORWARD_IKUAI_USERNAME
 ikual_passwd=$FORWARD_IKUAI_PASSWORD
 mapping_protocol=$FORWARD_IKUAI_MAPPING_PROTOCOL
-mapping_wan_interface=$FORWARD_IKUAI_MAPPING_GENERAL_WAN_INTERFACE
+mapping_wan_interface=$FORWARD_IKUAI_MAPPING_WAN_INTERFACE
 mapping_wan_port=$GENERAL_BIND_PORT
 mapping_lan_addr=$FORWARD_TARGET_IP
 

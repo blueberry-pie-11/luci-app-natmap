@@ -69,7 +69,7 @@ return view.extend({
 			if (s) return s.name;
 		};
 
-		o = s.taboption('general', form.Value, 'general_general_nat_name', _('Name'));
+		o = s.taboption('general', form.Value, 'general_nat_name', _('Name'));
 		o.datatype = 'string';
 		o.modalonly = true;
 
