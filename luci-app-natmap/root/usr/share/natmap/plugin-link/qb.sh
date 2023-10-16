@@ -7,13 +7,52 @@ outter_ip=$1
 outter_port=$2
 ip4p=$3
 
-rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
+rule_name=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
-# 初始化qbcookie
+# 默认重试次数为1，休眠时间为3s
+max_retries=1
+sleep_time=3
+
+# 判断是否开启高级功能
+if [ "$LINK_ADVANCED_ENABLE" == 1 ]; then
+    # 获取最大重试次数
+    case "$(echo $LINK_MAX_RETRIES | sed 's/\/$//')" in
+    "")
+        max_retries=1
+        ;;
+    "0")
+        max_retries=1
+        ;;
+    *)
+        max_retries=$(echo $LINK_MAX_RETRIES | sed 's/\/$//')
+        ;;
+    esac
+
+    # 获取休眠时间
+    case "$(echo $LINK_SLEEP_TIME | sed 's/\/$//')" in
+    "")
+        sleep_time=3
+        ;;
+    "0")
+        sleep_time=3
+        ;;
+    *)
+        sleep_time=$(echo $LINK_SLEEP_TIME | sed 's/\/$//')
+        ;;
+    esac
+else
+    max_retries=1
+    sleep_time=3
+fi
+
+# 初始化参数
+# 获取qbcookie，直至重试次数用尽
 qbcookie=""
+retry_count=0
+
 while true; do
-    # update port
+    # 获取qbcookie
     qbcookie=$(
         curl -Ssi -X POST \
             -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
@@ -22,18 +61,28 @@ while true; do
     )
 
     # echo "qbcookie: $qbcookie"
-    # echo "outter_port: $outter_port"
 
-    if [ $qbcookie = "" ]; then
-        echo "qbittorrent登录失败,正在重试..."
-        sleep 3
+    if [ -z "$qbcookie" ]; then
+
+        # echo "$LINK_MODE 登录失败,正在重试..."
+        # Increment the retry count
+        retry_count=$((retry_count + 1))
+
+        # Check if maximum retries reached
+        if [ $retry_count -eq $max_retries ]; then
+            echo "$LINK_MODE 达到最大重试次数，无法登录"
+            exit 1
+        fi
+        # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
+        sleep $sleep_time
     else
-        echo "qbittorrent登录成功"
+        echo "$LINK_MODE 登录成功"
         break
     fi
 done
 
-curl -X POST \
+# 修改端口
+curl -s -X POST \
     -b "${qbcookie}" \
     -d 'json={"listen_port":"'${outter_port}'"}' \
     "$LINK_QB_WEB_URL/api/v2/app/setPreferences"

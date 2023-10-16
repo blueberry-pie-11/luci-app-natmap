@@ -8,12 +8,16 @@ inner_port=$4
 protocol=$5
 
 # ikuai
-ikuai_url=$FORWARD_IKUAI_WEB_URL
+# ----------------
+# ikuai版本
+ikuai_version=3.7.6
+# ----------------
+ikuai_url=$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')
 ikuai_user=$FORWARD_IKUAI_USERNAME
 ikual_passwd=$FORWARD_IKUAI_PASSWORD
 mapping_protocol=$FORWARD_IKUAI_MAPPING_PROTOCOL
 mapping_wan_interface=$FORWARD_IKUAI_MAPPING_WAN_INTERFACE
-mapping_wan_port=$BIND_PORT
+mapping_wan_port=$GENERAL_BIND_PORT
 mapping_lan_addr=$FORWARD_TARGET_IP
 
 # 单独配置mapping_lan_port
@@ -53,11 +57,50 @@ login_params='{
 # echo "call_url: $call_url"
 # echo "login_url: $login_url"
 # echo "login_params: $login_params"
-# echo "nat_name: $NAT_NAME"
+# echo "general_nat_name: $GENERAL_NAT_NAME"
 
-# 循环登录，直至成功
+# 获取cookie，直至重试次数用尽
+# 默认重试次数为1，休眠时间为3s
+max_retries=1
+sleep_time=3
+
+# 判断是否开启高级功能
+if [ "$FORWARD_ADVANCED_ENABLE" == 1 ]; then
+  # 获取最大重试次数
+  case "$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')" in
+  "")
+    max_retries=1
+    ;;
+  "0")
+    max_retries=1
+    ;;
+  *)
+    max_retries=$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')
+    ;;
+  esac
+
+  # 获取休眠时间
+  case "$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')" in
+  "")
+    sleep_time=3
+    ;;
+  "0")
+    sleep_time=3
+    ;;
+  *)
+    sleep_time=$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')
+    ;;
+  esac
+else
+  max_retries=1
+  sleep_time=3
+fi
+
+# 初始化参数
 cookie=""
+retry_count=0
 
+# 登录
 while true; do
   # Send the login request and store the response headers
   login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
@@ -66,21 +109,30 @@ while true; do
   # echo "login_response: $(echo "$login_response" | sed 's/,/,\\n/g')"
 
   # Extract the session ID (cookie) from the response headers
-  cookie=$(echo "$login_response" | grep -i "Set-Cookie:" | awk -F' ' '{print $2}')
+  cookie=$(echo "$login_response" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
   # Print the session ID
   if [ -z "$cookie" ]; then
-    echo "ikuai登录失败,正在重试..."
-    sleep 3
+    # echo "$FORWARD_MODE 登录失败,正在重试..."
+    # Increment the retry count
+    retry_count=$((retry_count + 1))
+
+    # Check if maximum retries reached
+    if [ $retry_count -eq $max_retries ]; then
+      echo "$FORWARD_MODE 达到最大重试次数，无法登录"
+      exit 1
+    fi
+    # echo "$FORWARD_MODE 登录失败,休眠$sleep_time秒"
+    sleep $sleep_time
   else
-    echo "ikuai登录成功"
+    echo "$FORWARD_MODE 登录成功"
     break
   fi
 done
 
 # Set the parameters for the port mapping modification
 enabled="yes"
-comment="natmap-${NAT_NAME}"
+comment="natmap-${GENERAL_NAT_NAME}"
 
 # 通过$comment查询端口映射
 # 创建show_payload字典
@@ -106,9 +158,9 @@ dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
 
 # 判断$dnat_id是否为空
 if [ -z "$dnat_id" ]; then
-  echo "查询无端口映射"
+  echo "ikuai查询无 $comment 端口映射"
 else
-  echo "dnat_id: $dnat_id"
+  # echo "ikuai 端口映射 dnat_id: $dnat_id"
 
   # 创建delete_payload字典
   delete_payload='{
@@ -128,9 +180,9 @@ else
   # echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
 
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
-    echo "Port mapping deleted successfully"
+    echo "ikuai $comment Port mapping deleted successfully"
   else
-    echo "Failed to delete the port mapping"
+    echo "Failed to delete the port mapping $comment"
     # echo "Delete_response: $delete_response"
     exit 1
   fi
@@ -164,9 +216,9 @@ add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$ca
 
 # Check if the modification was successful
 if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
-  echo "Port mapping modified successfully"
+  echo "ikuai $comment Port mapping modified successfully"
 else
-  echo "Failed to modify the port mapping"
+  echo "ikuai Failed to modify the port mapping $comment"
   # echo "Response: $response"
   exit 1
 fi

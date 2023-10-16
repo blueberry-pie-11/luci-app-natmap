@@ -20,7 +20,7 @@ msgstr "启用"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
 msgid "External IP"
-msgstr "外部 IP"
+msgstr "外部 ip"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
 msgid "External Port"
@@ -28,7 +28,7 @@ msgstr "外部端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "For TCP mode"
-msgstr "用于 TCP 模式"
+msgstr "用于 tcp 模式"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
 msgid "Forward mode"
@@ -44,7 +44,7 @@ msgstr "转发目标端口"
 
 #: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
 msgid "Grant access to LuCI app natmap"
-msgstr "授予访问 LuCI 应用 natmap 的权限"
+msgstr "授予访问 luci 应用 natmap 的权限"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
@@ -64,16 +64,12 @@ msgstr "仅 IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr "Keep-alive 间隔"
+msgstr "keep-alive 间隔"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
 msgstr "NATMap"
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:115
-msgid "Notify script"
-msgstr "通知脚本"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
 msgid "Protocol"
@@ -90,14 +86,11 @@ msgstr "STUN 服务器"
 msgid "General Settings"
 msgstr "常规设置"
 
-msgid "Wan_Interface"
+msgid "Wan Interface"
 msgstr "wan接口"
 
 msgid "Target_Interface"
 msgstr "目标接口"
-
-msgid "Forward use natmap"
-msgstr "使用natmap转发"
 
 msgid "0 will forward to the out port get from STUN"
 msgstr "填写 0 ，则转发到从STUN获取的外部端口"
@@ -105,8 +98,8 @@ msgstr "填写 0 ，则转发到从STUN获取的外部端口"
 msgid "Notify Settings"
 msgstr "通知设置"
 
-msgid "Notify"
-msgstr "通知"
+msgid "Enable Notify"
+msgstr "启用通知"
 
 msgid "Notify channel"
 msgstr "通知通道"
@@ -120,34 +113,43 @@ msgstr "令牌"
 msgid "Link Settings"
 msgstr "关联设置"
 
-msgid "Change another service's config"
-msgstr "修改其它服务设置"
+msgid "Enable another service's config"
+msgstr "启用其它服务"
 
-msgid "such as http://192.168.1.100:9091"
-msgstr "例如：http://192.168.1.100:9091"
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
+msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
 
-msgid "such as http://192.168.1.100:8080"
-msgstr "例如：http://192.168.1.100:8080"
+msgid "Advanced Settings"
+msgstr "高级设置"
 
-msgid "such as http://192.168.1.100:8096"
-msgstr "例如：http://192.168.1.100:8096"
+msgid "max retries,default 0 means execute only once"
+msgstr "最大重试次数，默认 0 表示仅执行一次调用"
+
+msgid "Max Retries"
+msgstr "最大重试次数"
+
+msgid "Sleep Time"
+msgstr "休眠时间"
+
+msgid "Single sleep time, unit is seconds, default 0 is 3 seconds"
+msgstr "单次休眠等待时间，单位是秒，默认 0 表示 3秒"
 
 msgid "Service"
 msgstr "服务"
 
 msgid "Web UI URL"
-msgstr "WEB URL"
+msgstr "web 地址"
 
 msgid "Allow IPv6"
 msgstr "允许IPv6"
 
 msgid "IPv6 Address"
-msgstr "IPv6地址"
+msgstr "ipv6地址"
 
 msgid "API Key"
-msgstr "API密钥"
+msgstr "api密钥"
 
-msgid "Forward Enable"
+msgid "Enable Forward"
 msgstr "启用转发"
 
 msgid "Forward Settings"
@@ -168,23 +170,20 @@ msgstr "端口映射协议"
 msgid "Ikuai Mapping Wan Interface"
 msgstr "端口映射外网接口"
 
-msgid "such as http://127.0.0.1:8080"
-msgstr "例如： http://127.0.0.1:8080"
-
 msgid "http proxy"
 msgstr "http 代理"
 
 msgid "Rule Name"
-msgstr "Rule 名称"
+msgstr "rule 名称"
 
 msgid "Target URL"
-msgstr "目标 URL"
+msgstr "目标 url"
 
 msgid "Update HTTPS Port"
-msgstr "更新 HTTPS 端口"
+msgstr "更新 https 端口"
 
 msgid "Update host with IP"
-msgstr "使用 IP 更新 HOST"
+msgstr "使用 ip 更新 host"
 
 msgid "such as adsl_1 or wan"
 msgstr "例如：adsl_1 或 wan"
@@ -195,8 +194,14 @@ msgstr "例如：tcp 或 udp 或 tcp+udp"
 msgid "Set to False if you want to use HTTP"
 msgstr "如果使用http，请勿勾选"
 
-msgid "use mode local when forward with natmap or firewall;"
-msgstr "当通过 natmap 转发或防火墙转发时，使用 local 模式；"
+msgid "use mode ikuai when use ikuai as the main gateway"
+msgstr "当主网关是爱快时，使用 ikuai 模式"
 
-msgid "use mode ikuai when natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router"
-msgstr "当 natmap 部署在旁路 openwrt 或内网设备，且主网关是爱快路由器时，使用 ikuai 模式"
+msgid "Custom Settings"
+msgstr "自定义设置"
+
+msgid "Enable custom script's config"
+msgstr "启用自定义脚本"
+
+msgid "custom script"
+msgstr "自定义脚本"

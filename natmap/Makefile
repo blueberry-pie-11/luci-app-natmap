@@ -27,34 +27,9 @@ endef
 
 MAKE_FLAGS += REV_ID="$(PKG_VERSION)"
 
-define Package/natmap/conffiles
-/etc/config/natmap
-endef
-
-define Package/natmap/install
+define Package/${PKG_NAME}/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/natmap $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib/natmap/
-	$(INSTALL_BIN) ./files/update.sh $(1)/usr/lib/natmap/update.sh
-	$(INSTALL_BIN) ./files/notify.sh $(1)/usr/lib/natmap/notify.sh
-	$(INSTALL_BIN) ./files/forward.sh $(1)/usr/lib/natmap/forward.sh
-	$(INSTALL_BIN) ./files/link.sh $(1)/usr/lib/natmap/link.sh
-	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-forward
-	$(INSTALL_BIN) ./files/plugin-forward/ikuai-forward.sh $(1)/usr/lib/natmap/plugin-forward
-	$(INSTALL_BIN) ./files/plugin-forward/natmap-forward.sh $(1)/usr/lib/natmap/plugin-forward
-	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_BIN) ./files/plugin-notify/telegram_bot.sh $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_BIN) ./files/plugin-notify/pushplus.sh $(1)/usr/lib/natmap/plugin-notify
-	$(INSTALL_DIR) $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/qb.sh $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/tr.sh $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/emby.sh $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/cloudflare_origin_rule.sh $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_BIN) ./files/plugin-link/cloudflare_redirect_rule.sh $(1)/usr/lib/natmap/plugin-link
-	$(INSTALL_DIR) $(1)/etc/config/
-	$(INSTALL_CONF) ./files/natmap.config $(1)/etc/config/natmap
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) ./files/natmap.init $(1)/etc/init.d/natmap
 endef
 
 $(eval $(call BuildPackage,natmap))
