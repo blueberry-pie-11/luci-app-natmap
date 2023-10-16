@@ -74,7 +74,6 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('general', form.ListValue, 'general_nat_protocol', _('Protocol'));
-		o.modalonly = false;
 		o.default = 'tcp';
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
@@ -110,7 +109,6 @@ return view.extend({
 
 		o = s.taboption('general', form.Value, 'general_bind_port', _('Bind port'));
 		o.datatype = 'port';
-		o.modalonly = false;
 		o.rmempty = false;
 
 		// ----------------------------------------
