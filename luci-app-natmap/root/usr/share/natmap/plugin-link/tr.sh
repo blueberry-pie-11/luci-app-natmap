@@ -12,20 +12,14 @@ url="$LINK_TR_RPC_URL/transmission/rpc"
 # update port
 trauth="-u $LINK_TR_USERNAME:$LINK_TR_PASSWORD"
 
-# # 获取trsid，直至重试次数用尽
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
 sleep_time=3
 
-# 初始化参数
-trsid=""
-retry_count=0
-
-# 判断是否开启transmission的高级功能
-if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
-    # 获取transmission的最大重试次数
-    tr_max_retries=$(echo $LINK_TR_MAX_RETRIES | sed 's/\/$//')
-    case "$tr_max_retries" in
+# 判断是否开启高级功能
+if [ "$LINK_ADVANCED_ENABLE" == 1 ]; then
+    # 获取最大重试次数
+    case "$(echo $LINK_MAX_RETRIES | sed 's/\/$//')" in
     "")
         max_retries=1
         ;;
@@ -33,13 +27,12 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
         max_retries=1
         ;;
     *)
-        max_retries=$tr_max_retries
+        max_retries=$(echo $LINK_MAX_RETRIES | sed 's/\/$//')
         ;;
     esac
 
-    # 获取transmission的休眠时间
-    tr_sleep_time=$(echo $LINK_TR_SLEEP_TIME | sed 's/\/$//')
-    case "$tr_sleep_time" in
+    # 获取休眠时间
+    case "$(echo $LINK_SLEEP_TIME | sed 's/\/$//')" in
     "")
         sleep_time=3
         ;;
@@ -47,7 +40,7 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
         sleep_time=3
         ;;
     *)
-        sleep_time=$tr_sleep_time
+        sleep_time=$(echo $LINK_SLEEP_TIME | sed 's/\/$//')
         ;;
     esac
 else
@@ -55,25 +48,30 @@ else
     sleep_time=3
 fi
 
+# 初始化参数
+# # 获取trsid，直至重试次数用尽
+trsid=""
+retry_count=0
+
 while true; do
     trsid=$(curl -s $trauth $url | sed 's/.*<code>//g;s/<\/code>.*//g')
 
     # echo "trsid: $trsid"
 
     if (echo $trsid | grep -q "X-Transmission-Session-Id"); then
-        echo "$GENERAL_NAT_NAME 登录成功"
+        echo "$LINK_MODE 登录成功"
         break
     else
-        echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
+        # echo "$LINK_MODE 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
+            echo "$LINK_MODE 达到最大重试次数，无法登录"
             exit 1
         fi
-        echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
+        # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     fi
 done

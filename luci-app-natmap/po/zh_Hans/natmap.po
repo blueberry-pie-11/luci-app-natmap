@@ -48,7 +48,7 @@ msgstr "授予访问 luci 应用 natmap 的权限"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
-msgstr "http 服务器"
+msgstr "HTTP 服务器"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
@@ -81,7 +81,7 @@ msgstr "地址族限制"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
 msgid "STUN server"
-msgstr "stun 服务器"
+msgstr "STUN 服务器"
 
 msgid "General Settings"
 msgstr "常规设置"
@@ -119,8 +119,8 @@ msgstr "启用其它服务"
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
 
-msgid "Ikuai Advanced Settings"
-msgstr "ikuai 高级设置"
+msgid "Advanced Settings"
+msgstr "高级设置"
 
 msgid "max retries,default 0 means execute only once"
 msgstr "最大重试次数，默认 0 表示仅执行一次调用"
@@ -133,13 +133,6 @@ msgstr "休眠时间"
 
 msgid "Single sleep time, unit is seconds, default 0 is 3 seconds"
 msgstr "单次休眠等待时间，单位是秒，默认 0 表示 3秒"
-
-msgid "Qbittorrent Advanced Settings"
-msgstr "qbittorrent 高级设置"
-
-msgid "Transmission Advanced Settings"
-msgstr "transmission 高级设置"
-
 
 msgid "Service"
 msgstr "服务"

@@ -120,9 +120,9 @@ return view.extend({
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		// o.modalonly = false;
 		o.default = 'firewall';
-		o.value('firewall', _('firewall dnat'));
-		o.value('natmap', _('natmap'));
-		o.value('ikuai', _('ikuai'));
+		o.value('firewall', _('Firewall Dnat'));
+		o.value('natmap', _('NATMAP'));
+		o.value('ikuai', _('IKUAI'));
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
@@ -172,20 +172,21 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Flag, 'forward_ikuai_advanced_enable', _('Ikuai Advanced Settings'));
+		// forward_advanced
+		o = s.taboption('forward', form.Flag, 'forward_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_ikuai_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o = s.taboption('forward', form.Value, 'forward_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('forward_ikuai_advanced_enable', '1');
+		o.depends('forward_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_ikuai_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('forward', form.Value, 'forward_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('forward_ikuai_advanced_enable', '1');
+		o.depends('forward_advanced_enable', '1');
 
 		//
 		// 
@@ -202,6 +203,7 @@ return view.extend({
 		o.value('pushplus', _('PushPlus'));
 		o.depends('notify_enable', '1');
 
+		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
 		o.datatype = 'string';
 		o.modalonly = true;
@@ -217,10 +219,28 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_channel', 'telegram_bot');
 
+		//notify_pushplus
 		o = s.taboption('notify', form.Value, 'notify_pushplus_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
+
+		// notify_advanced
+		o = s.taboption('notify', form.Flag, 'notify_advanced_enable', _('Advanced Settings'));
+		o.default = false;
+		o.modalonly = true;
+		o.depends('notify_channel', 'pushplus');
+		o.depends('notify_channel', 'telegram_bot');
+
+		o = s.taboption('notify', form.Value, 'notify_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_advanced_enable', '1');
+
+		o = s.taboption('notify', form.Value, 'notify_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_advanced_enable', '1');
 
 		// link
 		o = s.taboption('link', form.Flag, 'link_enable', _('Enable another service\'s config'));
@@ -318,23 +338,6 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_qb_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Flag, 'link_qb_advanced_enable', _('Qbittorrent Advanced Settings'));
-		o.default = false;
-		o.modalonly = true;
-		o.depends('link_mode', 'qbittorrent');
-
-		o = s.taboption('link', form.Value, 'link_qb_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('link_qb_advanced_enable', '1');
-
-		o = s.taboption('link', form.Value, 'link_qb_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('link_qb_advanced_enable', '1');
-
-
-
 		// link_transmission
 		o = s.taboption('link', form.Value, 'link_tr_rpc_url', _('RPC URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));
 		o.datatype = 'string';
@@ -361,20 +364,25 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_tr_allow_ipv6', '1');
 
-		o = s.taboption('link', form.Flag, 'link_tr_advanced_enable', _('Transmission Advanced Settings'));
+		// link_advanced
+		o = s.taboption('link', form.Flag, 'link_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');
+		o.depends('link_mode', 'qbittorrent');
+		o.depends('link_mode', 'emby');
+		o.depends('link_mode', 'cloudflare_origin_rule');
+		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_tr_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o = s.taboption('link', form.Value, 'link_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('link_tr_advanced_enable', '1');
+		o.depends('link_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_tr_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('link_tr_advanced_enable', '1');
+		o.depends('link_advanced_enable', '1');
 
 		// Custom Settings
 		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));

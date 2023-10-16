@@ -10,20 +10,14 @@ ip4p=$3
 rule_name=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
-# 获取qbcookie，直至重试次数用尽
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
 sleep_time=3
 
-# 初始化参数
-qbcookie=""
-retry_count=0
-
-# 判断是否开启qbittorrent的高级功能
-if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
-    # 获取qbittorrent的最大重试次数
-    qb_max_retries=$(echo $LINK_QB_MAX_RETRIES | sed 's/\/$//')
-    case "$qb_max_retries" in
+# 判断是否开启高级功能
+if [ "$LINK_ADVANCED_ENABLE" == 1 ]; then
+    # 获取最大重试次数
+    case "$(echo $LINK_MAX_RETRIES | sed 's/\/$//')" in
     "")
         max_retries=1
         ;;
@@ -31,13 +25,12 @@ if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
         max_retries=1
         ;;
     *)
-        max_retries=$qb_max_retries
+        max_retries=$(echo $LINK_MAX_RETRIES | sed 's/\/$//')
         ;;
     esac
 
-    # 获取qbittorrent的休眠时间
-    qb_sleep_time=$(echo $LINK_QB_SLEEP_TIME | sed 's/\/$//')
-    case "$qb_sleep_time" in
+    # 获取休眠时间
+    case "$(echo $LINK_SLEEP_TIME | sed 's/\/$//')" in
     "")
         sleep_time=3
         ;;
@@ -45,13 +38,18 @@ if [ "$LINK_QB_ADVANCED_ENABLE" == 1 ]; then
         sleep_time=3
         ;;
     *)
-        sleep_time=$qb_sleep_time
+        sleep_time=$(echo $LINK_SLEEP_TIME | sed 's/\/$//')
         ;;
     esac
 else
     max_retries=1
     sleep_time=3
 fi
+
+# 初始化参数
+# 获取qbcookie，直至重试次数用尽
+qbcookie=""
+retry_count=0
 
 while true; do
     # 获取qbcookie
@@ -66,19 +64,19 @@ while true; do
 
     if [ -z "$qbcookie" ]; then
 
-        echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
+        # echo "$LINK_MODE 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
+            echo "$LINK_MODE 达到最大重试次数，无法登录"
             exit 1
         fi
-        echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
+        # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     else
-        echo "$GENERAL_NAT_NAME 登录成功"
+        echo "$LINK_MODE 登录成功"
         break
     fi
 done

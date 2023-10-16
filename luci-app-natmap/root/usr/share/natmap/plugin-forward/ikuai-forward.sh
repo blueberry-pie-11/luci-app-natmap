@@ -64,15 +64,10 @@ login_params='{
 max_retries=1
 sleep_time=3
 
-# 初始化参数
-cookie=""
-retry_count=0
-
-# 判断是否开启IKUAI的高级功能
-if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
-  # 获取IKUAI的最大重试次数
-  ikuai_max_retries=$(echo $FORWARD_IKUAI_MAX_RETRIES | sed 's/\/$//')
-  case "$ikuai_max_retries" in
+# 判断是否开启高级功能
+if [ "$FORWARD_ADVANCED_ENABLE" == 1 ]; then
+  # 获取最大重试次数
+  case "$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')" in
   "")
     max_retries=1
     ;;
@@ -80,13 +75,12 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
     max_retries=1
     ;;
   *)
-    max_retries=$ikuai_max_retries
+    max_retries=$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')
     ;;
   esac
 
-  # 获取IKUAI的休眠时间
-  ikuai_sleep_time=$(echo $FORWARD_IKUAI_SLEEP_TIME | sed 's/\/$//')
-  case "$ikuai_sleep_time" in
+  # 获取休眠时间
+  case "$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')" in
   "")
     sleep_time=3
     ;;
@@ -94,13 +88,17 @@ if [ "$FORWARD_IKUAI_ADVANCED_ENABLE" == 1 ]; then
     sleep_time=3
     ;;
   *)
-    sleep_time=$ikuai_sleep_time
+    sleep_time=$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')
     ;;
   esac
 else
   max_retries=1
   sleep_time=3
 fi
+
+# 初始化参数
+cookie=""
+retry_count=0
 
 # 登录
 while true; do
@@ -115,19 +113,19 @@ while true; do
 
   # Print the session ID
   if [ -z "$cookie" ]; then
-    echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
+    # echo "$FORWARD_MODE 登录失败,正在重试..."
     # Increment the retry count
     retry_count=$((retry_count + 1))
 
     # Check if maximum retries reached
     if [ $retry_count -eq $max_retries ]; then
-      echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
+      echo "$FORWARD_MODE 达到最大重试次数，无法登录"
       exit 1
     fi
-    echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
+    # echo "$FORWARD_MODE 登录失败,休眠$sleep_time秒"
     sleep $sleep_time
   else
-    echo "$GENERAL_NAT_NAME 登录成功"
+    echo "$FORWARD_MODE 登录成功"
     break
   fi
 done
