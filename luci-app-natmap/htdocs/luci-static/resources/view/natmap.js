@@ -115,14 +115,14 @@ return view.extend({
 
 		// ----------------------------------------
 		// forward
-		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
+		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'), _('use mode ikuai when use ikuai as the main gateway'));
 		o.default = false;
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		o.modalonly = false;
-		o.default = 'firewall_dnat';
-		o.value('firewall_dnat', _('firewall dnat'));
+		o.default = 'firewall';
+		o.value('firewall', _('firewall dnat'));
 		o.value('natmap', _('natmap'));
 		o.value('ikuai', _('ikuai'));
 		o.depends('forward_enable', '1');
@@ -131,20 +131,20 @@ return view.extend({
 		o = s.taboption('forward', form.Value, 'forward_target_ip', _('Forward target'));
 		o.datatype = 'host';
 		o.modalonly = true;
-		o.depends('forward_mode', 'firewall_dnat');
+		o.depends('forward_mode', 'firewall');
 		o.depends('forward_mode', 'natmap');
 		o.depends('forward_mode', 'ikuai');
 
 		o = s.taboption('forward', form.Value, 'forward_target_port', _('Forward target port'), _('0 will forward to the out port get from STUN'));
 		o.datatype = 'port';
 		o.modalonly = true;
-		o.depends('forward_mode', 'firewall_dnat');
+		o.depends('forward_mode', 'firewall');
 		o.depends('forward_mode', 'natmap');
 		o.depends('forward_mode', 'ikuai');
 
 		o = s.taboption('forward', widgets.NetworkSelect, 'forward_natmap_target_interface', _('Target_Interface'));
 		o.modalonly = true;
-		o.depends('forward_mode', 'firewall_dnat');
+		o.depends('forward_mode', 'firewall');
 
 		// forward_ikuai
 		o = s.taboption('forward', form.Value, 'forward_ikuai_web_url', _('Ikuai Web URL'), _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS'));

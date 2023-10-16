@@ -71,10 +71,6 @@ msgstr "Keep-alive 间隔"
 msgid "NATMap"
 msgstr "NATMap"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:115
-msgid "Notify script"
-msgstr "通知脚本"
-
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
 msgid "Protocol"
 msgstr "协议"
@@ -205,8 +201,11 @@ msgstr "例如：tcp 或 udp 或 tcp+udp"
 msgid "Set to False if you want to use HTTP"
 msgstr "如果使用http，请勿勾选"
 
-msgid "use mode local when forward with natmap or firewall;"
-msgstr "当通过 natmap 转发或防火墙转发时，使用 local 模式；"
+msgid "use mode ikuai when use ikuai as the main gateway"
+msgstr "当主网关是爱快时，使用 ikuai 模式"
 
-msgid "use mode ikuai when natmap is deployed on a bypass openwrt or intranet device, and the main gateway is an ikuai router"
-msgstr "当 natmap 部署在旁路 openwrt 或内网设备，且主网关是爱快路由器时，使用 ikuai 模式"
+msgid "Enable custom script\'s config"
+msgstr "启用自定义脚本"
+
+msgid "custom script"
+msgstr "自定义脚本"
