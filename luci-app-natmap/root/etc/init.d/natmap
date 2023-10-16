@@ -73,7 +73,7 @@ validate_section_natmap() {
 		'link_cloudflare_rule_target_url:string' \
 		'link_cloudflare_rule_name:string' \
 		'custom_enable:bool:0' \
-		'custom_script:file' \
+		'custom_script:file'
 }
 
 natmap_instance() {
