@@ -116,6 +116,7 @@ return view.extend({
 		// ----------------------------------------
 		// forward
 		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'), _('use mode ikuai when use ikuai as the main gateway'));
+		o.ucioption = 'forward_mode';
 		o.default = false;
 		o.modalonly = true;
 
@@ -175,7 +176,6 @@ return view.extend({
 		o.depends('forward_mode', 'ikuai');
 
 		o = s.taboption('forward', form.Flag, 'forward_ikuai_advanced_enable', _('Ikuai Advanced Settings'));
-		o.datatype = 'uinteger';
 		o.default = false;
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
@@ -194,6 +194,7 @@ return view.extend({
 		// 
 		// notify
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('Enable Notify'));
+		o.ucioption = 'notify_channel';
 		o.default = false;
 		o.modalonly = true;
 
@@ -321,7 +322,6 @@ return view.extend({
 		o.depends('link_qb_allow_ipv6', '1');
 
 		o = s.taboption('link', form.Flag, 'link_qb_advanced_enable', _('Qbittorrent Advanced Settings'));
-		o.datatype = 'uinteger';
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'qbittorrent');
@@ -365,7 +365,6 @@ return view.extend({
 		o.depends('link_tr_allow_ipv6', '1');
 
 		o = s.taboption('link', form.Flag, 'link_tr_advanced_enable', _('Transmission Advanced Settings'));
-		o.datatype = 'uinteger';
 		o.default = false;
 		o.modalonly = true;
 		o.depends('link_mode', 'transmission');

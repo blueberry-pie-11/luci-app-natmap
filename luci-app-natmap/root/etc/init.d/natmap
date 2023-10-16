@@ -19,7 +19,6 @@ validate_section_natmap() {
 	uci_load_validate "${NAME}" natmap "$1" "$2" \
 		'natmap_enable:bool:0' \
 		'general_ip_address_family:string' \
-		'link_mode:string:general' \
 		'general_nat_protocol:string' \
 		'general_wan_interface:string' \
 		'general_nat_name:string' \
@@ -47,6 +46,7 @@ validate_section_natmap() {
 		'notify_telegram_bot_proxy:string' \
 		'notify_pushplus_token:string' \
 		'link_enable:bool:0' \
+		'link_mode:string:general' \
 		'link_emby_url:string' \
 		'link_emby_api_key:string' \
 		'link_emby_use_https:bool:0' \

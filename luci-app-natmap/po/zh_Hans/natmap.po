@@ -204,7 +204,10 @@ msgstr "如果使用http，请勿勾选"
 msgid "use mode ikuai when use ikuai as the main gateway"
 msgstr "当主网关是爱快时，使用 ikuai 模式"
 
-msgid "Enable custom script\'s config"
+msgid "Custom Settings"
+msgstr "自定义设置"
+
+msgid "Enable custom script's config"
 msgstr "启用自定义脚本"
 
 msgid "custom script"
