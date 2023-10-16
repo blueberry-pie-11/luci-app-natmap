@@ -9,6 +9,7 @@ protocol=$5
 
 # ikuai
 # ----------------
+# ikuai版本
 ikuai_version=3.7.6
 # ----------------
 ikuai_url=$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')
