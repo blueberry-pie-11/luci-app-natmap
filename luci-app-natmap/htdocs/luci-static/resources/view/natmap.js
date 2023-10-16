@@ -78,11 +78,11 @@ return view.extend({
 		o.default = 'tcp';
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
-		o.textvalue = function (section_id) {
-			var cval = this.cfgvalue(section_id);
-			var i = this.keylist.indexOf(cval);
-			return this.vallist[i];
-		};
+		// o.textvalue = function (section_id) {
+		// 	var cval = this.cfgvalue(section_id);
+		// 	var i = this.keylist.indexOf(cval);
+		// 	return this.vallist[i];
+		// };
 
 		o = s.taboption('general', form.ListValue, 'general_ip_address_family', _('Restrict to address family'));
 		o.modalonly = true;
@@ -121,7 +121,7 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
-		o.modalonly = false;
+		// o.modalonly = false;
 		o.default = 'firewall';
 		o.value('firewall', _('firewall dnat'));
 		o.value('natmap', _('natmap'));
