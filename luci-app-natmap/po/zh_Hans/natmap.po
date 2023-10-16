@@ -20,7 +20,7 @@ msgstr "启用"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
 msgid "External IP"
-msgstr "外部 IP"
+msgstr "外部 ip"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
 msgid "External Port"
@@ -28,7 +28,7 @@ msgstr "外部端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "For TCP mode"
-msgstr "用于 TCP 模式"
+msgstr "用于 tcp 模式"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
 msgid "Forward mode"
@@ -44,11 +44,11 @@ msgstr "转发目标端口"
 
 #: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
 msgid "Grant access to LuCI app natmap"
-msgstr "授予访问 LuCI 应用 natmap 的权限"
+msgstr "授予访问 luci 应用 natmap 的权限"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
-msgstr "HTTP 服务器"
+msgstr "http 服务器"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
@@ -64,7 +64,7 @@ msgstr "仅 IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr "Keep-alive 间隔"
+msgstr "keep-alive 间隔"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
@@ -81,12 +81,12 @@ msgstr "地址族限制"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
 msgid "STUN server"
-msgstr "STUN 服务器"
+msgstr "stun 服务器"
 
 msgid "General Settings"
 msgstr "常规设置"
 
-msgid "General_wan_interface"
+msgid "Wan Interface"
 msgstr "wan接口"
 
 msgid "Target_Interface"
@@ -145,16 +145,16 @@ msgid "Service"
 msgstr "服务"
 
 msgid "Web UI URL"
-msgstr "WEB URL"
+msgstr "web 地址"
 
 msgid "Allow IPv6"
 msgstr "允许IPv6"
 
 msgid "IPv6 Address"
-msgstr "IPv6地址"
+msgstr "ipv6地址"
 
 msgid "API Key"
-msgstr "API密钥"
+msgstr "api密钥"
 
 msgid "Enable Forward"
 msgstr "启用转发"
@@ -181,16 +181,16 @@ msgid "http proxy"
 msgstr "http 代理"
 
 msgid "Rule Name"
-msgstr "Rule 名称"
+msgstr "rule 名称"
 
 msgid "Target URL"
-msgstr "目标 URL"
+msgstr "目标 url"
 
 msgid "Update HTTPS Port"
-msgstr "更新 HTTPS 端口"
+msgstr "更新 https 端口"
 
 msgid "Update host with IP"
-msgstr "使用 IP 更新 HOST"
+msgstr "使用 ip 更新 host"
 
 msgid "such as adsl_1 or wan"
 msgstr "例如：adsl_1 或 wan"

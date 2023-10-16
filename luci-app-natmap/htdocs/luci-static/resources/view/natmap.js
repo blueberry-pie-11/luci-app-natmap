@@ -90,7 +90,7 @@ return view.extend({
 		o.value('ipv4', _('IPv4 only'));
 		o.value('ipv6', _('IPv6 only'));
 
-		o = s.taboption('general', widgets.NetworkSelect, 'general_wan_interface', _('Wan_Interface'));
+		o = s.taboption('general', widgets.NetworkSelect, 'general_wan_interface', _('Wan Interface'));
 		o.modalonly = true;
 
 		o = s.taboption('general', form.Value, 'general_interval', _('Keep-alive interval'));
