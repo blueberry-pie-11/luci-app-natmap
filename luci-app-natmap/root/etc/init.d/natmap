@@ -86,10 +86,10 @@ natmap_instance() {
 
 	procd_open_instance "$1"
 	procd_set_param command "$PROG" \
-		${interval:+-k "$general_interval"} \
-		${stun_server:+-s "$general_stun_server"} \
-		${http_server:+-h "$general_http_server"} \
-		${bind_port:+-b "$general_bind_port"}
+		${general_interval:+-k "$general_interval"} \
+		${general_stun_server:+-s "$general_stun_server"} \
+		${general_http_server:+-h "$general_http_server"} \
+		${general_bind_port:+-b "$general_bind_port"}
 
 	[ "${general_ip_address_family}" = ipv4 ] && procd_append_param command -4
 	[ "${general_ip_address_family}" = ipv6 ] && procd_append_param command -6
