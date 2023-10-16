@@ -120,9 +120,9 @@ return view.extend({
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		// o.modalonly = false;
 		o.default = 'firewall';
-		o.value('firewall', _('Firewall Dnat'));
-		o.value('natmap', _('Natmap'));
-		o.value('ikuai', _('IKUAI'));
+		o.value('firewall', _('firewall dnat'));
+		o.value('natmap', _('natmap'));
+		o.value('ikuai', _('ikuai'));
 		o.depends('forward_enable', '1');
 
 		// forward_natmap
