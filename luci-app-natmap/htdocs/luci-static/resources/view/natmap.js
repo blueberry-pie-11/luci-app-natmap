@@ -121,7 +121,7 @@ return view.extend({
 		// o.modalonly = false;
 		o.default = 'firewall';
 		o.value('firewall', _('Firewall Dnat'));
-		o.value('natmap', _('NATMAP'));
+		o.value('natmap', _('Natmap'));
 		o.value('ikuai', _('IKUAI'));
 		o.depends('forward_enable', '1');
 
