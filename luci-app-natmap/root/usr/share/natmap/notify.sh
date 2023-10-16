@@ -6,9 +6,9 @@ ip4p=$3
 inner_port=$4
 protocol=$(echo $5 | tr 'a-z' 'A-Z')
 
-if [ "$NOTIFY_ENABLE" != "1" ]; then
-	exit 0
-fi
+# if [ "$NOTIFY_ENABLE" != 1 ]; then
+# 	exit 0
+# fi
 
 msg="${GENERAL_NAT_NAME}
 New ${protocol} port mapping: ${inner_port} -> ${outter_ip}:${outter_port}

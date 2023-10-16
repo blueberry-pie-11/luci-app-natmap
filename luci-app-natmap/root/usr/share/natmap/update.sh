@@ -15,13 +15,13 @@
 echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
 
 # link setting
-source /usr/share/natmap/link.sh "$@"
+[ "${LINK_ENABLE}" = 1 ] && source /usr/share/natmap/link.sh "$@"
 
 # forward setting
-source /usr/share/natmap/forward.sh "$@"
+[ "${FORWARD_ENABLE}" = 1 ] && source /usr/share/natmap/forward.sh "$@"
 
 # notify setting
-source /usr/share/natmap/notify.sh "$@"
+[ "${NOTIFY_ENABLE}" = 1 ] && source /usr/share/natmap/notify.sh "$@"
 
 # custom setting
 [ "${CUSTOM_ENABLE}" = 1 ] && [ -n "${CUSTOM_SCRIPT}" ] && {

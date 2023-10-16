@@ -6,9 +6,14 @@ ip4p=$3
 inner_port=$4
 protocol=$5
 
-if [ ! -n "$FORWARD_MODE" ]; then
-    exit 0
-fi
+# if [ "$LINK_ENABLE" != 1 ]; then
+#     exit 0
+# fi
+
+# # $LINK_MODE为空，则直接退出
+# if [ ! -n "$LINK_MODE" ]; then
+#     exit 0
+# fi
 
 internal_define_script=""
 case $LINK_MODE in
