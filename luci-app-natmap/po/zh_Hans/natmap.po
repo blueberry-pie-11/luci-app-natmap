@@ -90,14 +90,11 @@ msgstr "STUN 服务器"
 msgid "General Settings"
 msgstr "常规设置"
 
-msgid "Wan_Interface"
+msgid "General_wan_interface"
 msgstr "wan接口"
 
 msgid "Target_Interface"
 msgstr "目标接口"
-
-msgid "Forward use natmap"
-msgstr "使用natmap转发"
 
 msgid "0 will forward to the out port get from STUN"
 msgstr "填写 0 ，则转发到从STUN获取的外部端口"
@@ -105,8 +102,8 @@ msgstr "填写 0 ，则转发到从STUN获取的外部端口"
 msgid "Notify Settings"
 msgstr "通知设置"
 
-msgid "Notify"
-msgstr "通知"
+msgid "Enable Notify"
+msgstr "启用通知"
 
 msgid "Notify channel"
 msgstr "通知通道"
@@ -120,8 +117,8 @@ msgstr "令牌"
 msgid "Link Settings"
 msgstr "关联设置"
 
-msgid "Change another service's config"
-msgstr "修改其它服务设置"
+msgid "Enable another service's config"
+msgstr "启用其它服务"
 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
@@ -163,7 +160,7 @@ msgstr "IPv6地址"
 msgid "API Key"
 msgstr "API密钥"
 
-msgid "Forward Enable"
+msgid "Enable Forward"
 msgstr "启用转发"
 
 msgid "Forward Settings"

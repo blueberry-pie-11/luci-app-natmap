@@ -61,19 +61,19 @@ while true; do
     # echo "trsid: $trsid"
 
     if (echo $trsid | grep -q "X-Transmission-Session-Id"); then
-        echo "$NAT_NAME 登录成功"
+        echo "$GENERAL_NAT_NAME 登录成功"
         break
     else
-        echo "$NAT_NAME 登录失败,正在重试..."
+        echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$NAT_NAME 达到最大重试次数，无法登录"
+            echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
             exit 1
         fi
-        echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+        echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     fi
 done
@@ -95,7 +95,7 @@ while true; do
 done
 
 if [ $LINK_TR_ALLOW_IPV6 = 1 ]; then
-    rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
+    rule_name=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
     # ipv6 allow
     uci set firewall.$rule_name=rule
     uci set firewall.$rule_name.name='Allow-Transmission-IPv6'

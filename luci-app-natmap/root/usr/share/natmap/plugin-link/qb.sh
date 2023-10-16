@@ -7,7 +7,7 @@ outter_ip=$1
 outter_port=$2
 ip4p=$3
 
-rule_name=$(echo "${NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
+rule_name=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
 # 获取qbcookie，直至重试次数用尽
@@ -66,19 +66,19 @@ while true; do
 
     if [ -z "$qbcookie" ]; then
 
-        echo "$NAT_NAME 登录失败,正在重试..."
+        echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$NAT_NAME 达到最大重试次数，无法登录"
+            echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
             exit 1
         fi
-        echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+        echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     else
-        echo "$NAT_NAME 登录成功"
+        echo "$GENERAL_NAT_NAME 登录成功"
         break
     fi
 done

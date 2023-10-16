@@ -33,6 +33,6 @@ case $LINK_MODE in
 esac
 
 if [ ! -z "$internal_define_script" ]; then
-    echo "$NAT_NAME Execute internal define script: $internal_define_script"
+    echo "$GENERAL_NAT_NAME Execute internal define script: $internal_define_script"
     source "$internal_define_script" "$@"
 fi

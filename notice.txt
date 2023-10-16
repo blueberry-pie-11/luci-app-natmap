@@ -1,2 +1,2 @@
 link_mode
-nat_protocol
+general_nat_protocol

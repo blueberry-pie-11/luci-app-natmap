@@ -8,16 +8,12 @@
 	json_add_int port "$2"
 	json_add_int inner_port "$4"
 	json_add_string protocol "$5"
-	json_add_string name "$NAT_NAME"
+	json_add_string name "$GENERAL_NAT_NAME"
 	json_dump >/var/run/natmap/$PPID.json
 )
 
 echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
 
-[ -n "${NOTIFY_SCRIPT}" ] && {
-	export -n NOTIFY_SCRIPT
-	source "${NOTIFY_SCRIPT}" "$@"
-}
 # link setting
 source /usr/share/natmap/link.sh "$@"
 
@@ -26,3 +22,9 @@ source /usr/share/natmap/forward.sh "$@"
 
 # notify setting
 source /usr/share/natmap/notify.sh "$@"
+
+# custom setting
+[ "${CUSTOM_ENABLE}" = 1 ] && [ -n "${CUSTOM_SCRIPT}" ] && {
+	export -n CUSTOM_SCRIPT
+	source "${CUSTOM_SCRIPT}" "$@"
+}

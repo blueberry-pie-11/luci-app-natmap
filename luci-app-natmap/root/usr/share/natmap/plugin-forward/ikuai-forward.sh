@@ -16,8 +16,8 @@ ikuai_url=$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')
 ikuai_user=$FORWARD_IKUAI_USERNAME
 ikual_passwd=$FORWARD_IKUAI_PASSWORD
 mapping_protocol=$FORWARD_IKUAI_MAPPING_PROTOCOL
-mapping_wan_interface=$FORWARD_IKUAI_MAPPING_WAN_INTERFACE
-mapping_wan_port=$BIND_PORT
+mapping_wan_interface=$FORWARD_IKUAI_MAPPING_GENERAL_WAN_INTERFACE
+mapping_wan_port=$GENERAL_BIND_PORT
 mapping_lan_addr=$FORWARD_TARGET_IP
 
 # 单独配置mapping_lan_port
@@ -57,7 +57,7 @@ login_params='{
 # echo "call_url: $call_url"
 # echo "login_url: $login_url"
 # echo "login_params: $login_params"
-# echo "nat_name: $NAT_NAME"
+# echo "general_nat_name: $GENERAL_NAT_NAME"
 
 # 获取cookie，直至重试次数用尽
 # 默认重试次数为1，休眠时间为3s
@@ -115,26 +115,26 @@ while true; do
 
   # Print the session ID
   if [ -z "$cookie" ]; then
-    echo "$NAT_NAME 登录失败,正在重试..."
+    echo "$GENERAL_NAT_NAME 登录失败,正在重试..."
     # Increment the retry count
     retry_count=$((retry_count + 1))
 
     # Check if maximum retries reached
     if [ $retry_count -eq $max_retries ]; then
-      echo "$NAT_NAME 达到最大重试次数，无法登录"
+      echo "$GENERAL_NAT_NAME 达到最大重试次数，无法登录"
       exit 1
     fi
-    echo "$NAT_NAME 登录失败,休眠$sleep_time秒"
+    echo "$GENERAL_NAT_NAME 登录失败,休眠$sleep_time秒"
     sleep $sleep_time
   else
-    echo "$NAT_NAME 登录成功"
+    echo "$GENERAL_NAT_NAME 登录成功"
     break
   fi
 done
 
 # Set the parameters for the port mapping modification
 enabled="yes"
-comment="natmap-${NAT_NAME}"
+comment="natmap-${GENERAL_NAT_NAME}"
 
 # 通过$comment查询端口映射
 # 创建show_payload字典

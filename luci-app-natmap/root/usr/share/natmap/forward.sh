@@ -27,8 +27,8 @@ if [ -z "$FORWARD_TARGET_PORT" ] || [ -z "$FORWARD_TARGET_IP" ]; then
 fi
 
 case $FORWARD_MODE in
-"local")
-    source /usr/share/natmap/plugin-forward/natmap-forward.sh "$@"
+"firewall")
+    source /usr/share/natmap/plugin-forward/firewall-forward.sh "$@"
     ;;
 "ikuai")
     source /usr/share/natmap/plugin-forward/ikuai-forward.sh "$@"

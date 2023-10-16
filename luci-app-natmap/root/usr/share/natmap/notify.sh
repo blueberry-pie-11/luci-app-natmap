@@ -10,7 +10,7 @@ if [ "$NOTIFY_ENABLE" != "1" ]; then
 	exit 0
 fi
 
-msg="${NAT_NAME}
+msg="${GENERAL_NAT_NAME}
 New ${protocol} port mapping: ${inner_port} -> ${outter_ip}:${outter_port}
 IP4P: ${ip4p}"
 if [ ! -z "$MSG_OVERRIDE" ]; then
