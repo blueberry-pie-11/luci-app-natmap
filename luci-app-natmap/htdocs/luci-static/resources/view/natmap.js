@@ -404,19 +404,7 @@ return view.extend({
 		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
 		o.default = false;
-		o.ucioption = 'custom_mode';
-		o.load = function (section_id) {
-			return this.super('load', section_id) ? '1' : '0';
-		};
-		// o.write = function (section_id, formvalue) { };
-		o.write = function (section_id, formvalue) {
-			if (formvalue == '0') {
-				var oldValue = this.sectionValue(section_id, 'custom_script');
-				if (oldValue !== null) {
-					this.sectionValue(section_id, 'custom_script', oldValue);
-				}
-			}
-		};
+		o.ucioption = 'custom_script';
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('custom script'));
 		o.datatype = 'file';
