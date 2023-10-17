@@ -133,7 +133,7 @@ dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
 
 # 判断$dnat_id是否为空
 if [ -z "$dnat_id" ]; then
-  echo "ikuai查询无 $comment 端口映射"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE 查询无端口映射"
 else
   # echo "ikuai 端口映射 dnat_id: $dnat_id"
 
@@ -155,9 +155,9 @@ else
   # echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
 
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
-    echo "ikuai $comment Port mapping deleted successfully"
+    echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
   else
-    echo "Failed to delete the port mapping $comment"
+    echo "$GENERAL_NAT_NAME - $FORWARD_MODE Failed to delete the port mapping"
     # echo "Delete_response: $delete_response"
     break
   fi
@@ -191,9 +191,9 @@ add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$ca
 
 # Check if the modification was successful
 if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
-  echo "ikuai $comment Port mapping modified successfully"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping modified successfully"
 else
-  echo "ikuai Failed to modify the port mapping $comment"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE Failed to modify the port mapping"
   # echo "Response: $response"
   break
 fi
