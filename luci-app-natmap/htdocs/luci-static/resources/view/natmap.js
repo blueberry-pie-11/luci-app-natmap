@@ -119,6 +119,7 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
 		o.default = false;
 		o.modalonly = true;
+		o.ucioption = 'forward_mode';
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		// o.modalonly = false;
@@ -126,7 +127,7 @@ return view.extend({
 		o.value('firewall', _('firewall dnat'));
 		o.value('natmap', _('natmap'));
 		o.value('ikuai', _('ikuai'));
-		o.depends('forward_enable', '1');
+		// o.depends('forward_enable', '1');
 
 		// forward_natmap
 		o = s.taboption('forward', form.Value, 'forward_target_ip', _('Forward target'));
@@ -179,6 +180,7 @@ return view.extend({
 		o = s.taboption('forward', form.Value, 'forward_ikuai_mapping_wan_interface', _('Ikuai Mapping Wan Interface'), _('such as adsl_1 or wan'));
 		o.datatype = 'string';
 		o.modalonly = true;
+		o.rmempty = false;
 		o.depends('forward_mode', 'ikuai');
 
 		// forward_advanced
@@ -207,13 +209,14 @@ return view.extend({
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('Enable Notify'));
 		o.default = false;
 		o.modalonly = true;
+		o.ucioption = 'notify_mode';
 
 		o = s.taboption('notify', form.ListValue, 'notify_mode', _('Notify channel'));
 		o.default = 'telegram_bot';
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
-		o.depends('notify_enable', '1');
+		// o.depends('notify_enable', '1');
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
@@ -265,6 +268,7 @@ return view.extend({
 		o = s.taboption('link', form.Flag, 'link_enable', _('Enable link setting'));
 		o.modalonly = true;
 		o.default = false;
+		o.ucioption = 'link_mode';
 
 		o = s.taboption('link', form.ListValue, 'link_mode', _('Service'));
 		o.default = 'qbittorrent';
@@ -414,16 +418,18 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
+		// --------------------------------------------------------------------------------
 		// Custom Settings
 		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
 		o.default = false;
+		o.ucioption = 'custom_mode';
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('custom script'));
 		o.datatype = 'file';
 		o.modalonly = true;
 		o.rmempty = false;
-		o.depends('custom_enable', '1');
+		// o.depends('custom_enable', '1');
 
 		// status
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
