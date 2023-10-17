@@ -46,13 +46,13 @@ while true; do
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$LINK_MODE 达到最大重试次数，无法登录"
+            echo "$$GENERAL_NAT_NAME - LINK_MODE 达到最大重试次数，无法登录"
             break
         fi
         # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     else
-        echo "$LINK_MODE 登录成功"
+        echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
         break
     fi
 done

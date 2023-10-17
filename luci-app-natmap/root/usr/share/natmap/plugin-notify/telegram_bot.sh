@@ -39,7 +39,7 @@ while true; do
         "https://api.telegram.org/bot${NOTIFY_TELEGRAM_BOT_TOKEN}/sendMessage"
     status=$?
     if [ $status -eq 0 ]; then
-        echo "$NOTIFY_MODE 发送成功"
+        echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 发送成功"
         break
     else
         # echo "$NOTIFY_MODE 发送失败，正在重试..."
@@ -48,7 +48,7 @@ while true; do
         retry_count=$((retry_count + 1))
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$NOTIFY_MODE 达到最大重试次数，无法登录"
+            echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 达到最大重试次数，无法登录"
             break
         fi
         # echo "$NOTIFY_MODE 登录失败,休眠$sleep_time秒"
