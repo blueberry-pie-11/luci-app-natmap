@@ -21,6 +21,8 @@ if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_MAX_RETRIES" ] && [ -n "$LINK
     # 获取休眠时间
     sleep_time=$((LINK_SLEEP_TIME == "0" ? 3 : LINK_SLEEP_TIME))
 fi
+echo "max_retries: $max_retries"
+echo "sleep_time: $sleep_time"
 
 # 初始化参数
 # 获取qbcookie，直至重试次数用尽
@@ -37,17 +39,17 @@ while true; do
     )
 
     # echo "qbcookie: $qbcookie"
-
+    # 如果qbcookie为空，则重试
     if [ -z "$qbcookie" ]; then
 
-        # echo "$LINK_MODE 登录失败,正在重试..."
+        echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$$GENERAL_NAT_NAME - LINK_MODE 达到最大重试次数，无法登录"
-            break
+            echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法登录"
+            exit 1
         fi
         # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
