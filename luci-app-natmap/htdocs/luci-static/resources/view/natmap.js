@@ -62,16 +62,16 @@ return view.extend({
 		o.editable = true;
 		o.modalonly = false;
 
-		// o = s.option(form.DummyValue, '_nat_name', _('Name'));
-		// o.modalonly = false;
-		// o.textvalue = function (section_id) {
-		// 	var s = status[section_id];
-		// 	if (s) return s.name;
-		// };
+		o = s.option(form.DummyValue, '_nat_name', _('Name'));
+		o.modalonly = false;
+		o.textvalue = function (section_id) {
+			var s = status[section_id];
+			if (s) return s.name;
+		};
 
 		o = s.taboption('general', form.Value, 'general_nat_name', _('Name'));
 		o.datatype = 'string';
-		o.modalonly = false;
+		o.modalonly = true;
 
 		o = s.taboption('general', form.ListValue, 'general_nat_protocol', _('Protocol'));
 		o.default = 'tcp';
