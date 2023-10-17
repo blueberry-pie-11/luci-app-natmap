@@ -26,7 +26,7 @@ while true; do
 
     if [ -z "$current_cfg" ]; then
 
-        # echo "$LINK_MODE 登录失败,正在重试..."
+        # echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 

@@ -28,5 +28,6 @@ case $NOTIFY_MODE in
 esac
 
 if [ -n "${notify_script}" ]; then
+	echo "$GENERAL_NAT_NAME execute notify script"
 	bash "$notify_script" "$msg"
 fi

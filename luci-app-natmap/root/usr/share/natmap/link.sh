@@ -7,6 +7,7 @@ inner_port=$4
 protocol=$5
 
 link_script=""
+echo "LINK_MODE: $LINK_MODE"
 case $LINK_MODE in
 "qbittorrent")
     link_script="/usr/share/natmap/plugin-link/qb.sh"
@@ -29,6 +30,6 @@ case $LINK_MODE in
 esac
 
 if [ -n "${link_script}" ]; then
-    echo "$GENERAL_NAT_NAME Execute link script: $link_script"
+    echo "$GENERAL_NAT_NAME execute link script"
     bash "${link_script}" "$@"
 fi

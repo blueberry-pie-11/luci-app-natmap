@@ -38,7 +38,7 @@ while true; do
   LINK_CLOUDFLARE_RULESET_ID=$(echo "$currrent_rule" | jq '.result.id' | sed 's/"//g')
 
   if [ -z "$LINK_CLOUDFLARE_RULESET_ID" ]; then
-    # echo "$LINK_MODE 登录失败,正在重试..."
+    # echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
     # Increment the retry count
     retry_count=$((retry_count + 1))
 
@@ -47,7 +47,7 @@ while true; do
       echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法登录"
       exit 1
     fi
-    # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
+    # echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,休眠$sleep_time秒"
     sleep $sleep_time
   else
     echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
