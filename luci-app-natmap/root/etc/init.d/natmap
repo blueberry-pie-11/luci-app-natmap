@@ -40,7 +40,7 @@ validate_section_natmap() {
 		'forward_max_retries:uinteger' \
 		'forward_sleep_time:uinteger' \
 		'notify_enable:bool:0' \
-		'notify_channel:string' \
+		'notify_mode:string' \
 		'notify_telegram_bot_chat_id:string' \
 		'notify_telegram_bot_token:string' \
 		'notify_telegram_bot_proxy:string' \

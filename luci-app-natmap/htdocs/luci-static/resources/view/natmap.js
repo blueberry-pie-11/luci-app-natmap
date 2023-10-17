@@ -121,7 +121,7 @@ return view.extend({
 		o.modalonly = true;
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
-		o.modalonly = false;
+		// o.modalonly = false;
 		o.default = 'firewall';
 		o.value('firewall', _('firewall dnat'));
 		o.value('natmap', _('natmap'));
@@ -208,7 +208,7 @@ return view.extend({
 		o.default = false;
 		o.modalonly = true;
 
-		o = s.taboption('notify', form.ListValue, 'notify_channel', _('Notify channel'));
+		o = s.taboption('notify', form.ListValue, 'notify_mode', _('Notify channel'));
 		o.default = 'telegram_bot';
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
@@ -220,32 +220,32 @@ return view.extend({
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.rmempty = false;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.rmempty = false;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_proxy', _('http proxy'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		//notify_pushplus
 		o = s.taboption('notify', form.Value, 'notify_pushplus_token', _('Token'));
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.rmempty = false;
-		o.depends('notify_channel', 'pushplus');
+		o.depends('notify_mode', 'pushplus');
 
 		// notify_advanced
 		o = s.taboption('notify', form.Flag, 'notify_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
-		o.depends('notify_channel', 'pushplus');
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'pushplus');
+		o.depends('notify_mode', 'telegram_bot');
 		// o.load = function (section_id) {
 		// 	return this.super('load', section_id) ? '1' : '0';
 		// };
@@ -268,7 +268,7 @@ return view.extend({
 
 		o = s.taboption('link', form.ListValue, 'link_mode', _('Service'));
 		o.default = 'qbittorrent';
-		o.modalonly = false;
+		// o.modalonly = false;
 		o.value('emby', _('Emby'));
 		o.value('qbittorrent', _('qBittorrent'));
 		o.value('transmission', _('Transmission'));

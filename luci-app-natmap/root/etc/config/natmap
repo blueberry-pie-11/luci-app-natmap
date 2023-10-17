@@ -22,7 +22,7 @@ config natmap
 	option forward_max_retries '1'
 	option forward_sleep_time '3'
 	option notify_enable '0'
-	option notify_channel 'telegram_bot'
+	option notify_mode 'telegram_bot'
 	option notify_telegram_bot_chat_id 'chat_id'
 	option notify_telegram_bot_token 'token'
 	option notify_telegram_bot_proxy ''		
