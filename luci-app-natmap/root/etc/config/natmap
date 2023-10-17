@@ -1,8 +1,8 @@
 config natmap
 	option natmap_enable '0'
-	option general_ip_address_family ''
-	option general_nat_name ''
+	option general_nat_name ''	
 	option general_nat_protocol 'tcp'
+	option general_ip_address_family ''
 	option general_wan_interface ''
 	option general_interval ''
 	option general_stun_server 'stunserver.stunprotocol.org'

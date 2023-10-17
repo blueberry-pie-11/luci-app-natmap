@@ -25,6 +25,6 @@ case $FORWARD_MODE in
 esac
 
 if [ -n "${forward_script}" ]; then
-    echo "$GENERAL_NAT_NAME execute forward script"
+    # echo "$GENERAL_NAT_NAME execute forward script"
     bash "$forward_script" "$@"
 fi
