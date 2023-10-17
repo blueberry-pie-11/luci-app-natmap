@@ -117,6 +117,10 @@ return view.extend({
 		o.default = false;
 		o.modalonly = true;
 		o.ucioption = 'forward_mode';
+		o.load = function (section_id) {
+			return this.super('load', section_id) ? '1' : '0';
+		};
+		o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		// o.modalonly = false;
@@ -177,6 +181,10 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
+		o.load = function (section_id) {
+			return this.super('load', section_id) ? '1' : '0';
+		};
+		o.write = function (section_id, formvalue) { };
 		o.depends('forward_mode', 'ikuai');
 
 		o = s.taboption('forward', form.Value, 'forward_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
@@ -196,6 +204,10 @@ return view.extend({
 		o.ucioption = 'notify_channel';
 		o.default = false;
 		o.modalonly = true;
+		o.load = function (section_id) {
+			return this.super('load', section_id) ? '1' : '0';
+		};
+		o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('notify', form.ListValue, 'notify_channel', _('Notify channel'));
 		o.default = 'telegram_bot';
@@ -232,6 +244,10 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_channel', 'pushplus');
 		o.depends('notify_channel', 'telegram_bot');
+		o.load = function (section_id) {
+			return this.super('load', section_id) ? '1' : '0';
+		};
+		o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('notify', form.Value, 'notify_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'string';
