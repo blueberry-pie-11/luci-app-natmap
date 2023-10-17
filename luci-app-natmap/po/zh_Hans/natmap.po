@@ -113,8 +113,8 @@ msgstr "令牌"
 msgid "Link Settings"
 msgstr "关联设置"
 
-msgid "Enable another service's config"
-msgstr "启用其它服务"
+msgid "Enable link setting"
+msgstr "启用关联设置"
 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"

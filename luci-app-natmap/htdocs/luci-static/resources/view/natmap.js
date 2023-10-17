@@ -116,6 +116,7 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
 		o.default = false;
 		o.modalonly = true;
+		o.ucioption = 'forward_mode';
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
 		// o.modalonly = false;
@@ -243,7 +244,7 @@ return view.extend({
 		o.depends('notify_advanced_enable', '1');
 
 		// link
-		o = s.taboption('link', form.Flag, 'link_enable', _('Enable another service\'s config'));
+		o = s.taboption('link', form.Flag, 'link_enable', _('Enable link setting'));
 		o.modalonly = true;
 		o.ucioption = 'link_mode';
 		o.load = function (section_id) {
