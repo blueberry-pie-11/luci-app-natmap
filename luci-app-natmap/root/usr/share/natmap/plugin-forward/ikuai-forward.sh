@@ -64,7 +64,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "$FORWARD_ADVANCED_ENABLE" == 1 ] && [ -n "$FORWARD_MAX_RETRIES" ] && [ -n "$FORWARD_SLEEP_TIME" ]; then
+if [ "${FORWARD_ADVANCED_ENABLE}" == 1 ] && [ -n "$FORWARD_MAX_RETRIES" ] && [ -n "$FORWARD_SLEEP_TIME" ]; then
   # 获取最大重试次数
   max_retries=$((FORWARD_MAX_RETRIES == "0" ? 1 : FORWARD_MAX_RETRIES))
   # 获取休眠时间

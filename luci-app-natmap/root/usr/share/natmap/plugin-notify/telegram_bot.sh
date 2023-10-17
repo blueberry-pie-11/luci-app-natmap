@@ -17,7 +17,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ] && [ -n "$NOTIFY_MAX_RETRIES" ] && [ -n "$NOTIFY_SLEEP_TIME" ]; then
+if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_MAX_RETRIES" ] && [ -n "$NOTIFY_SLEEP_TIME" ]; then
     # 获取最大重试次数
     max_retries=$((NOTIFY_MAX_RETRIES == "0" ? 1 : NOTIFY_MAX_RETRIES))
     # 获取休眠时间

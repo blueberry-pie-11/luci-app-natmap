@@ -15,7 +15,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_MAX_RETRIES" ] && [ -n "$LINK_SLEEP_TIME" ]; then
+if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_MAX_RETRIES" ] && [ -n "$LINK_SLEEP_TIME" ]; then
     # 获取最大重试次数
     max_retries=$((LINK_MAX_RETRIES == "0" ? 1 : LINK_MAX_RETRIES))
     # 获取休眠时间
@@ -64,7 +64,7 @@ curl -s -X POST \
     "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
 #
 # qb_allow_ipv6
-if [ $LINK_QB_ALLOW_IPV6 = 1 ]; then
+if [ "${LINK_QB_ALLOW_IPV6}" == 1 ]; then
     echo "rule_name: $rule_name"
     # ipv6 allow
     uci set firewall.$rule_name=rule
