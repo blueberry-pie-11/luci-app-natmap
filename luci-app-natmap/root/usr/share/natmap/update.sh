@@ -15,7 +15,7 @@
 echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
 
 # link setting
-[ "${LINK_ENABLE}" == 1 ] && bash /usr/share/natmap/link.sh "$@"
+[ "${LINK_ENABLE}" == 1 ] && echo "link--------------------" && bash /usr/share/natmap/link.sh "$@"
 
 # forward setting
 [ "${FORWARD_ENABLE}" == 1 ] && bash /usr/share/natmap/forward.sh "$@"
