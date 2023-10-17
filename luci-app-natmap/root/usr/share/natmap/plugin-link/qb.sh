@@ -21,8 +21,6 @@ if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_MAX_RETRIES" ] && [ -n "$LINK
     # 获取休眠时间
     sleep_time=$((LINK_SLEEP_TIME == "0" ? 3 : LINK_SLEEP_TIME))
 fi
-echo "max_retries: $max_retries"
-echo "sleep_time: $sleep_time"
 
 # 初始化参数
 # 获取qbcookie，直至重试次数用尽
