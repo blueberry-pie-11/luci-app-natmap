@@ -278,7 +278,7 @@ return view.extend({
 
 		o = s.taboption('link', form.ListValue, 'link_mode', _('Service'));
 		o.default = 'qbittorrent';
-		o.modalonly = true;
+		// o.modalonly = true;
 		o.value('emby', _('Emby'));
 		o.value('qbittorrent', _('qBittorrent'));
 		o.value('transmission', _('Transmission'));
