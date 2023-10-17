@@ -39,7 +39,7 @@ while true; do
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
             echo "达到最大重试次数，无法登录"
-            exit 1
+            break
         fi
         echo "transmission登录失败,休眠$sleep_time秒"
         sleep $sleep_time

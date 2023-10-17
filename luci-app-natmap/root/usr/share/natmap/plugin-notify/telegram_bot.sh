@@ -17,36 +17,20 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ]; then
+if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ] && [ -n "$NOTIFY_MAX_RETRIES" ] && [ -n "$NOTIFY_SLEEP_TIME" ]; then
     # 获取最大重试次数
-    case "$(echo $NOTIFY_MAX_RETRIES | sed 's/\/$//')" in
-    "")
-        max_retries=1
-        ;;
-    "0")
-        max_retries=1
-        ;;
-    *)
-        max_retries=$(echo $NOTIFY_MAX_RETRIES | sed 's/\/$//')
-        ;;
-    esac
-
+    max_retries=$((NOTIFY_MAX_RETRIES == "0" ? 1 : NOTIFY_MAX_RETRIES))
     # 获取休眠时间
-    case "$(echo $NOTIFY_SLEEP_TIME | sed 's/\/$//')" in
-    "")
-        sleep_time=3
-        ;;
-    "0")
-        sleep_time=3
-        ;;
-    *)
-        sleep_time=$(echo $NOTIFY_SLEEP_TIME | sed 's/\/$//')
-        ;;
-    esac
-else
-    max_retries=1
-    sleep_time=3
+    sleep_time=$((NOTIFY_SLEEP_TIME == "0" ? 3 : NOTIFY_SLEEP_TIME))
 fi
+
+# # 判断是否开启高级功能
+# if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ]; then
+#     # 获取最大重试次数
+#     max_retries="${NOTIFY_MAX_RETRIES%/:-$max_retries}"
+#     # 获取休眠时间
+#     sleep_time="${NOTIFY_SLEEP_TIME%/:-$sleep_time}"
+# fi
 
 while true; do
     curl_proxy -4 -Ss -o /dev/null -X POST \
@@ -65,7 +49,7 @@ while true; do
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
             echo "$NOTIFY_MODE 达到最大重试次数，无法登录"
-            exit 1
+            break
         fi
         # echo "$NOTIFY_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
