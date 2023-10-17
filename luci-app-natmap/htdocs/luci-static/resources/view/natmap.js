@@ -72,16 +72,12 @@ return view.extend({
 		o = s.taboption('general', form.Value, 'general_nat_name', _('Name'));
 		o.datatype = 'string';
 		o.modalonly = true;
+		o.rmempty = false;
 
 		o = s.taboption('general', form.ListValue, 'general_nat_protocol', _('Protocol'));
 		o.default = 'tcp';
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
-		// o.textvalue = function (section_id) {
-		// 	var cval = this.cfgvalue(section_id);
-		// 	var i = this.keylist.indexOf(cval);
-		// 	return this.vallist[i];
-		// };
 
 		o = s.taboption('general', form.ListValue, 'general_ip_address_family', _('Restrict to address family'));
 		o.modalonly = true;
@@ -199,18 +195,12 @@ return view.extend({
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('Enable Notify'));
 		o.default = false;
 		o.modalonly = true;
-		// o.ucioption = 'notify_mode';
-		// o.load = function (section_id) {
-		// 	return this.super('load', section_id) ? '1' : '0';
-		// };
-		// o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('notify', form.ListValue, 'notify_mode', _('Notify channel'));
 		o.default = 'telegram_bot';
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
-		// o.depends('notify_enable', '1');
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
@@ -240,10 +230,6 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_mode', 'pushplus');
 		o.depends('notify_mode', 'telegram_bot');
-		// o.load = function (section_id) {
-		// 	return this.super('load', section_id) ? '1' : '0';
-		// };
-		// o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('notify', form.Value, 'notify_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'uinteger';
@@ -259,11 +245,6 @@ return view.extend({
 		o = s.taboption('link', form.Flag, 'link_enable', _('Enable link setting'));
 		o.modalonly = true;
 		o.default = false;
-		// o.ucioption = 'link_mode';
-		// o.load = function (section_id) {
-		// 	return this.super('load', section_id) ? '1' : '0';
-		// };
-		// o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('link', form.ListValue, 'link_mode', _('Service'));
 		o.default = 'qbittorrent';
@@ -273,7 +254,6 @@ return view.extend({
 		o.value('transmission', _('Transmission'));
 		o.value('cloudflare_origin_rule', _('Cloudflare Origin Rule'));
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
-		// o.depends('link_enable', '1');
 
 		// link_cloudflare
 		o = s.taboption('link', form.Value, 'link_cloudflare_email', _('Email'));
@@ -403,16 +383,10 @@ return view.extend({
 		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
 		o.default = false;
-		// o.ucioption = 'custom_script';
-		// o.load = function (section_id) {
-		// 	return this.super('load', section_id) ? '1' : '0';
-		// };
-		// o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('custom', form.Value, 'custom_script', _('custom script'));
 		o.datatype = 'file';
 		o.modalonly = true;
-		// o.depends('custom_enable', '1');
 
 		// status
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
