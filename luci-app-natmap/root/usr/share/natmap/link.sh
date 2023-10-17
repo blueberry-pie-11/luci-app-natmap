@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # NATMap
 outter_ip=$1
 outter_port=$2
@@ -29,6 +29,6 @@ case $LINK_MODE in
 esac
 
 if [ -n "${link_script}" ]; then
-    # echo "$GENERAL_NAT_NAME Execute internal define script: $link_script"
+    echo "$GENERAL_NAT_NAME Execute link script: $link_script"
     source "${link_script}" "$@"
 fi

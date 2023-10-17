@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # NATMap
 outter_ip=$1
 outter_port=$2

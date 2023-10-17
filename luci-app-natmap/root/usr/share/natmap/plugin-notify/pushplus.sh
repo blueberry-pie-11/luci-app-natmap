@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 text="$1"
 token=$2
