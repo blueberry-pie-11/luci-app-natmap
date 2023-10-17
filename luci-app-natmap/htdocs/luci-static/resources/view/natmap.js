@@ -118,7 +118,7 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
 		o.default = false;
 		o.modalonly = true;
-		o.ucioption = 'forward_mode';
+		// o.ucioption = 'forward_mode';
 		// o.load = function (section_id) {
 		// 	return this.super('load', section_id) ? '1' : '0';
 		// };
@@ -199,7 +199,7 @@ return view.extend({
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('Enable Notify'));
 		o.default = false;
 		o.modalonly = true;
-		o.ucioption = 'notify_mode';
+		// o.ucioption = 'notify_mode';
 		// o.load = function (section_id) {
 		// 	return this.super('load', section_id) ? '1' : '0';
 		// };
@@ -259,7 +259,7 @@ return view.extend({
 		o = s.taboption('link', form.Flag, 'link_enable', _('Enable link setting'));
 		o.modalonly = true;
 		o.default = false;
-		o.ucioption = 'link_mode';
+		// o.ucioption = 'link_mode';
 		// o.load = function (section_id) {
 		// 	return this.super('load', section_id) ? '1' : '0';
 		// };
@@ -403,7 +403,7 @@ return view.extend({
 		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
 		o.default = false;
-		o.ucioption = 'custom_script';
+		// o.ucioption = 'custom_script';
 		// o.load = function (section_id) {
 		// 	return this.super('load', section_id) ? '1' : '0';
 		// };
