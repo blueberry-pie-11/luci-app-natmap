@@ -25,5 +25,5 @@ case $FORWARD_MODE in
 esac
 
 if [ -n "${forward_script}" ]; then
-    source "$forward_script" "$@"
+    bash "$forward_script" "$@"
 fi

@@ -30,5 +30,5 @@ esac
 
 if [ -n "${link_script}" ]; then
     echo "$GENERAL_NAT_NAME Execute link script: $link_script"
-    source "${link_script}" "$@"
+    bash "${link_script}" "$@"
 fi
