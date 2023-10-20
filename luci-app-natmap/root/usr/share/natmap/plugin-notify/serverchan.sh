@@ -41,7 +41,7 @@ while true; do
         retry_count=$((retry_count + 1))
         # Check if maximum retries reached
         if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 达到最大重试次数，无法登录"
+            echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 达到最大重试次数，无法发送"
             break
         fi
         # echo "$NOTIFY_MODE 登录失败,休眠$sleep_time秒"
