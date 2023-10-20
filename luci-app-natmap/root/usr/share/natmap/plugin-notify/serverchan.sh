@@ -1,18 +1,22 @@
 #!/bin/bash
 
-text="$1"
-id=$2
-chat_id=$3
-token=$4
 title="natmap - ${GENERAL_NAT_NAME} 更新"
-curl_proxy() {
-    if [ -z "$NOTIFY_TELEGRAM_BOT_PROXY" ]; then
-        curl "$@"
-    else
-        curl -x $NOTIFY_TELEGRAM_BOT_PROXY "$@"
-    fi
-}
+desp="$1"
 
+# 拼装post数据
+postdata="title=$title&desp=$desp"
+message=(
+    "--header" "Content-type: application/x-www-form-urlencoded"
+    "--data" "$postdata"
+)
+
+# 获取url
+url=""
+if [ "${NOTIFY_SERVERCHAN_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_SERVERCHAN_ADVANCED_URL" ]; then
+    url="$NOTIFY_SERVERCHAN_ADVANCED_URL/${NOTIFY_SERVERCHAN_SENDKEY}.send"
+else
+    url="https://sctapi.ftqq.com/${NOTIFY_SERVERCHAN_SENDKEY}.send"
+fi
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
 sleep_time=3
@@ -25,21 +29,9 @@ if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_ADVANCED_MAX_RETRIES" ]
     sleep_time=$((NOTIFY_ADVANCED_SLEEP_TIME == "0" ? 3 : NOTIFY_ADVANCED_SLEEP_TIME))
 fi
 
-# # 判断是否开启高级功能
-# if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ]; then
-#     # 获取最大重试次数
-#     max_retries="${NOTIFY_ADVANCED_MAX_RETRIES%/:-$max_retries}"
-#     # 获取休眠时间
-#     sleep_time="${NOTIFY_ADVANCED_SLEEP_TIME%/:-$sleep_time}"
-# fi
-
 while true; do
-    curl_proxy -4 -Ss -o /dev/null -X POST \
-        -H 'Content-Type: application/json' \
-        -d '{"chat_id": "'"${NOTIFY_TELEGRAM_BOT_CHAT_ID}"'", "text": "'"${title}\n\n${text}"'", "parse_mode": "HTML", "disable_notification": "false"}' \
-        "https://api.telegram.org/bot${NOTIFY_TELEGRAM_BOT_TOKEN}/sendMessage"
-    status=$?
-    if [ $status -eq 0 ]; then
+    result=$(curl -X POST -s -o /dev/null -w "%{http_code}" "$url" "${message[@]}")
+    if [ $result -eq 200 ]; then
         echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 发送成功"
         break
     else

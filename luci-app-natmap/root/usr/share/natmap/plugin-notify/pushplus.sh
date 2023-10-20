@@ -2,23 +2,24 @@
 
 text="$1"
 token=$2
+title="natmap - ${GENERAL_NAT_NAME} 更新"
 
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_MAX_RETRIES" ] && [ -n "$NOTIFY_SLEEP_TIME" ]; then
+if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_ADVANCED_MAX_RETRIES" ] && [ -n "$NOTIFY_ADVANCED_SLEEP_TIME" ]; then
     # 获取最大重试次数
-    max_retries=$((NOTIFY_MAX_RETRIES == "0" ? 1 : NOTIFY_MAX_RETRIES))
+    max_retries=$((NOTIFY_ADVANCED_MAX_RETRIES == "0" ? 1 : NOTIFY_ADVANCED_MAX_RETRIES))
     # 获取休眠时间
-    sleep_time=$((NOTIFY_SLEEP_TIME == "0" ? 3 : NOTIFY_SLEEP_TIME))
+    sleep_time=$((NOTIFY_ADVANCED_SLEEP_TIME == "0" ? 3 : NOTIFY_ADVANCED_SLEEP_TIME))
 fi
 
 while true; do
     curl -4 -Ss -X POST \
         -H 'Content-Type: application/json' \
-        -d '{"token": "'"${NOTIFY_PUSHPLUS_TOKEN}"'", "content": "'"${text}"'", "title": "NATMap"}' \
+        -d '{"token": "'"${NOTIFY_PUSHPLUS_TOKEN}"'", "content": "'"${text}"'", "title": "'"${title}"'"}' \
         "http://www.pushplus.plus/send"
     status=$?
     if [ $status -eq 0 ]; then

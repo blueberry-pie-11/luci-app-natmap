@@ -37,17 +37,20 @@ validate_section_natmap() {
 		'forward_ikuai_mapping_protocol:string' \
 		'forward_ikuai_mapping_wan_interface:string' \
 		'forward_advanced_enable:bool:0' \
-		'forward_max_retries:uinteger' \
-		'forward_sleep_time:uinteger' \
+		'forward_advanced_max_retries:uinteger' \
+		'forward_advanced_sleep_time:uinteger' \
 		'notify_enable:bool:0' \
 		'notify_mode:string' \
 		'notify_telegram_bot_chat_id:string' \
 		'notify_telegram_bot_token:string' \
 		'notify_telegram_bot_proxy:string' \
 		'notify_pushplus_token:string' \
+		'notify_serverchan_sendkey:string' \
+		'notify_serverchan_advanced_enable:bool:0' \
+		'notify_serverchan_advanced_url:string' \
 		'notify_advanced_enable:bool:0' \
-		'notify_max_retries:uinteger' \
-		'notify_sleep_time:uinteger' \
+		'notify_advanced_max_retries:uinteger' \
+		'notify_advanced_sleep_time:uinteger' \
 		'link_enable:bool:0' \
 		'link_mode:string' \
 		'link_emby_url:string' \
@@ -70,8 +73,8 @@ validate_section_natmap() {
 		'link_cloudflare_rule_target_url:string' \
 		'link_cloudflare_rule_name:string' \
 		'link_advanced_enable:bool:0' \
-		'link_max_retries:uinteger' \
-		'link_sleep_time:uinteger' \
+		'link_advanced_max_retries:uinteger' \
+		'link_advanced_sleep_time:uinteger' \
 		'custom_enable:bool:0' \
 		'custom_script:file'
 }

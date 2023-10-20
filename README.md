@@ -40,6 +40,7 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 ### 2.目前支持的通知功能
 ####    2.1.  Telegram Bot
 ####    2.2.  PushPlus
+####    2.3.  server酱
 
 ###  3.端口转发功能
 ####    3.1.本地转发

@@ -22,6 +22,9 @@ case $NOTIFY_MODE in
 "pushplus")
 	notify_script="/usr/share/natmap/plugin-notify/pushplus.sh"
 	;;
+"serverchan")
+	notify_script="/usr/share/natmap/plugin-notify/serverchan.sh"
+	;;
 *)
 	notify_script=""
 	;;

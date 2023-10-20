@@ -119,6 +119,9 @@ msgstr "启用关联设置"
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
 
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
+msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080"
+
 msgid "Advanced Settings"
 msgstr "高级设置"
 
@@ -205,3 +208,15 @@ msgstr "启用自定义脚本"
 
 msgid "custom script"
 msgstr "自定义脚本"
+
+msgid "wechatpush sendkey"
+msgstr "server酱 sendkey"
+
+msgid "Get Instructions"
+msgstr "获取介绍"
+
+msgid "Click here"
+msgstr "点击此处"
+
+msgid "Serverchan Advanced Settings"
+msgstr "server酱高级设置"

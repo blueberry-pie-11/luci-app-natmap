@@ -180,12 +180,12 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o = s.taboption('forward', form.Value, 'forward_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
@@ -201,6 +201,7 @@ return view.extend({
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
+		o.value('serverchan', _('server酱'));
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
@@ -224,19 +225,39 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_mode', 'pushplus');
 
+		// serverchan
+		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('wechatpush sendkey'));
+		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>';
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'serverchan');
+
+		// notify_serverchan_advanced
+		o = s.taboption('notify', form.Flag, 'notify_serverchan_advanced_enable', _('Serverchan Advanced Settings'));
+		o.default = false;
+		o.modalonly = true;
+		o.depends('notify_mode', 'serverchan');
+
+		o = s.taboption('notify', form.Value, 'notify_serverchan_advanced_url', _('Self-built Server'));
+		o.description = _('such as http://127.0.0.1:8080 or https://ikuai.lan:8080');
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_serverchan_advanced_enable', '1');
+
 		// notify_advanced
 		o = s.taboption('notify', form.Flag, 'notify_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('notify_mode', 'pushplus');
 		o.depends('notify_mode', 'telegram_bot');
+		o.depends('notify_mode', 'serverchan');
 
-		o = s.taboption('notify', form.Value, 'notify_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o = s.taboption('notify', form.Value, 'notify_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
 
-		o = s.taboption('notify', form.Value, 'notify_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
@@ -368,12 +389,12 @@ return view.extend({
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o = s.taboption('link', form.Value, 'link_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
