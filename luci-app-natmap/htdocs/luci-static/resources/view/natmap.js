@@ -229,8 +229,8 @@ return view.extend({
 		o.depends('notify_mode', 'pushplus');
 
 		// serverchan
-		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('wechatpush sendkey'));
-		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + '\n' + _('Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
+		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('serverchan sendkey'));
+		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + _('<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
@@ -244,8 +244,8 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
 
-		o = s.taboption('notify', form.Value, 'notify_serverchan_advanced_url', _('Self-built Server'));
-		o.description = _('such as http://127.0.0.1:8080 or https://ikuai.lan:8080');
+		o = s.taboption('notify', form.Value, 'notify_serverchan_advanced_url', _('Self-built Server Url'));
+		o.description = _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_serverchan_advanced_enable', '1');
