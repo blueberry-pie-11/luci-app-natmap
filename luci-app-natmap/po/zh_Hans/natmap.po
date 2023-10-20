@@ -209,7 +209,7 @@ msgstr "启用自定义脚本"
 msgid "custom script"
 msgstr "自定义脚本"
 
-msgid "Serverchan sendkey"
+msgid "ServerChan sendkey"
 msgstr "server酱 sendkey"
 
 msgid "Get Instructions"
@@ -218,7 +218,7 @@ msgstr "获取介绍"
 msgid "Click here"
 msgstr "点击此处"
 
-msgid "Serverchan Advanced Settings"
+msgid "ServerChan Advanced Settings"
 msgstr "Server酱 高级设置"
 
 msgix "Since the asynchronous push queue is used, only whether the put into the queue is successful is detected"

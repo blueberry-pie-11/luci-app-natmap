@@ -201,7 +201,7 @@ return view.extend({
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
-		o.value('serverchan', _('server酱'));
+		o.value('serverchan', _('Server酱'));
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
@@ -229,14 +229,14 @@ return view.extend({
 		o.depends('notify_mode', 'pushplus');
 
 		// serverchan
-		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('Serverchan sendkey'));
+		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('ServerChan sendkey'));
 		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + _('<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
 
 		// notify_serverchan_advanced
-		o = s.taboption('notify', form.Flag, 'notify_serverchan_advanced_enable', _('Serverchan Advanced Settings'));
+		o = s.taboption('notify', form.Flag, 'notify_serverchan_advanced_enable', _('ServerChan Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
