@@ -205,11 +205,13 @@ return view.extend({
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
+		o.description = _('Get chat_id') + ' <a href="https://t.me/getuserIDbot" target="_blank">' + _('Click here') + '</a>' + _('<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid.');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'telegram_bot');
 
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_token', _('Token'));
+		o.description = _('Get Bot') + ' <a href="https://t.me/BotFather" target="_blank">' + _('Click here') + '</a>' + _('<br />Send a message to the created bot to initiate a conversation.');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'telegram_bot');
@@ -221,6 +223,7 @@ return view.extend({
 
 		//notify_pushplus
 		o = s.taboption('notify', form.Value, 'notify_pushplus_token', _('Token'));
+		o.description = _('Get Instructions') + ' <a href="http://www.pushplus.plus/" target="_blank">' + _('Click here') + '</a>';
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'pushplus');
