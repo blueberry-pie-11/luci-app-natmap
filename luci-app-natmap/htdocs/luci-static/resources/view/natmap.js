@@ -227,7 +227,10 @@ return view.extend({
 
 		// serverchan
 		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('wechatpush sendkey'));
-		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>';
+		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + '\n' + _('Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'serverchan');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
