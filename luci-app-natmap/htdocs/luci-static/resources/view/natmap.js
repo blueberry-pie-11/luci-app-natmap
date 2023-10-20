@@ -185,7 +185,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
@@ -229,11 +229,8 @@ return view.extend({
 		o.depends('notify_mode', 'pushplus');
 
 		// serverchan
-		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('serverchan sendkey'));
+		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('Serverchan sendkey'));
 		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + _('<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
-		o.datatype = 'string';
-		o.modalonly = true;
-		o.depends('notify_mode', 'serverchan');
 		o.datatype = 'string';
 		o.modalonly = true;
 		o.depends('notify_mode', 'serverchan');
@@ -263,7 +260,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
 
-		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
@@ -400,7 +397,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');

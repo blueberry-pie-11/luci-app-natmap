@@ -131,8 +131,8 @@ msgstr "最大重试次数，默认 0 表示仅执行一次调用"
 msgid "Max Retries"
 msgstr "最大重试次数"
 
-msgid "Sleep Time"
-msgstr "休眠时间"
+msgid "Single Sleep Time"
+msgstr "单次休眠时间"
 
 msgid "Single sleep time, unit is seconds, default 0 is 3 seconds"
 msgstr "单次休眠等待时间，单位是秒，默认 0 表示 3秒"
