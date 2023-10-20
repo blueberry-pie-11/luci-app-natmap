@@ -221,8 +221,8 @@ msgstr "点击此处"
 msgid "ServerChan Advanced Settings"
 msgstr "Server酱 高级设置"
 
-msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected"
-msgstr "由于使用异步推送队列，所以仅检测放入队列是否成功"
+msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
+msgstr "<br />由于使用异步推送队列，所以仅检测放入队列是否成功"
 
 msgid "Get Bot"
 msgstr "获取机器人"
