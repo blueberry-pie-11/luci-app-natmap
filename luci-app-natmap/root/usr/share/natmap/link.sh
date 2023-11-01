@@ -7,27 +7,12 @@ inner_port=$4
 protocol=$5
 
 link_script=""
-echo "LINK_MODE: $LINK_MODE"
-case $LINK_MODE in
-"qbittorrent")
-    link_script="/usr/share/natmap/plugin-link/qb.sh"
-    ;;
-"transmission")
-    link_script="/usr/share/natmap/plugin-link/tr.sh"
-    ;;
-"emby")
-    link_script="/usr/share/natmap/plugin-link/emby.sh"
-    ;;
-"cloudflare_origin_rule")
-    link_script="/usr/share/natmap/plugin-link/cloudflare_origin_rule.sh"
-    ;;
-"cloudflare_redirect_rule")
-    link_script="/usr/share/natmap/plugin-link/cloudflare_redirect_rule.sh"
-    ;;
-*)
-    link_script=""
-    ;;
-esac
+# echo "LINK_MODE: $LINK_MODE"
+
+# 如果$LINK_MODE非空则执行对应的脚本
+if [ -n "${LINK_MODE}" ]; then
+    link_script="/usr/share/natmap/plugin-link/${LINK_MODE}.sh"
+fi
 
 if [ -n "${link_script}" ]; then
     echo "$GENERAL_NAT_NAME execute link script"

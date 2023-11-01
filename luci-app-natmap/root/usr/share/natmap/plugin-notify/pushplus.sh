@@ -1,8 +1,8 @@
 #!/bin/bash
 
 text="$1"
-token=$2
 title="natmap - ${GENERAL_NAT_NAME} 更新"
+token="${NOTIFY_PUSHPLUS_TOKEN}"
 
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
@@ -19,7 +19,7 @@ fi
 while true; do
     curl -4 -Ss -X POST \
         -H 'Content-Type: application/json' \
-        -d '{"token": "'"${NOTIFY_PUSHPLUS_TOKEN}"'", "content": "'"${text}"'", "title": "'"${title}"'"}' \
+        -d '{"token": "'"${token}"'", "content": "'"${text}"'", "title": "'"${title}"'"}' \
         "http://www.pushplus.plus/send"
     status=$?
     if [ $status -eq 0 ]; then

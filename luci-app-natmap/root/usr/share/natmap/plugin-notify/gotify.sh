@@ -1,17 +1,11 @@
 #!/bin/bash
 
-text="$1"
-chat_id="${NOTIFY_TELEGRAM_BOT_CHAT_ID}"
-token="${NOTIFY_TELEGRAM_BOT_TOKEN}"
+# Define the Gotify URL, title, message, and priority
 title="natmap - ${GENERAL_NAT_NAME} 更新"
-
-curl_proxy() {
-    if [ -z "$NOTIFY_TELEGRAM_BOT_PROXY" ]; then
-        curl "$@"
-    else
-        curl -x $NOTIFY_TELEGRAM_BOT_PROXY "$@"
-    fi
-}
+message="$1"
+gotify_url="${NOTIFY_GOTIFY_URL}"
+priority="${NOTIFY_GOTIFY_PRIORITY:-5}"
+token="${NOTIFY_GOTIFY_TOKEN}"
 
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
@@ -25,19 +19,9 @@ if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_ADVANCED_MAX_RETRIES" ]
     sleep_time=$((NOTIFY_ADVANCED_SLEEP_TIME == "0" ? 3 : NOTIFY_ADVANCED_SLEEP_TIME))
 fi
 
-# # 判断是否开启高级功能
-# if [ "$NOTIFY_ADVANCED_ENABLE" == 1 ]; then
-#     # 获取最大重试次数
-#     max_retries="${NOTIFY_ADVANCED_MAX_RETRIES%/:-$max_retries}"
-#     # 获取休眠时间
-#     sleep_time="${NOTIFY_ADVANCED_SLEEP_TIME%/:-$sleep_time}"
-# fi
-
 while true; do
-    curl_proxy -4 -Ss -o /dev/null -X POST \
-        -H 'Content-Type: application/json' \
-        -d '{"chat_id": "'"${chat_id}"'", "text": "'"${title}\n\n${text}"'", "parse_mode": "HTML", "disable_notification": "false"}' \
-        "https://api.telegram.org/bot${token}/sendMessage"
+    # Send the message using curl
+    curl -s -X POST -H "Content-Type: multipart/form-data" -F "token=$token" -F "title=$title" -F "message=$message" -F "priority=$priority" "$gotify_url/message"
     status=$?
     if [ $status -eq 0 ]; then
         echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 发送成功"

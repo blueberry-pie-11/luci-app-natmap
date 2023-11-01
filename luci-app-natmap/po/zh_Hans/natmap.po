@@ -239,3 +239,6 @@ msgstr "自建服务器URL"
 
 msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
 msgstr "<br />如需通过群组/频道推送，请创建一个非中文的群组或频道（便于查找 chatid，后续再更名）<br />将机器人添加至群组，发送信息后通过 https://api.telegram.org/bot token /getUpdates 获取 chatid"
+
+msgid "Gotify priority"
+msgstr "Gotify 通知优先级"

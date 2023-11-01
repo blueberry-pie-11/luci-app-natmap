@@ -202,6 +202,8 @@ return view.extend({
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
 		o.value('serverchan', _('Server酱'));
+		o.value('gotify', _('Gotify'));
+
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
@@ -247,6 +249,24 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_serverchan_advanced_enable', '1');
 
+		// gotify
+		o = s.taboption('notify', form.Value, 'notify_gotify_url', _('Gotify url'));
+		o.description = _('Get Instructions') + ' <a href="https://gotify.net/" target="_blank">' + _('Click here') + '</a>';
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
+
+		o = s.taboption('notify', form.Value, 'notify_gotify_token', _('Gotify token'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
+
+		o = s.taboption('notify', form.Value, 'notify_gotify_priority', _('Gotify priority'));
+		o.datatype = 'uinteger';
+		o.default = 5;
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
+
 		// notify_advanced
 		o = s.taboption('notify', form.Flag, 'notify_advanced_enable', _('Advanced Settings'));
 		o.default = false;
@@ -254,6 +274,7 @@ return view.extend({
 		o.depends('notify_mode', 'pushplus');
 		o.depends('notify_mode', 'telegram_bot');
 		o.depends('notify_mode', 'serverchan');
+		o.depends('notify_mode', 'gotify');
 
 		o = s.taboption('notify', form.Value, 'notify_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
 		o.datatype = 'uinteger';

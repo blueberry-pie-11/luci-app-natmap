@@ -48,6 +48,9 @@ validate_section_natmap() {
 		'notify_serverchan_sendkey:string' \
 		'notify_serverchan_advanced_enable:bool:0' \
 		'notify_serverchan_advanced_url:string' \
+		'notify_gotify_url:string' \
+		'notify_gotify_token:string' \
+		'notify_gotify_priority:uinteger' \
 		'notify_advanced_enable:bool:0' \
 		'notify_advanced_max_retries:uinteger' \
 		'notify_advanced_sleep_time:uinteger' \
