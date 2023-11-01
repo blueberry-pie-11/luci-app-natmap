@@ -52,7 +52,7 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 ### openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap 
 
 ```
-src-git zzz https://github.com/blueberry-pie-11/openwrt-package-self
+src-git zzz https://github.com/blueberry-pie-11/luci-app-natmap
 ```
 
 ### 编译源码，尽量使用编译固件而非插件安装
