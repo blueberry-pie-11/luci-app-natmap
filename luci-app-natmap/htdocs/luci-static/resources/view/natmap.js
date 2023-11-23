@@ -185,7 +185,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
@@ -281,7 +281,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
 
-		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
@@ -418,7 +418,7 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Single Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
+		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
