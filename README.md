@@ -35,13 +35,17 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 ####    2.1.  Telegram Bot
 ####    2.2.  PushPlus
 ####    2.3.  server酱
+####    2.4.  Gotify
 
 ### 3.端口转发功能
-####    3.1.本地转发
-支持使用openwrt自身防火墙转发tcp和udp，支持natmap自带转发功能。支持自动设置目标端口，可搭配第三方调用使用。
+####    3.1.natmap转发
+支持使用natmap转发tcp和udp..
 
-####    3.2.ikuai端口映射
-当前仅支持使用爱快系统作为主路由，其他路由不支持。可以自动设置主网关爱快系统的端口映射。
+####    3.2.firewall dnat转发
+支持使用openwrt防火墙转发tcp和udp。
+
+####    3.3.ikuai端口映射
+当前仅支持使用爱快系统作为主路由，可以自动设置主网关爱快系统的端口映射。
 
 ### 4.自定义脚本
 支持自定义脚本
