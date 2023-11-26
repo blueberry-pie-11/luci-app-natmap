@@ -29,7 +29,7 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 注意：Name 请保持唯一，否则会出现奇怪的问题。
 
 ####    1.5.Cloudflare Redirect Rules
-待定。。。
+
     
 ### 2.目前支持的通知功能
 ####    2.1.  Telegram Bot
