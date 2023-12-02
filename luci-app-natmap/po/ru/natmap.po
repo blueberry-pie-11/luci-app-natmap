@@ -1,55 +1,58 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-04 06:36+0000\n"
-"Last-Translator: AHOHNMYC <lqwh2h2cwa@protonmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/openwrt/"
-"luciapplicationsnatmap/ru/>\n"
-"Language: ru\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: luci-app-natmap\n"
+"Language: ru\n"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
-msgid "Bind port"
-msgstr "Порт сервера"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
+msgid "NatMap"
+msgstr "НатКарта"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "natmap_enable"
-msgstr "Включить"
+#: 
+msgid "General Settings"
+msgstr "常规设置"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
-msgid "External IP"
-msgstr "Внешний IP"
+#: 
+msgid "Forward Settings"
+msgstr "转发设置"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
-msgid "External Port"
-msgstr "Внешний порт"
+#: 
+msgid "Notify Settings"
+msgstr "通知设置"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
-msgid "For TCP mode"
-msgstr "Для режима TCP"
+#: 
+msgid "Link Settings"
+msgstr "关联设置"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
-msgid "Forward mode"
-msgstr "Режим перенаправления"
+#: 
+msgid "Custom Settings"
+msgstr "自定义设置"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
-msgid "Forward target"
-msgstr "Цель перенаправления"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:61
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:68
+msgid "Name"
+msgstr "名称"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
-msgid "Forward target port"
-msgstr "Порт переадресованной цели"
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
+msgid "Protocol"
+msgstr "协议"
 
-#: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
-msgid "Grant access to LuCI app natmap"
-msgstr "Предоставить доступ LuCI к приложению natmap"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:164
+msgid "TCP"
+msgstr "TCP"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
-msgid "HTTP server"
-msgstr "HTTP-сервер"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:76
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:165
+msgid "UDP"
+msgstr "UDP"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
+msgid "Restrict to address family"
+msgstr "地址族限制"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
@@ -57,37 +60,344 @@ msgstr "IPv4 и IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:72
 msgid "IPv4 only"
-msgstr "Только IPv4"
+msgstr "仅 IPv4"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:73
 msgid "IPv6 only"
-msgstr "Только IPv6"
+msgstr "仅 IPv6"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
-msgid "Interface"
-msgstr "Интерфейс"
+#: 
+msgid "Wan Interface"
+msgstr "WAN 接口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr "Keep-alive интервал"
+msgstr "поддерживать жизнь 间隔"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
+msgid "STUN server"
+msgstr "STUN 服务器"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+msgid "HTTP server"
+msgstr "Поддержка HTTP"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+msgid "For TCP mode"
+msgstr "TCP-соединение"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
+msgid "Bind port"
+msgstr "绑定端口"
+
+#: 
+msgid "Enable Forward"
+msgstr "启用转发"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
+msgid "Forward mode"
+msgstr "转发模式"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
+msgid "firewall dnat"
+msgstr "防火墙 днат"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
+msgid "natmap"
+msgstr "карта памяти"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
+msgid "ikuai"
+msgstr "爱快"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
+msgid "Forward target"
+msgstr "转发目标"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
+msgid "Forward target port"
+msgstr "转发目标端口"
+
+#: 
+msgid "0 will forward to the out port get from STUN"
+msgstr "填写 0 ，则转发到从STUN获取的外部端口"
+
+#: 
+msgid "Target_Interface"
+msgstr "目标接口"
+
+#: 
+msgid "Ikuai Web URL"
+msgstr "URL-адрес 爱快"
+
+#: 
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
+msgstr "例如: http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 хост ，必须关闭 DHCP/DNS 中的重绑定保护"
+
+#: 
+msgid "Ikuai Username"
+msgstr "爱快用户名"
+
+#: 
+msgid "Ikuai Password"
+msgstr "爱快密码"
+
+#: 
+msgid "Ikuai Mapping Protocol"
+msgstr "端口映射协议"
+
+#: 
+msgid "such as tcp or udp or tcp+udp"
+msgstr "例如: TCP 或 udp 或 tcp+udp"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:163
+msgid "TCP+UDP"
+msgstr "TCP+UDP"
+
+#: 
+msgid "Ikuai Mapping Wan Interface"
+msgstr "端口映射外网接口"
+
+#: 
+msgid "such as adsl_1 or wan"
+msgstr "例如:adsl_1 或 wan"
+
+#: 
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+#: 
+msgid "Max Retries"
+msgstr "最大重试次数"
+
+#: 
+msgid "max retries,default 0 means execute only once"
+msgstr "最大重试次数,默认 0 表示仅执行一次调用"
+
+#: 
+msgid "Retry Interval"
+msgstr "重试间隔时间"
+
+#: 
+msgid "Retry Interval, unit is seconds, default 0 is 3 seconds"
+msgstr "单次重试间隔时间,单位是秒,默认 0 表示 3秒"
+
+#: 
+msgid "Enable Notify"
+msgstr "启用通知"
+
+#: 
+msgid "Notify channel"
+msgstr "通知通道"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
+msgid "Telegram Bot"
+msgstr "Telegram 机器人"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
+msgid "PushPlus"
+msgstr "ПушПлюс"
+
+#: 
+msgid "ServerChan"
+msgstr "Сервер酱"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
+msgid "Gotify"
+msgstr "Готифай"
+
+#: 
+msgid "Chat ID"
+msgstr "会话ID"
+
+#: 
+msgid "Get chat_id"
+msgstr "获取 чат_id"
+
+#: 
+msgid "Click here"
+msgstr "点击此处"
+
+#: 
+msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
+msgstr "<br />如需通过群组/频道推送，请创建一个非中文的群组或频道（便于查找chatid，后续再更名）<br />将机器人添加至群组，发送信息后通过 https:/ /api.telegram.org/bot token /getUpdates 获取 Chatid"
+
+#: 
+msgid "Token"
+msgstr "令牌"
+
+#: 
+msgid "Get Bot"
+msgstr "获取机器人"
+
+#: 
+msgid "<br />Send a message to the created bot to initiate a conversation."
+msgstr "<br />Продукты для продажи в Китае, в Китае, в Китае, в Китае, в Китае."
+
+#: 
+msgid "http proxy"
+msgstr "http 代理"
+
+#: 
+msgid "Get Instructions"
+msgstr "获取介绍"
+
+#: 
+msgid "ServerChan sendkey"
+msgstr "Серверный ключ отправки"
+
+#: 
+msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
+msgstr "|"
+
+#: 
+msgid "ServerChan Advanced Settings"
+msgstr "Сервер酱 高级设置"
+
+#: 
+msgid "Self-built Server Url"
+msgstr "URL-адрес веб-сайта"
+
+#: 
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
+msgstr "例如: http://127.0.0.1:8080 и http://ikuai.lan:8080"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
+msgid "Gotify url"
+msgstr "URL-адрес Gotify"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
+msgid "Gotify token"
+msgstr "Gotify 令牌"
+
+#: 
+msgid "Gotify priority"
+msgstr "Gotify 通知优先级"
+
+#: 
+msgid "Enable link setting"
+msgstr "启用关联设置"
+
+#: 
+msgid "Service"
+msgstr "服务"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
+msgid "Emby"
+msgstr "Эмби"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
+msgid "qBittorrent"
+msgstr "Qbittorrent"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
+msgid "Transmission"
+msgstr "Передача инфекции"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
+msgid "Cloudflare Origin Rule"
+msgstr "Cloudflare 源规则"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
+msgid "Cloudflare Redirect Rule"
+msgstr "Cloudflare 重定向规则"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
+msgid "Email"
+msgstr "Электронная почта"
+
+#: 
+msgid "API Key"
+msgstr "API-интерфейс"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
+msgid "Zone ID"
+msgstr "Идентификатор зоны"
+
+#: 
+msgid "Rule Name"
+msgstr "правило"
+
+#: 
+msgid "Target URL"
+msgstr "目标 URL"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:329
+msgid "EMBY URL"
+msgstr "URL-адрес вставки"
+
+#: 
+msgid "Update HTTPS Port"
+msgstr "更新 https 端口"
+
+#: 
+msgid "Set to False if you want to use HTTP"
+msgstr "如果使用 http，请勿勾选"
+
+#: 
+msgid "Update host with IP"
+msgstr "使用 ip 更新 хост"
+
+#: 
+msgid "Web UI URL"
+msgstr "URL-адрес 网页"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:355
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:381
+msgid "Username"
+msgstr "用户名"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:386
+msgid "Password"
+msgstr "密码"
+
+#: 
+msgid "Allow IPv6"
+msgstr "Использование IPv6"
+
+#: 
+msgid "IPv6 Address"
+msgstr "Поддержка IPv6"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:376
+msgid "RPC URL"
+msgstr "URL-адрес RPC"
+
+#: 
+msgid "Enable custom script's config"
+msgstr "启用自定义脚本"
+
+#: 
+msgid "custom script"
+msgstr "自定义脚本"
+
+#: 
+msgid "custom script path,such as /etc/natmap/custom.sh"
+msgstr "Доступ к файлу: /etc/natmap/custom.sh"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
+msgid "External IP"
+msgstr "外部 ip"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
+msgid "External Port"
+msgstr "外部端口"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
+msgid "enable"
+msgstr "启用"
+
+#: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
+msgid "Grant access to LuCI app natmap"
+msgstr "授予对 LuCI 应用 natmap 的访问权限"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
-msgstr "NATMap"
+msgstr "НатКарта"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:115
-msgid "Notify script"
-msgstr "Скрипт уведомления"
+#: 
+msgid "use mode ikuai when use ikuai as the main gateway"
+msgstr "当使用爱快作为主网关时, 使用 ikuai 模式"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
-msgid "Protocol"
-msgstr "Протокол"
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
-msgid "Restrict to address family"
-msgstr "Использовать протокол"
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
-msgid "STUN server"
-msgstr "Сервер STUN"
