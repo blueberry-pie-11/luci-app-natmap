@@ -59,8 +59,8 @@ config natmap
 	option link_advanced_enable '0'
 	option link_advanced_max_retries '1'
 	option link_advanced_sleep_time '3'	
-	option custom_enable '0'	
-	option custom_script ''
+	option custom_script_enable '0'	
+	option custom_script_path ''
 
 
 

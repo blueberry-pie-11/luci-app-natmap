@@ -78,8 +78,8 @@ validate_section_natmap() {
 		'link_advanced_enable:bool:0' \
 		'link_advanced_max_retries:uinteger' \
 		'link_advanced_sleep_time:uinteger' \
-		'custom_enable:bool:0' \
-		'custom_script:file'
+		'custom_script_enable:bool:0' \
+		'custom_script_path:file'
 }
 
 natmap_instance() {

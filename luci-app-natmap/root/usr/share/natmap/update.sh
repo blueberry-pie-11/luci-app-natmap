@@ -24,7 +24,7 @@ echo "natmap update json: $(cat /var/run/natmap/$PPID.json)"
 [ "${NOTIFY_ENABLE}" == 1 ] && source /usr/share/natmap/notify.sh "$@"
 
 # custom setting
-[ "${CUSTOM_ENABLE}" == 1 ] && [ -n "${CUSTOM_SCRIPT}" ] && {
-	export -n CUSTOM_SCRIPT
-	source "${CUSTOM_SCRIPT}" "$@"
+[ "${CUSTOM_SCRIPT_ENABLE}" == 1 ] && [ -n "${CUSTOM_SCRIPT_PATH}" ] && {
+	export -n CUSTOM_SCRIPT_PATH
+	source "${CUSTOM_SCRIPT_PATH}" "$@"
 }
