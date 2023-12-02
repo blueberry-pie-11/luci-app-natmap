@@ -47,7 +47,7 @@ return view.extend({
 	render: function (status) {
 		var m, s, o;
 
-		m = new form.Map('natmap', _('NATMap'));
+		m = new form.Map('natmap', _('NatMap'));
 		s = m.section(form.GridSection, 'natmap');
 		s.addremove = true;
 		s.anonymous = true;
@@ -57,10 +57,6 @@ return view.extend({
 		s.tab('notify', _('Notify Settings'));
 		s.tab('link', _('Link Settings'));
 		s.tab('custom', _('Custom Settings'))
-
-		o = s.option(form.Flag, 'natmap_enable', _('ENABLE'));
-		o.editable = true;
-		o.modalonly = false;
 
 		o = s.option(form.DummyValue, '_nat_name', _('Name'));
 		o.modalonly = false;
@@ -425,11 +421,14 @@ return view.extend({
 
 		// --------------------------------------------------------------------------------
 		// Custom Settings
-		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
+		o = s.taboption('custom', form.Flag, 'custom_script_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
 		o.default = false;
 
-		o = s.taboption('custom', form.Value, 'custom_script', _('custom script'));
+		o = s.taboption('custom', form.Value, 'custom_script_path', _('custom script'), _('custom script path,such as /etc/natmap/custom.sh'));
+		o.modalonly = true;
+		o.datatype = 'file';
+		o.depends('custom_script_enable', '1');
 		o.datatype = 'file';
 		o.modalonly = true;
 
@@ -447,6 +446,11 @@ return view.extend({
 			var s = status[section_id];
 			if (s) return s.port;
 		};
+
+		// natmap_enable
+		o = s.option(form.Flag, 'natmap_enable', _('enable'));
+		o.editable = true;
+		o.modalonly = false;
 
 		return m.render();
 	}
