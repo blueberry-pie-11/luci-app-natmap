@@ -5,399 +5,399 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: luci-app-natmap\n"
-"Language: pl\n"
+"Language: en\n"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 msgid "NatMap"
-msgstr ""
+msgstr "NatMap"
 
 #: 
 msgid "General Settings"
-msgstr ""
+msgstr "General Settings"
 
 #: 
 msgid "Forward Settings"
-msgstr ""
+msgstr "Forward Settings"
 
 #: 
 msgid "Notify Settings"
-msgstr ""
+msgstr "Notify Settings"
 
 #: 
 msgid "Link Settings"
-msgstr ""
+msgstr "Link Settings"
 
 #: 
 msgid "Custom Settings"
-msgstr ""
+msgstr "Custom Settings"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:61
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:68
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:164
 msgid "TCP"
-msgstr ""
+msgstr "TCP"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:76
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:165
 msgid "UDP"
-msgstr ""
+msgstr "UDP"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
 msgid "Restrict to address family"
-msgstr ""
+msgstr "Restrict to address family"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
-msgstr ""
+msgstr "IPv4 and IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:72
 msgid "IPv4 only"
-msgstr ""
+msgstr "IPv4 only"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:73
 msgid "IPv6 only"
-msgstr ""
+msgstr "IPv6 only"
 
 #: 
 msgid "Wan Interface"
-msgstr ""
+msgstr "Wan Interface"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr ""
+msgstr "Keep-alive interval"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
 msgid "STUN server"
-msgstr ""
+msgstr "STUN server"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
-msgstr ""
+msgstr "HTTP server"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "For TCP mode"
-msgstr ""
+msgstr "For TCP mode"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
 msgid "Bind port"
-msgstr ""
+msgstr "Bind port"
 
 #: 
 msgid "Enable Forward"
-msgstr ""
+msgstr "Enable Forward"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
 msgid "Forward mode"
-msgstr ""
+msgstr "Forward mode"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
 msgid "firewall dnat"
-msgstr ""
+msgstr "firewall dnat"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
 msgid "natmap"
-msgstr ""
+msgstr "natmap"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
 msgid "ikuai"
-msgstr ""
+msgstr "ikuai"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
 msgid "Forward target"
-msgstr ""
+msgstr "Forward target"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
 msgid "Forward target port"
-msgstr ""
+msgstr "Forward target port"
 
 #: 
 msgid "0 will forward to the out port get from STUN"
-msgstr ""
+msgstr "0 will forward to the out port get from STUN"
 
 #: 
 msgid "Target_Interface"
-msgstr ""
+msgstr "Target_Interface"
 
 #: 
 msgid "Ikuai Web URL"
-msgstr ""
+msgstr "Ikuai Web URL"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
-msgstr ""
+msgstr "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 
 #: 
 msgid "Ikuai Username"
-msgstr ""
+msgstr "Ikuai Username"
 
 #: 
 msgid "Ikuai Password"
-msgstr ""
+msgstr "Ikuai Password"
 
 #: 
 msgid "Ikuai Mapping Protocol"
-msgstr ""
+msgstr "Ikuai Mapping Protocol"
 
 #: 
 msgid "such as tcp or udp or tcp+udp"
-msgstr ""
+msgstr "such as tcp or udp or tcp+udp"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:163
 msgid "TCP+UDP"
-msgstr ""
+msgstr "TCP+UDP"
 
 #: 
 msgid "Ikuai Mapping Wan Interface"
-msgstr ""
+msgstr "Ikuai Mapping Wan Interface"
 
 #: 
 msgid "such as adsl_1 or wan"
-msgstr ""
+msgstr "such as adsl_1 or wan"
 
 #: 
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Advanced Settings"
 
 #: 
 msgid "Max Retries"
-msgstr ""
+msgstr "Max Retries"
 
 #: 
 msgid "max retries,default 0 means execute only once"
-msgstr ""
+msgstr "max retries,default 0 means execute only once"
 
 #: 
 msgid "Retry Interval"
-msgstr ""
+msgstr "Retry Interval"
 
 #: 
 msgid "Retry Interval, unit is seconds, default 0 is 3 seconds"
-msgstr ""
+msgstr "Retry Interval, unit is seconds, default 0 is 3 seconds"
 
 #: 
 msgid "Enable Notify"
-msgstr ""
+msgstr "Enable Notify"
 
 #: 
 msgid "Notify channel"
-msgstr ""
+msgstr "Notify channel"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
 msgid "Telegram Bot"
-msgstr ""
+msgstr "Telegram Bot"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
 msgid "PushPlus"
-msgstr ""
+msgstr "PushPlus"
 
 #: 
 msgid "ServerChan"
-msgstr ""
+msgstr "ServerChan"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
 msgid "Gotify"
-msgstr ""
+msgstr "Gotify"
 
 #: 
 msgid "Chat ID"
-msgstr ""
+msgstr "Chat ID"
 
 #: 
 msgid "Get chat_id"
-msgstr ""
+msgstr "Get chat_id"
 
 #: 
 msgid "Click here"
-msgstr ""
+msgstr "Click here"
 
 #: 
 msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
-msgstr ""
+msgstr "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
 
 #: 
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: 
 msgid "Get Bot"
-msgstr ""
+msgstr "Get Bot"
 
 #: 
 msgid "<br />Send a message to the created bot to initiate a conversation."
-msgstr ""
+msgstr "<br />Send a message to the created bot to initiate a conversation."
 
 #: 
 msgid "http proxy"
-msgstr ""
+msgstr "http proxy"
 
 #: 
 msgid "Get Instructions"
-msgstr ""
+msgstr "Get Instructions"
 
 #: 
 msgid "ServerChan sendkey"
-msgstr ""
+msgstr "ServerChan sendkey"
 
 #: 
 msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
-msgstr ""
+msgstr "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
 
 #: 
 msgid "ServerChan Advanced Settings"
-msgstr ""
+msgstr "ServerChan Advanced Settings"
 
 #: 
 msgid "Self-built Server Url"
-msgstr ""
+msgstr "Self-built Server Url"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
-msgstr ""
+msgstr "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
 msgid "Gotify url"
-msgstr ""
+msgstr "Gotify url"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
 msgid "Gotify token"
-msgstr ""
+msgstr "Gotify token"
 
 #: 
 msgid "Gotify priority"
-msgstr ""
+msgstr "Gotify priority"
 
 #: 
 msgid "Enable link setting"
-msgstr ""
+msgstr "Enable link setting"
 
 #: 
 msgid "Service"
-msgstr ""
+msgstr "Service"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
 msgid "Emby"
-msgstr ""
+msgstr "Emby"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
 msgid "qBittorrent"
-msgstr ""
+msgstr "qBittorrent"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
 msgid "Transmission"
-msgstr ""
+msgstr "Transmission"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
 msgid "Cloudflare Origin Rule"
-msgstr ""
+msgstr "Cloudflare Origin Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
 msgid "Cloudflare Redirect Rule"
-msgstr ""
+msgstr "Cloudflare Redirect Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: 
 msgid "API Key"
-msgstr ""
+msgstr "API Key"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
 msgid "Zone ID"
-msgstr ""
+msgstr "Zone ID"
 
 #: 
 msgid "Rule Name"
-msgstr ""
+msgstr "Rule Name"
 
 #: 
 msgid "Target URL"
-msgstr ""
+msgstr "Target URL"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:329
 msgid "EMBY URL"
-msgstr ""
+msgstr "EMBY URL"
 
 #: 
 msgid "Update HTTPS Port"
-msgstr ""
+msgstr "Update HTTPS Port"
 
 #: 
 msgid "Set to False if you want to use HTTP"
-msgstr ""
+msgstr "Set to False if you want to use HTTP"
 
 #: 
 msgid "Update host with IP"
-msgstr ""
+msgstr "Update host with IP"
 
 #: 
 msgid "Web UI URL"
-msgstr ""
+msgstr "Web UI URL"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:355
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:381
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:386
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: 
 msgid "Allow IPv6"
-msgstr ""
+msgstr "Allow IPv6"
 
 #: 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6 Address"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:376
 msgid "RPC URL"
-msgstr ""
+msgstr "RPC URL"
 
 #: 
 msgid "Enable custom script's config"
-msgstr ""
+msgstr "Enable custom script's config"
 
 #: 
 msgid "custom script"
-msgstr ""
+msgstr "custom script"
 
 #: 
 msgid "custom script path,such as /etc/natmap/custom.sh"
-msgstr ""
+msgstr "custom script path,such as /etc/natmap/custom.sh"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
 msgid "External IP"
-msgstr ""
+msgstr "External IP"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
 msgid "External Port"
-msgstr ""
+msgstr "External Port"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
 msgid "enable"
-msgstr ""
+msgstr "enable"
 
 #: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
 msgid "Grant access to LuCI app natmap"
-msgstr ""
+msgstr "Grant access to LuCI app natmap"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
-msgstr ""
+msgstr "NATMap"
 
 #: 
 msgid "use mode ikuai when use ikuai as the main gateway"
-msgstr ""
+msgstr "use mode ikuai when use ikuai as the main gateway"
 

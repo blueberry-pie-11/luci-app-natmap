@@ -5,7 +5,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: luci-app-natmap\n"
-"Language: da\n"
+"Language: en\n"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 msgid "NatMap"
@@ -13,32 +13,32 @@ msgstr "NatMap"
 
 #: 
 msgid "General Settings"
-msgstr "Generelle indstillinger"
+msgstr "General Settings"
 
 #: 
 msgid "Forward Settings"
-msgstr "Videresend indstillinger"
+msgstr "Forward Settings"
 
 #: 
 msgid "Notify Settings"
-msgstr "Underretningsindstillinger"
+msgstr "Notify Settings"
 
 #: 
 msgid "Link Settings"
-msgstr "Linkindstillinger"
+msgstr "Link Settings"
 
 #: 
 msgid "Custom Settings"
-msgstr "Brugerdefinerede indstillinger"
+msgstr "Custom Settings"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:61
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:68
 msgid "Name"
-msgstr "Navn"
+msgstr "Name"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
 msgid "Protocol"
-msgstr "Protokol"
+msgstr "Protocol"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:164
@@ -52,27 +52,27 @@ msgstr "UDP"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
 msgid "Restrict to address family"
-msgstr "Begræns til at adressere familie"
+msgstr "Restrict to address family"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
-msgstr "IPv4 og IPv6"
+msgstr "IPv4 and IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:72
 msgid "IPv4 only"
-msgstr "Kun IPv4"
+msgstr "IPv4 only"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:73
 msgid "IPv6 only"
-msgstr "Kun IPv6"
+msgstr "IPv6 only"
 
 #: 
 msgid "Wan Interface"
-msgstr "Wan interface"
+msgstr "Wan Interface"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr "Hold i live interval"
+msgstr "Keep-alive interval"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
 msgid "STUN server"
@@ -80,11 +80,11 @@ msgstr "STUN server"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
-msgstr "HTTP-server"
+msgstr "HTTP server"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "For TCP mode"
-msgstr "Til TCP-tilstand"
+msgstr "For TCP mode"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
 msgid "Bind port"
@@ -92,11 +92,11 @@ msgstr "Bind port"
 
 #: 
 msgid "Enable Forward"
-msgstr "Aktiver Videresend"
+msgstr "Enable Forward"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
 msgid "Forward mode"
-msgstr "Fremadgående tilstand"
+msgstr "Forward mode"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
 msgid "firewall dnat"
@@ -112,15 +112,15 @@ msgstr "ikuai"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
 msgid "Forward target"
-msgstr "Fremadrettet mål"
+msgstr "Forward target"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
 msgid "Forward target port"
-msgstr "Fremadrettet målport"
+msgstr "Forward target port"
 
 #: 
 msgid "0 will forward to the out port get from STUN"
-msgstr "0 vil videresende til udhavnen få fra STUN"
+msgstr "0 will forward to the out port get from STUN"
 
 #: 
 msgid "Target_Interface"
@@ -128,27 +128,27 @@ msgstr "Target_Interface"
 
 #: 
 msgid "Ikuai Web URL"
-msgstr "Ikuai web-URL"
+msgstr "Ikuai Web URL"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
-msgstr "såsom http://127.0.0.1:8080 eller http://ikuai.lan:8080.hvis du bruger vært, skal du lukke Rebind-beskyttelse i DHCP og DNS"
+msgstr "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 
 #: 
 msgid "Ikuai Username"
-msgstr "Ikuai brugernavn"
+msgstr "Ikuai Username"
 
 #: 
 msgid "Ikuai Password"
-msgstr "Ikuai adgangskode"
+msgstr "Ikuai Password"
 
 #: 
 msgid "Ikuai Mapping Protocol"
-msgstr "Ikuai kortlægningsprotokol"
+msgstr "Ikuai Mapping Protocol"
 
 #: 
 msgid "such as tcp or udp or tcp+udp"
-msgstr "såsom tcp eller udp eller tcp+udp"
+msgstr "such as tcp or udp or tcp+udp"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:163
 msgid "TCP+UDP"
@@ -160,35 +160,35 @@ msgstr "Ikuai Mapping Wan Interface"
 
 #: 
 msgid "such as adsl_1 or wan"
-msgstr "såsom adsl_1 eller wan"
+msgstr "such as adsl_1 or wan"
 
 #: 
 msgid "Advanced Settings"
-msgstr "Avancerede indstillinger"
+msgstr "Advanced Settings"
 
 #: 
 msgid "Max Retries"
-msgstr "Max forsøger igen"
+msgstr "Max Retries"
 
 #: 
 msgid "max retries,default 0 means execute only once"
-msgstr "max genforsøg, standard 0 betyder kun at udføre én gang"
+msgstr "max retries,default 0 means execute only once"
 
 #: 
 msgid "Retry Interval"
-msgstr "Prøv igen interval"
+msgstr "Retry Interval"
 
 #: 
 msgid "Retry Interval, unit is seconds, default 0 is 3 seconds"
-msgstr "Genforsøg Interval, enhed er sekunder, standard 0 er 3 sekunder"
+msgstr "Retry Interval, unit is seconds, default 0 is 3 seconds"
 
 #: 
 msgid "Enable Notify"
-msgstr "Aktiver underretning"
+msgstr "Enable Notify"
 
 #: 
 msgid "Notify channel"
-msgstr "Giv besked til kanal"
+msgstr "Notify channel"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
 msgid "Telegram Bot"
@@ -208,31 +208,31 @@ msgstr "Gotify"
 
 #: 
 msgid "Chat ID"
-msgstr "Chat-id"
+msgstr "Chat ID"
 
 #: 
 msgid "Get chat_id"
-msgstr "Hent chat_id"
+msgstr "Get chat_id"
 
 #: 
 msgid "Click here"
-msgstr "Klik her"
+msgstr "Click here"
 
 #: 
 msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
-msgstr "<br />Hvis du vil sende til en gruppe/kanal, skal du oprette en ikke-kinesisk gruppe/kanal (for lettere chatid-opslag kan du omdøbe den senere).<br />Føj botten til gruppen, send en besked, og brug https://api.telegram.org/bot token /getUpdates for at få chatid'et."
+msgstr "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
 
 #: 
 msgid "Token"
-msgstr "Polet"
+msgstr "Token"
 
 #: 
 msgid "Get Bot"
-msgstr "Hent Bot"
+msgstr "Get Bot"
 
 #: 
 msgid "<br />Send a message to the created bot to initiate a conversation."
-msgstr "<br />Send en besked til den oprettede bot for at starte en samtale."
+msgstr "<br />Send a message to the created bot to initiate a conversation."
 
 #: 
 msgid "http proxy"
@@ -240,7 +240,7 @@ msgstr "http proxy"
 
 #: 
 msgid "Get Instructions"
-msgstr "Få instruktioner"
+msgstr "Get Instructions"
 
 #: 
 msgid "ServerChan sendkey"
@@ -248,19 +248,19 @@ msgstr "ServerChan sendkey"
 
 #: 
 msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
-msgstr "<br />Da den asynkrone push-kø bruges, registreres kun, om indsættelsen i køen er vellykket."
+msgstr "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
 
 #: 
 msgid "ServerChan Advanced Settings"
-msgstr "ServerChan avancerede indstillinger"
+msgstr "ServerChan Advanced Settings"
 
 #: 
 msgid "Self-built Server Url"
-msgstr "Selvbygget server-url"
+msgstr "Self-built Server Url"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
-msgstr "såsom http://127.0.0.1:8080 eller http://ikuai.lan:8080"
+msgstr "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
 msgid "Gotify url"
@@ -268,15 +268,15 @@ msgstr "Gotify url"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
 msgid "Gotify token"
-msgstr "Gotify-token"
+msgstr "Gotify token"
 
 #: 
 msgid "Gotify priority"
-msgstr "Gotify prioritet"
+msgstr "Gotify priority"
 
 #: 
 msgid "Enable link setting"
-msgstr "Aktiver linkindstilling"
+msgstr "Enable link setting"
 
 #: 
 msgid "Service"
@@ -292,23 +292,23 @@ msgstr "qBittorrent"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
 msgid "Transmission"
-msgstr "Smitte"
+msgstr "Transmission"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
 msgid "Cloudflare Origin Rule"
-msgstr "Cloudflare oprindelsesregel"
+msgstr "Cloudflare Origin Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
 msgid "Cloudflare Redirect Rule"
-msgstr "Cloudflare-omdirigeringsregel"
+msgstr "Cloudflare Redirect Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 #: 
 msgid "API Key"
-msgstr "API nøgle"
+msgstr "API Key"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
 msgid "Zone ID"
@@ -316,11 +316,11 @@ msgstr "Zone ID"
 
 #: 
 msgid "Rule Name"
-msgstr "Regelnavn"
+msgstr "Rule Name"
 
 #: 
 msgid "Target URL"
-msgstr "Mål-URL"
+msgstr "Target URL"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:329
 msgid "EMBY URL"
@@ -328,15 +328,15 @@ msgstr "EMBY URL"
 
 #: 
 msgid "Update HTTPS Port"
-msgstr "Opdater HTTPS-port"
+msgstr "Update HTTPS Port"
 
 #: 
 msgid "Set to False if you want to use HTTP"
-msgstr "Indstil til False, hvis du vil bruge HTTP"
+msgstr "Set to False if you want to use HTTP"
 
 #: 
 msgid "Update host with IP"
-msgstr "Opdater vært med IP"
+msgstr "Update host with IP"
 
 #: 
 msgid "Web UI URL"
@@ -345,20 +345,20 @@ msgstr "Web UI URL"
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:355
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:381
 msgid "Username"
-msgstr "Brugernavn"
+msgstr "Username"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:386
 msgid "Password"
-msgstr "Adgangskode"
+msgstr "Password"
 
 #: 
 msgid "Allow IPv6"
-msgstr "Tillad IPv6"
+msgstr "Allow IPv6"
 
 #: 
 msgid "IPv6 Address"
-msgstr "IPv6-adresse"
+msgstr "IPv6 Address"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:376
 msgid "RPC URL"
@@ -366,31 +366,31 @@ msgstr "RPC URL"
 
 #: 
 msgid "Enable custom script's config"
-msgstr "Aktiver brugerdefineret scripts konfiguration"
+msgstr "Enable custom script's config"
 
 #: 
 msgid "custom script"
-msgstr "brugerdefineret script"
+msgstr "custom script"
 
 #: 
 msgid "custom script path,such as /etc/natmap/custom.sh"
-msgstr "tilpasset scriptsti, såsom /etc/natmap/custom.sh"
+msgstr "custom script path,such as /etc/natmap/custom.sh"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
 msgid "External IP"
-msgstr "Ekstern IP"
+msgstr "External IP"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
 msgid "External Port"
-msgstr "Ekstern Port"
+msgstr "External Port"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
 msgid "enable"
-msgstr "aktivere"
+msgstr "enable"
 
 #: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
 msgid "Grant access to LuCI app natmap"
-msgstr "Giv adgang til LuCI app natmap"
+msgstr "Grant access to LuCI app natmap"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
@@ -399,5 +399,5 @@ msgstr "NATMap"
 
 #: 
 msgid "use mode ikuai when use ikuai as the main gateway"
-msgstr "brug tilstand ikuai, når du bruger ikuai som hovedgateway"
+msgstr "use mode ikuai when use ikuai as the main gateway"
 
