@@ -256,7 +256,7 @@ msgstr "Server酱 高级设置"
 
 #: 
 msgid "Self-built Server Url"
-msgstr "自建服务器URL"
+msgstr "自建服务器 URL"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
@@ -316,7 +316,7 @@ msgstr "Zone ID"
 
 #: 
 msgid "Rule Name"
-msgstr "rule 名称"
+msgstr "规则名称"
 
 #: 
 msgid "Target URL"
