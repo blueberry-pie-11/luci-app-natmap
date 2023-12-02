@@ -100,7 +100,7 @@ msgstr "转发模式"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
 msgid "firewall dnat"
-msgstr "防火墙 dnat"
+msgstr "firewall dnat"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
 msgid "natmap"
@@ -108,7 +108,7 @@ msgstr "natmap"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
 msgid "ikuai"
-msgstr "爱快"
+msgstr "ikuai"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
 msgid "Forward target"
@@ -192,7 +192,7 @@ msgstr "通知通道"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
 msgid "Telegram Bot"
-msgstr "Telegram 机器人"
+msgstr "Telegram bot"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
 msgid "PushPlus"
@@ -288,7 +288,7 @@ msgstr "Emby"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
 msgid "qBittorrent"
-msgstr "Qbittorrent"
+msgstr "qBittorrent"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
 msgid "Transmission"
@@ -296,11 +296,11 @@ msgstr "Transmission"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
 msgid "Cloudflare Origin Rule"
-msgstr "Cloudflare 源规则"
+msgstr "Cloudflare Origin Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
 msgid "Cloudflare Redirect Rule"
-msgstr "Cloudflare 重定向规则"
+msgstr "Cloudflare Redirect Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
 msgid "Email"
@@ -316,7 +316,7 @@ msgstr "Zone ID"
 
 #: 
 msgid "Rule Name"
-msgstr "规则名称"
+msgstr "Rule 名称"
 
 #: 
 msgid "Target URL"
@@ -328,15 +328,15 @@ msgstr "Emby URL"
 
 #: 
 msgid "Update HTTPS Port"
-msgstr "更新 https 端口"
+msgstr "更新 HTTPS 端口"
 
 #: 
 msgid "Set to False if you want to use HTTP"
-msgstr "如果使用 http，请勿勾选"
+msgstr "如果使用 HTTP，请勿勾选"
 
 #: 
 msgid "Update host with IP"
-msgstr "使用 ip 更新 host"
+msgstr "使用 IP 更新 host"
 
 #: 
 msgid "Web UI URL"
