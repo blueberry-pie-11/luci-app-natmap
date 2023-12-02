@@ -100,15 +100,15 @@ msgstr "順方向モード"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
 msgid "firewall dnat"
-msgstr "ファイアウォールの DNA"
+msgstr "firewall dnat"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
 msgid "natmap"
-msgstr "ナットマップ"
+msgstr "natmap"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
 msgid "ikuai"
-msgstr "イクアイ"
+msgstr "ikuai"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
 msgid "Forward target"
@@ -128,7 +128,7 @@ msgstr "ターゲットインターフェース"
 
 #: 
 msgid "Ikuai Web URL"
-msgstr "育愛Web URL"
+msgstr "Ikuai URL"
 
 #: 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
@@ -156,7 +156,7 @@ msgstr "TCP+UDP"
 
 #: 
 msgid "Ikuai Mapping Wan Interface"
-msgstr "育愛マッピング Wan インターフェース"
+msgstr "Ikuai マッピング Wan インターフェース"
 
 #: 
 msgid "such as adsl_1 or wan"
@@ -192,19 +192,19 @@ msgstr "通知チャネル"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
 msgid "Telegram Bot"
-msgstr "電報ボット"
+msgstr "Telegram Bot"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
 msgid "PushPlus"
-msgstr "プッシュプラス"
+msgstr "PushPlus"
 
 #: 
 msgid "ServerChan"
-msgstr "サーバーチャン"
+msgstr "ServerChan"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
 msgid "Gotify"
-msgstr "ゴティファイ"
+msgstr "Gotify"
 
 #: 
 msgid "Chat ID"
@@ -264,7 +264,7 @@ msgstr "http://127.0.0.1:8080 や http://ikuai.lan:8080 など"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
 msgid "Gotify url"
-msgstr "URLを取得"
+msgstr "Gotify URL"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
 msgid "Gotify token"
@@ -284,23 +284,23 @@ msgstr "サービス"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
 msgid "Emby"
-msgstr "エンビー"
+msgstr "Emby"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
 msgid "qBittorrent"
-msgstr "qビットトレント"
+msgstr "qBittorrent"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
 msgid "Transmission"
-msgstr "伝染 ; 感染"
+msgstr "Transmission"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
 msgid "Cloudflare Origin Rule"
-msgstr "Cloudflareのオリジンルール"
+msgstr "Cloudflare Origin Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
 msgid "Cloudflare Redirect Rule"
-msgstr "Cloudflareのリダイレクトルール"
+msgstr "Cloudflare Redirect Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
 msgid "Email"
@@ -308,7 +308,7 @@ msgstr "Eメール"
 
 #: 
 msgid "API Key"
-msgstr "APIキー"
+msgstr "API Key"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
 msgid "Zone ID"
@@ -395,7 +395,7 @@ msgstr "LuCI アプリの natmap へのアクセスを許可する"
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
-msgstr "NATMマップ"
+msgstr "NATMap"
 
 #: 
 msgid "use mode ikuai when use ikuai as the main gateway"
