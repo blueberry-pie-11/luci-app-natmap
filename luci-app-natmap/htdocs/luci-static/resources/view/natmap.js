@@ -197,9 +197,8 @@ return view.extend({
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
-		o.value('serverchan', _('Server酱'));
+		o.value('serverchan', _('ServerChan'));
 		o.value('gotify', _('Gotify'));
-
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
