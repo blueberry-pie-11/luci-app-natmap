@@ -9,7 +9,7 @@ msgstr ""
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 msgid "NatMap"
-msgstr "國家地圖"
+msgstr "NATMap"
 
 #: 
 msgid "General Settings"
@@ -29,7 +29,7 @@ msgstr "關聯設定"
 
 #: 
 msgid "Custom Settings"
-msgstr "習慣設定"
+msgstr "自訂設定"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:61
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:68
@@ -43,12 +43,12 @@ msgstr "協定"
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:164
 msgid "TCP"
-msgstr "傳輸控制協定"
+msgstr "TCP"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:76
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:165
 msgid "UDP"
-msgstr "UDP協定"
+msgstr "UDP"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
 msgid "Restrict to address family"
@@ -68,11 +68,11 @@ msgstr "單一IPv6"
 
 #: 
 msgid "Wan Interface"
-msgstr "萬介面"
+msgstr "WAN 介面"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr "保持活動間隔"
+msgstr "Keep-alive 間隔"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
 msgid "STUN server"
@@ -100,19 +100,19 @@ msgstr "轉送模式"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
 msgid "firewall dnat"
-msgstr "防火牆網路位址"
+msgstr "firewall dnat"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
 msgid "natmap"
-msgstr "國家地圖"
+msgstr "natmap"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
 msgid "ikuai"
-msgstr "愛快"
+msgstr "ikuai"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
 msgid "Forward target"
-msgstr "前進目標"
+msgstr "轉送目標"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
 msgid "Forward target port"
@@ -192,19 +192,19 @@ msgstr "通知頻道"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
 msgid "Telegram Bot"
-msgstr "電報機器人"
+msgstr "Telegram Bot"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
 msgid "PushPlus"
-msgstr "推加"
+msgstr "PushPlus"
 
 #: 
 msgid "ServerChan"
-msgstr "伺服器醬"
+msgstr "Server醬"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
 msgid "Gotify"
-msgstr "戈蒂菲"
+msgstr "Gotify"
 
 #: 
 msgid "Chat ID"
@@ -244,7 +244,7 @@ msgstr "獲取介紹"
 
 #: 
 msgid "ServerChan sendkey"
-msgstr "伺服器醬sendkey"
+msgstr "Server醬sendkey"
 
 #: 
 msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
@@ -264,7 +264,7 @@ msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
 msgid "Gotify url"
-msgstr "取得網址"
+msgstr "Gotify 網址"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
 msgid "Gotify token"
@@ -284,23 +284,23 @@ msgstr "服務"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
 msgid "Emby"
-msgstr "恩比"
+msgstr "Emby"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
 msgid "qBittorrent"
-msgstr "Qbittorrent"
+msgstr "qBittorrent"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
 msgid "Transmission"
-msgstr "傳染"
+msgstr "Transmission"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
 msgid "Cloudflare Origin Rule"
-msgstr "Cloudflare 來源規則"
+msgstr "Cloudflare Origin Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
 msgid "Cloudflare Redirect Rule"
-msgstr "Cloudflare 重新導向規則"
+msgstr "Cloudflare Redirect Rule"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
 msgid "Email"
@@ -308,15 +308,15 @@ msgstr "電子郵件"
 
 #: 
 msgid "API Key"
-msgstr "API介面"
+msgstr "API key"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
 msgid "Zone ID"
-msgstr "區域ID"
+msgstr "Zone ID"
 
 #: 
 msgid "Rule Name"
-msgstr "規則名稱"
+msgstr "Rule 名稱"
 
 #: 
 msgid "Target URL"
@@ -324,19 +324,19 @@ msgstr "目標網址"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:329
 msgid "EMBY URL"
-msgstr "安比網址"
+msgstr "EMBY 網址"
 
 #: 
 msgid "Update HTTPS Port"
-msgstr "更新 https 連接埠"
+msgstr "更新 HTTPS 連接埠"
 
 #: 
 msgid "Set to False if you want to use HTTP"
-msgstr "若使用http，請勿勾選"
+msgstr "若使用HTTP，請勿勾選"
 
 #: 
 msgid "Update host with IP"
-msgstr "使用ip更新主機"
+msgstr "使用IP更新host"
 
 #: 
 msgid "Web UI URL"
@@ -362,19 +362,19 @@ msgstr "IPv6位址"
 
 #: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:376
 msgid "RPC URL"
-msgstr "遠端過程呼叫位址"
+msgstr "RPC 位址"
 
 #: 
 msgid "Enable custom script's config"
-msgstr "授權動畫腳本"
+msgstr "授權自訂腳本"
 
 #: 
 msgid "custom script"
-msgstr "角色扮演"
+msgstr "自訂腳本"
 
 #: 
 msgid "custom script path,such as /etc/natmap/custom.sh"
-msgstr "腳本腳本，例如：/etc/natmap/custom.sh"
+msgstr "自訂腳本路徑，例如：/etc/natmap/custom.sh"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
 msgid "External IP"
@@ -395,7 +395,7 @@ msgstr "對獲得 LuCI 應用 natmap 的存取權限"
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
-msgstr "國家地圖"
+msgstr "NATMap"
 
 #: 
 msgid "use mode ikuai when use ikuai as the main gateway"
