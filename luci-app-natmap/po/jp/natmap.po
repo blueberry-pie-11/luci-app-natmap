@@ -1,92 +1,403 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-29 11:24+0000\n"
-"Last-Translator: Dex94 <Dasvaresu@dr.com>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/openwrt/"
-"luciapplicationsnatmap/it/>\n"
-"Language: it\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: luci-app-natmap\n"
+"Language: ja\n"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
-msgid "Bind port"
-msgstr "collega porta"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
+msgid "NatMap"
+msgstr "ナットマップ"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "natmap_enable"
-msgstr "Abilita"
+#: 
+msgid "General Settings"
+msgstr "一般設定"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
-msgid "External IP"
-msgstr "Ip Esterno"
+#: 
+msgid "Forward Settings"
+msgstr "転送設定"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
-msgid "External Port"
-msgstr "Porta Esterna"
+#: 
+msgid "Notify Settings"
+msgstr "通知設定"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
-msgid "For TCP mode"
-msgstr "Per la modalità TCP"
+#: 
+msgid "Link Settings"
+msgstr "リンク設定"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
-msgid "Forward mode"
-msgstr "Modalità forward"
+#: 
+msgid "Custom Settings"
+msgstr "カスタム設定"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
-msgid "Forward target"
-msgstr "Obiettivo della modalità forward"
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:61
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:68
+msgid "Name"
+msgstr "名前"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
-msgid "Forward target port"
-msgstr ""
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
+msgid "Protocol"
+msgstr "プロトコル"
 
-#: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
-msgid "Grant access to LuCI app natmap"
-msgstr ""
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:164
+msgid "TCP"
+msgstr "TCP"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
-msgid "HTTP server"
-msgstr ""
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:76
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:165
+msgid "UDP"
+msgstr "UDP"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
+msgid "Restrict to address family"
+msgstr "アドレスを家族に限定する"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:71
 msgid "IPv4 and IPv6"
-msgstr ""
+msgstr "IPv4 と IPv6"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:72
 msgid "IPv4 only"
-msgstr ""
+msgstr "IPv4のみ"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:73
 msgid "IPv6 only"
-msgstr ""
+msgstr "IPv6のみ"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:75
-msgid "Interface"
-msgstr ""
+#: 
+msgid "Wan Interface"
+msgstr "WANインターフェース"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:78
 msgid "Keep-alive interval"
-msgstr ""
+msgstr "キープアライブ間隔"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
+msgid "STUN server"
+msgstr "STUNサーバー"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+msgid "HTTP server"
+msgstr "HTTPサーバー"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
+msgid "For TCP mode"
+msgstr "TCPモードの場合"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:93
+msgid "Bind port"
+msgstr "バインドポート"
+
+#: 
+msgid "Enable Forward"
+msgstr "転送を有効にする"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:97
+msgid "Forward mode"
+msgstr "順方向モード"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:121
+msgid "firewall dnat"
+msgstr "ファイアウォールの DNA"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:122
+msgid "natmap"
+msgstr "ナットマップ"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:123
+msgid "ikuai"
+msgstr "イクアイ"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:105
+msgid "Forward target"
+msgstr "前方ターゲット"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:110
+msgid "Forward target port"
+msgstr "転送ターゲットポート"
+
+#: 
+msgid "0 will forward to the out port get from STUN"
+msgstr "0 は STUN から取得した出力ポートに転送します"
+
+#: 
+msgid "Target_Interface"
+msgstr "ターゲットインターフェース"
+
+#: 
+msgid "Ikuai Web URL"
+msgstr "育愛Web URL"
+
+#: 
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
+msgstr "http://127.0.0.1:8080 や http://ikuai.lan:8080 など。ホストを使用する場合は、DHCP と DNS の再バインド保護を閉じる必要があります。"
+
+#: 
+msgid "Ikuai Username"
+msgstr "育愛ユーザー名"
+
+#: 
+msgid "Ikuai Password"
+msgstr "育愛パスワード"
+
+#: 
+msgid "Ikuai Mapping Protocol"
+msgstr "イクアイマッピングプロトコル"
+
+#: 
+msgid "such as tcp or udp or tcp+udp"
+msgstr "tcp、udp、tcp+udp など"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:163
+msgid "TCP+UDP"
+msgstr "TCP+UDP"
+
+#: 
+msgid "Ikuai Mapping Wan Interface"
+msgstr "育愛マッピング Wan インターフェース"
+
+#: 
+msgid "such as adsl_1 or wan"
+msgstr "adsl_1 や wan など"
+
+#: 
+msgid "Advanced Settings"
+msgstr "高度な設定"
+
+#: 
+msgid "Max Retries"
+msgstr "最大再試行回数"
+
+#: 
+msgid "max retries,default 0 means execute only once"
+msgstr "最大再試行数、デフォルトの 0 は 1 回だけ実行することを意味します"
+
+#: 
+msgid "Retry Interval"
+msgstr "再試行間隔"
+
+#: 
+msgid "Retry Interval, unit is seconds, default 0 is 3 seconds"
+msgstr "再試行間隔、単位は秒、デフォルトは 0 で 3 秒です"
+
+#: 
+msgid "Enable Notify"
+msgstr "通知を有効にする"
+
+#: 
+msgid "Notify channel"
+msgstr "通知チャネル"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:198
+msgid "Telegram Bot"
+msgstr "電報ボット"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:199
+msgid "PushPlus"
+msgstr "プッシュプラス"
+
+#: 
+msgid "ServerChan"
+msgstr "サーバーチャン"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:201
+msgid "Gotify"
+msgstr "ゴティファイ"
+
+#: 
+msgid "Chat ID"
+msgstr "チャットID"
+
+#: 
+msgid "Get chat_id"
+msgstr "chat_id を取得する"
+
+#: 
+msgid "Click here"
+msgstr "ここをクリック"
+
+#: 
+msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
+msgstr "<br />グループ/チャンネルに送信したい場合は、中国語以外のグループ/チャンネルを作成してください (チャット ID の検索を容易にするため、後で名前を変更できます)。<br />ボットをグループに追加し、メッセージを送信します。メッセージを取得し、https://api.telegram.org/bot token /getUpdates を使用してチャット ID を取得します。"
+
+#: 
+msgid "Token"
+msgstr "トークン"
+
+#: 
+msgid "Get Bot"
+msgstr "ボットを入手"
+
+#: 
+msgid "<br />Send a message to the created bot to initiate a conversation."
+msgstr "<br />作成したボットにメッセージを送信して会話を開始します。"
+
+#: 
+msgid "http proxy"
+msgstr "httpプロキシ"
+
+#: 
+msgid "Get Instructions"
+msgstr "手順を確認する"
+
+#: 
+msgid "ServerChan sendkey"
+msgstr "ServerChan 送信キー"
+
+#: 
+msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
+msgstr "<br />非同期プッシュキューを使用しているため、キューへの投入が成功したかどうかのみが検出されます。"
+
+#: 
+msgid "ServerChan Advanced Settings"
+msgstr "ServerChan の詳細設定"
+
+#: 
+msgid "Self-built Server Url"
+msgstr "自己構築サーバー URL"
+
+#: 
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
+msgstr "http://127.0.0.1:8080 や http://ikuai.lan:8080 など"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:248
+msgid "Gotify url"
+msgstr "URLを取得"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:254
+msgid "Gotify token"
+msgstr "Gotify トークン"
+
+#: 
+msgid "Gotify priority"
+msgstr "優先順位を獲得する"
+
+#: 
+msgid "Enable link setting"
+msgstr "リンク設定を有効にする"
+
+#: 
+msgid "Service"
+msgstr "サービス"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:292
+msgid "Emby"
+msgstr "エンビー"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:293
+msgid "qBittorrent"
+msgstr "qビットトレント"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:294
+msgid "Transmission"
+msgstr "伝染 ; 感染"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:295
+msgid "Cloudflare Origin Rule"
+msgstr "Cloudflareのオリジンルール"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:296
+msgid "Cloudflare Redirect Rule"
+msgstr "Cloudflareのリダイレクトルール"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:299
+msgid "Email"
+msgstr "Eメール"
+
+#: 
+msgid "API Key"
+msgstr "APIキー"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:311
+msgid "Zone ID"
+msgstr "ゾーンID"
+
+#: 
+msgid "Rule Name"
+msgstr "ルール名"
+
+#: 
+msgid "Target URL"
+msgstr "ターゲット URL"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:329
+msgid "EMBY URL"
+msgstr "EMBY URL"
+
+#: 
+msgid "Update HTTPS Port"
+msgstr "HTTPSポートを更新する"
+
+#: 
+msgid "Set to False if you want to use HTTP"
+msgstr "HTTP を使用する場合は False に設定します。"
+
+#: 
+msgid "Update host with IP"
+msgstr "IPを使用してホストを更新する"
+
+#: 
+msgid "Web UI URL"
+msgstr "ウェブUIのURL"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:355
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:381
+msgid "Username"
+msgstr "ユーザー名"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:360
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:386
+msgid "Password"
+msgstr "パスワード"
+
+#: 
+msgid "Allow IPv6"
+msgstr "IPv6 を許可する"
+
+#: 
+msgid "IPv6 Address"
+msgstr "IPv6アドレス"
+
+#: feeds/zzz/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:376
+msgid "RPC URL"
+msgstr "RPC URL"
+
+#: 
+msgid "Enable custom script's config"
+msgstr "カスタムスクリプトの設定を有効にする"
+
+#: 
+msgid "custom script"
+msgstr "カスタムスクリプト"
+
+#: 
+msgid "custom script path,such as /etc/natmap/custom.sh"
+msgstr "カスタム スクリプト パス (/etc/natmap/custom.sh など)"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
+msgid "External IP"
+msgstr "外部IP"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:126
+msgid "External Port"
+msgstr "外部ポート"
+
+#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
+msgid "enable"
+msgstr "有効にする"
+
+#: applications/luci-app-natmap/root/usr/share/rpcd/acl.d/luci-app-natmap.json:3
+msgid "Grant access to LuCI app natmap"
+msgstr "LuCI アプリの natmap へのアクセスを許可する"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:50
 #: applications/luci-app-natmap/root/usr/share/luci/menu.d/luci-app-natmap.json:3
 msgid "NATMap"
-msgstr ""
+msgstr "NATMマップ"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:115
-msgid "Notify script"
-msgstr ""
+#: 
+msgid "use mode ikuai when use ikuai as the main gateway"
+msgstr "ikuai をメインゲートウェイとして使用する場合は、モード ikuai を使用します"
 
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:59
-msgid "Protocol"
-msgstr ""
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:69
-msgid "Restrict to address family"
-msgstr ""
-
-#: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:82
-msgid "STUN server"
-msgstr ""
