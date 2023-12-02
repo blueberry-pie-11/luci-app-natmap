@@ -15,7 +15,7 @@ msgid "Bind port"
 msgstr "绑定端口"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:55
-msgid "ENABLE"
+msgid "enable"
 msgstr "启用"
 
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:119
@@ -113,11 +113,14 @@ msgstr "令牌"
 msgid "Link Settings"
 msgstr "关联设置"
 
-msgid "Enable another service's config"
-msgstr "启用其它服务"
+msgid "Enable link setting"
+msgstr "启用关联设置"
 
 msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080.if use host,must close Rebind protection in DHCP and DNS"
 msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080。如果使用 host ，必须关闭 DHCP/DNS 中的重绑定保护"
+
+msgid "such as http://127.0.0.1:8080 or http://ikuai.lan:8080"
+msgstr "例如：http://127.0.0.1:8080 或 http://ikuai.lan:8080"
 
 msgid "Advanced Settings"
 msgstr "高级设置"
@@ -128,11 +131,11 @@ msgstr "最大重试次数，默认 0 表示仅执行一次调用"
 msgid "Max Retries"
 msgstr "最大重试次数"
 
-msgid "Sleep Time"
-msgstr "休眠时间"
+msgid "Retry Interval"
+msgstr "重试间隔时间"
 
-msgid "Single sleep time, unit is seconds, default 0 is 3 seconds"
-msgstr "单次休眠等待时间，单位是秒，默认 0 表示 3秒"
+msgid "Retry Interval, unit is seconds, default 0 is 3 seconds"
+msgstr "单次重试间隔时间，单位是秒，默认 0 表示 3秒"
 
 msgid "Service"
 msgstr "服务"
@@ -197,6 +200,9 @@ msgstr "如果使用http，请勿勾选"
 msgid "use mode ikuai when use ikuai as the main gateway"
 msgstr "当主网关是爱快时，使用 ikuai 模式"
 
+msgid "ServerChan"
+msgstr "Server酱"
+
 msgid "Custom Settings"
 msgstr "自定义设置"
 
@@ -205,3 +211,40 @@ msgstr "启用自定义脚本"
 
 msgid "custom script"
 msgstr "自定义脚本"
+
+msgid "custom script path,such as /etc/natmap/custom.sh"
+msgstr "自定义脚本路径，例如：/etc/natmap/custom.sh"
+
+msgid "ServerChan sendkey"
+msgstr "Server酱 sendkey"
+
+msgid "Get Instructions"
+msgstr "获取介绍"
+
+msgid "Click here"
+msgstr "点击此处"
+
+msgid "ServerChan Advanced Settings"
+msgstr "Server酱 高级设置"
+
+msgid "<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected."
+msgstr "<br />由于使用异步推送队列，所以仅检测放入队列是否成功"
+
+msgid "Get Bot"
+msgstr "获取机器人"
+
+msgid "<br />Send a message to the created bot to initiate a conversation."
+msgstr "<br />与创建的机器人发一条消息，开启对话"
+
+msgid "Get chat_id"
+msgstr "获取 chat_id"
+
+
+msgid "Self-built Server Url"
+msgstr "自建服务器URL"
+
+msgid "<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid."
+msgstr "<br />如需通过群组/频道推送，请创建一个非中文的群组或频道（便于查找 chatid，后续再更名）<br />将机器人添加至群组，发送信息后通过 https://api.telegram.org/bot token /getUpdates 获取 chatid"
+
+msgid "Gotify priority"
+msgstr "Gotify 通知优先级"

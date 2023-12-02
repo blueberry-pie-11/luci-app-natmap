@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # natmap
 outter_ip=$1
@@ -59,41 +59,16 @@ login_params='{
 # echo "login_params: $login_params"
 # echo "general_nat_name: $GENERAL_NAT_NAME"
 
-# 获取cookie，直至重试次数用尽
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "$FORWARD_ADVANCED_ENABLE" == 1 ]; then
+if [ "${FORWARD_ADVANCED_ENABLE}" == 1 ] && [ -n "$FORWARD_ADVANCED_MAX_RETRIES" ] && [ -n "$FORWARD_ADVANCED_SLEEP_TIME" ]; then
   # 获取最大重试次数
-  case "$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')" in
-  "")
-    max_retries=1
-    ;;
-  "0")
-    max_retries=1
-    ;;
-  *)
-    max_retries=$(echo $FORWARD_MAX_RETRIES | sed 's/\/$//')
-    ;;
-  esac
-
+  max_retries=$((FORWARD_ADVANCED_MAX_RETRIES == "0" ? 1 : FORWARD_ADVANCED_MAX_RETRIES))
   # 获取休眠时间
-  case "$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')" in
-  "")
-    sleep_time=3
-    ;;
-  "0")
-    sleep_time=3
-    ;;
-  *)
-    sleep_time=$(echo $FORWARD_SLEEP_TIME | sed 's/\/$//')
-    ;;
-  esac
-else
-  max_retries=1
-  sleep_time=3
+  sleep_time=$((FORWARD_ADVANCED_SLEEP_TIME == "0" ? 3 : FORWARD_ADVANCED_SLEEP_TIME))
 fi
 
 # 初始化参数
@@ -119,13 +94,13 @@ while true; do
 
     # Check if maximum retries reached
     if [ $retry_count -eq $max_retries ]; then
-      echo "$FORWARD_MODE 达到最大重试次数，无法登录"
+      echo "$GENERAL_NAT_NAME - $FORWARD_MODE 达到最大重试次数，无法登录"
       exit 1
     fi
     # echo "$FORWARD_MODE 登录失败,休眠$sleep_time秒"
     sleep $sleep_time
   else
-    echo "$FORWARD_MODE 登录成功"
+    echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
     break
   fi
 done
@@ -158,7 +133,7 @@ dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
 
 # 判断$dnat_id是否为空
 if [ -z "$dnat_id" ]; then
-  echo "ikuai查询无 $comment 端口映射"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE 查询无端口映射"
 else
   # echo "ikuai 端口映射 dnat_id: $dnat_id"
 
@@ -180,11 +155,11 @@ else
   # echo "delete_response: $(echo "$delete_response" | sed 's/,/,\\n/g')"
 
   if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
-    echo "ikuai $comment Port mapping deleted successfully"
+    echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
   else
-    echo "Failed to delete the port mapping $comment"
+    echo "$GENERAL_NAT_NAME - $FORWARD_MODE Failed to delete the port mapping"
     # echo "Delete_response: $delete_response"
-    exit 1
+    break
   fi
 
 fi
@@ -216,9 +191,9 @@ add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$ca
 
 # Check if the modification was successful
 if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
-  echo "ikuai $comment Port mapping modified successfully"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping modified successfully"
 else
-  echo "ikuai Failed to modify the port mapping $comment"
+  echo "$GENERAL_NAT_NAME - $FORWARD_MODE Failed to modify the port mapping"
   # echo "Response: $response"
-  exit 1
+  break
 fi

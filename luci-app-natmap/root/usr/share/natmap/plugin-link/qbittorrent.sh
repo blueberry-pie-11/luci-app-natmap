@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # NATMap
+protocol=$5
+inner_port=$4
 outter_ip=$1
 outter_port=$2
-LINK_EMBY_URL=$(echo $LINK_EMBY_URL | sed 's/\/$//')
+ip4p=$3
+
+LINK_QB_WEB_URL=$(echo $LINK_QB_WEB_URL | sed 's/\/$//')
 
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
@@ -18,15 +22,24 @@ if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && 
 fi
 
 # 初始化参数
-current_cfg=""
+# 获取qbcookie，直至重试次数用尽
+qbcookie=""
 retry_count=0
 
 while true; do
-    current_cfg=$(curl -v $LINK_EMBY_URL/emby/System/Configuration?api_key=$LINK_EMBY_API_KEY)
+    # 获取qbcookie
+    qbcookie=$(
+        curl -Ssi -X POST \
+            -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
+            "$LINK_QB_WEB_URL/api/v2/auth/login" |
+            sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
+    )
 
-    if [ -z "$current_cfg" ]; then
+    # echo "qbcookie: $qbcookie"
+    # 如果qbcookie为空，则重试
+    if [ -z "$qbcookie" ]; then
 
-        # echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
+        echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
         # Increment the retry count
         retry_count=$((retry_count + 1))
 
@@ -43,15 +56,8 @@ while true; do
     fi
 done
 
-new_cfg=$current_cfg
-if [ ! -z $LINK_EMBY_USE_HTTPS ] && [ $LINK_EMBY_USE_HTTPS = '1' ]; then
-    new_cfg=$(echo $current_cfg | jq ".PublicHttpsPort = $outter_port")
-else
-    new_cfg=$(echo $current_cfg | jq ".PublicPort = $outter_port")
-fi
-
-if [ ! -z $LINK_EMBY_UPDATE_HOST_WITH_IP ] && [ $LINK_EMBY_UPDATE_HOST_WITH_IP = '1' ]; then
-    new_cfg=$(echo $new_cfg | jq ".WanDdns = \"$outter_ip\"")
-fi
-
-curl -X POST "$LINK_EMBY_URL/emby/System/Configuration?api_key=$LINK_EMBY_API_KEY" -H "accept: */*" -H "Content-Type: application/json" -d "$new_cfg"
+# 修改端口
+curl -s -X POST \
+    -b "${qbcookie}" \
+    -d 'json={"listen_port":"'${outter_port}'"}' \
+    "$LINK_QB_WEB_URL/api/v2/app/setPreferences"

@@ -47,7 +47,7 @@ return view.extend({
 	render: function (status) {
 		var m, s, o;
 
-		m = new form.Map('natmap', _('NATMap'));
+		m = new form.Map('natmap', _('NatMap'));
 		s = m.section(form.GridSection, 'natmap');
 		s.addremove = true;
 		s.anonymous = true;
@@ -57,10 +57,6 @@ return view.extend({
 		s.tab('notify', _('Notify Settings'));
 		s.tab('link', _('Link Settings'));
 		s.tab('custom', _('Custom Settings'))
-
-		o = s.option(form.Flag, 'natmap_enable', _('ENABLE'));
-		o.editable = true;
-		o.modalonly = false;
 
 		o = s.option(form.DummyValue, '_nat_name', _('Name'));
 		o.modalonly = false;
@@ -72,16 +68,12 @@ return view.extend({
 		o = s.taboption('general', form.Value, 'general_nat_name', _('Name'));
 		o.datatype = 'string';
 		o.modalonly = true;
+		o.rmempty = false;
 
 		o = s.taboption('general', form.ListValue, 'general_nat_protocol', _('Protocol'));
 		o.default = 'tcp';
 		o.value('tcp', _('TCP'));
 		o.value('udp', _('UDP'));
-		// o.textvalue = function (section_id) {
-		// 	var cval = this.cfgvalue(section_id);
-		// 	var i = this.keylist.indexOf(cval);
-		// 	return this.vallist[i];
-		// };
 
 		o = s.taboption('general', form.ListValue, 'general_ip_address_family', _('Restrict to address family'));
 		o.modalonly = true;
@@ -91,10 +83,12 @@ return view.extend({
 
 		o = s.taboption('general', widgets.NetworkSelect, 'general_wan_interface', _('Wan Interface'));
 		o.modalonly = true;
+		o.rmempty = false;
 
 		o = s.taboption('general', form.Value, 'general_interval', _('Keep-alive interval'));
 		o.datatype = 'uinteger';
 		o.modalonly = true;
+		o.rmempty = false;
 
 		o = s.taboption('general', form.Value, 'general_stun_server', _('STUN server'));
 		o.datatype = 'host';
@@ -116,14 +110,18 @@ return view.extend({
 		o = s.taboption('forward', form.Flag, 'forward_enable', _('Enable Forward'));
 		o.default = false;
 		o.modalonly = true;
+		// o.ucioption = 'forward_mode';
+		// o.load = function (section_id) {
+		// 	return this.super('load', section_id) ? '1' : '0';
+		// };
+		// o.write = function (section_id, formvalue) { };
 
 		o = s.taboption('forward', form.ListValue, 'forward_mode', _('Forward mode'));
-		// o.modalonly = false;
 		o.default = 'firewall';
 		o.value('firewall', _('firewall dnat'));
 		o.value('natmap', _('natmap'));
 		o.value('ikuai', _('ikuai'));
-		o.depends('forward_enable', '1');
+		// o.depends('forward_enable', '1');
 
 		// forward_natmap
 		o = s.taboption('forward', form.Value, 'forward_target_ip', _('Forward target'));
@@ -178,78 +176,115 @@ return view.extend({
 		o.modalonly = true;
 		o.depends('forward_mode', 'ikuai');
 
-		o = s.taboption('forward', form.Value, 'forward_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
-		o.datatype = 'string';
+		o = s.taboption('forward', form.Value, 'forward_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
 
-		o = s.taboption('forward', form.Value, 'forward_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
-		o.datatype = 'string';
+		o = s.taboption('forward', form.Value, 'forward_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('forward_advanced_enable', '1');
 
-		//
-		// 
+		//---------------------------------------------------------
 		// notify
 		o = s.taboption('notify', form.Flag, 'notify_enable', _('Enable Notify'));
-		o.ucioption = 'notify_channel';
 		o.default = false;
 		o.modalonly = true;
 
-		o = s.taboption('notify', form.ListValue, 'notify_channel', _('Notify channel'));
+		o = s.taboption('notify', form.ListValue, 'notify_mode', _('Notify channel'));
 		o.default = 'telegram_bot';
 		o.modalonly = true;
 		o.value('telegram_bot', _('Telegram Bot'));
 		o.value('pushplus', _('PushPlus'));
-		o.depends('notify_enable', '1');
+		o.value('serverchan', _('ServerChan'));
+		o.value('gotify', _('Gotify'));
 
 		// notify_telegram_bot
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_chat_id', _('Chat ID'));
+		o.description = _('Get chat_id') + ' <a href="https://t.me/getuserIDbot" target="_blank">' + _('Click here') + '</a>' + _('<br />If you want to send to a group/channel, please create a non-Chinese group/channel (for easier chatid lookup, you can rename it later).<br />Add the bot to the group, send a message, and use https://api.telegram.org/bot token /getUpdates to obtain the chatid.');
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_token', _('Token'));
+		o.description = _('Get Bot') + ' <a href="https://t.me/BotFather" target="_blank">' + _('Click here') + '</a>' + _('<br />Send a message to the created bot to initiate a conversation.');
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		o = s.taboption('notify', form.Value, 'notify_telegram_bot_proxy', _('http proxy'));
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'telegram_bot');
 
 		//notify_pushplus
 		o = s.taboption('notify', form.Value, 'notify_pushplus_token', _('Token'));
+		o.description = _('Get Instructions') + ' <a href="http://www.pushplus.plus/" target="_blank">' + _('Click here') + '</a>';
 		o.datatype = 'string';
 		o.modalonly = true;
-		o.depends('notify_channel', 'pushplus');
+		o.depends('notify_mode', 'pushplus');
+
+		// serverchan
+		o = s.taboption('notify', form.Value, 'notify_serverchan_sendkey', _('ServerChan sendkey'));
+		o.description = _('Get Instructions') + ' <a href="https://sct.ftqq.com/" target="_blank">' + _('Click here') + '</a>' + _('<br />Since the asynchronous push queue is used, only whether the put into the queue is successful is detected.');
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'serverchan');
+
+		// notify_serverchan_advanced
+		o = s.taboption('notify', form.Flag, 'notify_serverchan_advanced_enable', _('ServerChan Advanced Settings'));
+		o.default = false;
+		o.modalonly = true;
+		o.depends('notify_mode', 'serverchan');
+
+		o = s.taboption('notify', form.Value, 'notify_serverchan_advanced_url', _('Self-built Server Url'));
+		o.description = _('such as http://127.0.0.1:8080 or http://ikuai.lan:8080');
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_serverchan_advanced_enable', '1');
+
+		// gotify
+		o = s.taboption('notify', form.Value, 'notify_gotify_url', _('Gotify url'));
+		o.description = _('Get Instructions') + ' <a href="https://gotify.net/" target="_blank">' + _('Click here') + '</a>';
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
+
+		o = s.taboption('notify', form.Value, 'notify_gotify_token', _('Gotify token'));
+		o.datatype = 'string';
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
+
+		o = s.taboption('notify', form.Value, 'notify_gotify_priority', _('Gotify priority'));
+		o.datatype = 'uinteger';
+		o.default = 5;
+		o.modalonly = true;
+		o.depends('notify_mode', 'gotify');
 
 		// notify_advanced
 		o = s.taboption('notify', form.Flag, 'notify_advanced_enable', _('Advanced Settings'));
 		o.default = false;
 		o.modalonly = true;
-		o.depends('notify_channel', 'pushplus');
-		o.depends('notify_channel', 'telegram_bot');
+		o.depends('notify_mode', 'pushplus');
+		o.depends('notify_mode', 'telegram_bot');
+		o.depends('notify_mode', 'serverchan');
+		o.depends('notify_mode', 'gotify');
 
-		o = s.taboption('notify', form.Value, 'notify_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
-		o.datatype = 'string';
+		o = s.taboption('notify', form.Value, 'notify_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
 
-		o = s.taboption('notify', form.Value, 'notify_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
-		o.datatype = 'string';
+		o = s.taboption('notify', form.Value, 'notify_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('notify_advanced_enable', '1');
 
 		// link
-		o = s.taboption('link', form.Flag, 'link_enable', _('Enable another service\'s config'));
+		o = s.taboption('link', form.Flag, 'link_enable', _('Enable link setting'));
 		o.modalonly = true;
-		o.ucioption = 'link_mode';
-		o.load = function (section_id) {
-			return this.super('load', section_id) ? '1' : '0';
-		};
-		o.write = function (section_id, formvalue) { };
+		o.default = false;
 
 		o = s.taboption('link', form.ListValue, 'link_mode', _('Service'));
 		o.default = 'qbittorrent';
@@ -259,7 +294,6 @@ return view.extend({
 		o.value('transmission', _('Transmission'));
 		o.value('cloudflare_origin_rule', _('Cloudflare Origin Rule'));
 		o.value('cloudflare_redirect_rule', _('Cloudflare Redirect Rule'));
-		o.depends('link_enable', '1');
 
 		// link_cloudflare
 		o = s.taboption('link', form.Value, 'link_cloudflare_email', _('Email'));
@@ -374,29 +408,26 @@ return view.extend({
 		o.depends('link_mode', 'cloudflare_origin_rule');
 		o.depends('link_mode', 'cloudflare_redirect_rule');
 
-		o = s.taboption('link', form.Value, 'link_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
-		o.datatype = 'string';
+		o = s.taboption('link', form.Value, 'link_advanced_max_retries', _('Max Retries'), _('max retries,default 0 means execute only once'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
-		o = s.taboption('link', form.Value, 'link_sleep_time', _('Sleep Time'), _('Single sleep time, unit is seconds, default 0 is 3 seconds'));
-		o.datatype = 'string';
+		o = s.taboption('link', form.Value, 'link_advanced_sleep_time', _('Retry Interval'), _('Retry Interval, unit is seconds, default 0 is 3 seconds'));
+		o.datatype = 'uinteger';
 		o.modalonly = true;
 		o.depends('link_advanced_enable', '1');
 
+		// --------------------------------------------------------------------------------
 		// Custom Settings
-		o = s.taboption('custom', form.Flag, 'custom_enable', _('Enable custom script\'s config'));
+		o = s.taboption('custom', form.Flag, 'custom_script_enable', _('Enable custom script\'s config'));
 		o.modalonly = true;
-		o.ucioption = 'custom_script';
-		o.load = function (section_id) {
-			return this.super('load', section_id) ? '1' : '0';
-		};
-		o.write = function (section_id, formvalue) { };
+		o.default = false;
 
-		o = s.taboption('custom', form.Value, 'custom_script', _('custom script'));
+		o = s.taboption('custom', form.Value, 'custom_script_path', _('custom script'), _('custom script path,such as /etc/natmap/custom.sh'));
+		// o.depends('custom_script_enable', '1');
 		o.datatype = 'file';
 		o.modalonly = true;
-		o.depends('custom_enable', '1');
 
 		// status
 		o = s.option(form.DummyValue, '_external_ip', _('External IP'));
@@ -412,6 +443,11 @@ return view.extend({
 			var s = status[section_id];
 			if (s) return s.port;
 		};
+
+		// natmap_enable
+		o = s.option(form.Flag, 'natmap_enable', _('enable'));
+		o.editable = true;
+		o.modalonly = false;
 
 		return m.render();
 	}

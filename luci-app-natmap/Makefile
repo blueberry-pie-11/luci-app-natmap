@@ -6,7 +6,7 @@ PKG_NAME:=luci-app-natmap
 PKG_RELEASE:=2
 
 LUCI_TITLE:=LuCI Support for natmap
-LUCI_DEPENDS:=+natmap +jq +curl +openssl-util
+LUCI_DEPENDS:=+natmap +jq +curl +openssl-util +bash
 
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=Richard Yu <yurichard3839@gmail.com>

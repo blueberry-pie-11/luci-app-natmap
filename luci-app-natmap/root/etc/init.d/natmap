@@ -37,19 +37,25 @@ validate_section_natmap() {
 		'forward_ikuai_mapping_protocol:string' \
 		'forward_ikuai_mapping_wan_interface:string' \
 		'forward_advanced_enable:bool:0' \
-		'forward_max_retries:uinteger' \
-		'forward_sleep_time:uinteger' \
+		'forward_advanced_max_retries:uinteger' \
+		'forward_advanced_sleep_time:uinteger' \
 		'notify_enable:bool:0' \
-		'notify_channel:string' \
+		'notify_mode:string' \
 		'notify_telegram_bot_chat_id:string' \
 		'notify_telegram_bot_token:string' \
 		'notify_telegram_bot_proxy:string' \
 		'notify_pushplus_token:string' \
+		'notify_serverchan_sendkey:string' \
+		'notify_serverchan_advanced_enable:bool:0' \
+		'notify_serverchan_advanced_url:string' \
+		'notify_gotify_url:string' \
+		'notify_gotify_token:string' \
+		'notify_gotify_priority:uinteger' \
 		'notify_advanced_enable:bool:0' \
-		'notify_max_retries:uinteger' \
-		'notify_sleep_time:uinteger' \
+		'notify_advanced_max_retries:uinteger' \
+		'notify_advanced_sleep_time:uinteger' \
 		'link_enable:bool:0' \
-		'link_mode:string:general' \
+		'link_mode:string' \
 		'link_emby_url:string' \
 		'link_emby_api_key:string' \
 		'link_emby_use_https:bool:0' \
@@ -70,10 +76,10 @@ validate_section_natmap() {
 		'link_cloudflare_rule_target_url:string' \
 		'link_cloudflare_rule_name:string' \
 		'link_advanced_enable:bool:0' \
-		'link_max_retries:uinteger' \
-		'link_sleep_time:uinteger' \
-		'custom_enable:bool:0' \
-		'custom_script:file'
+		'link_advanced_max_retries:uinteger' \
+		'link_advanced_sleep_time:uinteger' \
+		'custom_script_enable:bool:0' \
+		'custom_script_path:file'
 }
 
 natmap_instance() {
@@ -111,7 +117,7 @@ natmap_instance() {
 		procd_append_param netdev "$ifname"
 	}
 
-	[ "${forward_enable}" = 1 ] && [ "${forward_mode}" = natmap ] && [ -n "${forward_target_ip}" ] && procd_append_param command -t "$forward_target_ip" -p "$forward_target_port"
+	[ "${forward_enable}" == 1 ] && [ "${forward_mode}" = natmap ] && [ -n "${forward_target_ip}" ] && procd_append_param command -t "$forward_target_ip" -p "$forward_target_port"
 	for e in $EXTRA_ENV; do
 		eval value=\$${e}
 		option_name=$(echo "$e" | tr 'a-z' 'A-Z')
@@ -120,7 +126,7 @@ natmap_instance() {
 		fi
 	done
 
-	console.log "natmap"
+	# console.log "natmap"
 	procd_append_param command -e /usr/share/natmap/update.sh
 
 	procd_set_param respawn
