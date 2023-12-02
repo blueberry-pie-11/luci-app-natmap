@@ -209,6 +209,9 @@ msgstr "启用自定义脚本"
 msgid "custom script"
 msgstr "自定义脚本"
 
+msgid "custom script path,such as /etc/natmap/custom.sh"
+msgstr "自定义脚本路径，例如：/etc/natmap/custom.sh"
+
 msgid "ServerChan sendkey"
 msgstr "Server酱 sendkey"
 
