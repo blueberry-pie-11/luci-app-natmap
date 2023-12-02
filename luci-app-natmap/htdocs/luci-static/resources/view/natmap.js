@@ -426,7 +426,7 @@ return view.extend({
 		o.default = false;
 
 		o = s.taboption('custom', form.Value, 'custom_script_path', _('custom script'), _('custom script path,such as /etc/natmap/custom.sh'));
-		o.depends('custom_script_enable', '1');
+		// o.depends('custom_script_enable', '1');
 		o.datatype = 'file';
 		o.modalonly = true;
 
