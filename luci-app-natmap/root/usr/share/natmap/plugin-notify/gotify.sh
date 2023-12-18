@@ -19,7 +19,7 @@ if [ "${NOTIFY_ADVANCED_ENABLE}" == 1 ] && [ -n "$NOTIFY_ADVANCED_MAX_RETRIES" ]
     sleep_time=$((NOTIFY_ADVANCED_SLEEP_TIME == "0" ? 3 : NOTIFY_ADVANCED_SLEEP_TIME))
 fi
 
-while true; do
+for ((retry_count = 1; retry_count <= max_retries; retry_count++)); do
     # Send the message using curl
     curl -s -X POST -H "Content-Type: multipart/form-data" -F "token=$token" -F "title=$title" -F "message=$message" -F "priority=$priority" "$gotify_url/message"
     status=$?
@@ -27,16 +27,13 @@ while true; do
         echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 发送成功"
         break
     else
-        # echo "$NOTIFY_MODE 发送失败，正在重试..."
-
-        # Increment the retry count
-        retry_count=$((retry_count + 1))
-        # Check if maximum retries reached
-        if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 达到最大重试次数，无法登录"
-            break
-        fi
         # echo "$NOTIFY_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     fi
 done
+
+# Check if maximum retries reached
+if [ $retry_count -eq $max_retries ]; then
+    echo "$GENERAL_NAT_NAME - $NOTIFY_MODE 达到最大重试次数，无法通知"
+    break
+fi

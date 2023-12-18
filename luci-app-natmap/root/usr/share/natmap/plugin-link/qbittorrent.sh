@@ -26,7 +26,7 @@ fi
 qbcookie=""
 retry_count=0
 
-while true; do
+for ((retry_count = 0; retry_count < max_retries; retry_count++)); do
     # 获取qbcookie
     qbcookie=$(
         curl -Ssi -X POST \
@@ -35,29 +35,23 @@ while true; do
             sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
     )
 
-    # echo "qbcookie: $qbcookie"
     # 如果qbcookie为空，则重试
     if [ -z "$qbcookie" ]; then
-
         echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
-        # Increment the retry count
-        retry_count=$((retry_count + 1))
-
-        # Check if maximum retries reached
-        if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法登录"
-            exit 1
-        fi
-        # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
         sleep $sleep_time
     else
         echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
+        # 修改端口
+        curl -s -X POST \
+            -b "${qbcookie}" \
+            -d 'json={"listen_port":"'${outter_port}'"}' \
+            "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
         break
     fi
 done
 
-# 修改端口
-curl -s -X POST \
-    -b "${qbcookie}" \
-    -d 'json={"listen_port":"'${outter_port}'"}' \
-    "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
+# Check if maximum retries reached
+if [ $retry_count -eq $max_retries ]; then
+    echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法修改"
+    exit 1
+fi

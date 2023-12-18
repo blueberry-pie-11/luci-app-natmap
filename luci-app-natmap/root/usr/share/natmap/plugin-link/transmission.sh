@@ -3,7 +3,6 @@
 # NATMap
 outter_ip=$1
 outter_port=$2
-ip4p=$3
 inner_port=$4
 protocol=$5
 
@@ -29,41 +28,38 @@ fi
 trsid=""
 retry_count=0
 
-while true; do
+for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
     trsid=$(curl -s $trauth $url | sed 's/.*<code>//g;s/<\/code>.*//g')
 
-    # echo "trsid: $trsid"
-
-    if (echo $trsid | grep -q "X-Transmission-Session-Id"); then
+    # Check if the provided session ID contains the header "X-Transmission-Session-Id"
+    if [[ $trsid == *"X-Transmission-Session-Id"* ]]; then
         echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
-        break
-    else
-        # echo "$LINK_MODE 登录失败,正在重试..."
-        # Increment the retry count
-        retry_count=$((retry_count + 1))
 
-        # Check if maximum retries reached
-        if [ $retry_count -eq $max_retries ]; then
-            echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法登录"
-            exit 1
+        # Modify the port using the Transmission API
+        tr_result=$(curl -s -X POST \
+            -H "${trsid}" $trauth \
+            -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
+            "$url")
+
+        # Check if the port modification was successful
+        if [[ $(echo "$tr_result" | jq -r '.result') == "success" ]]; then
+            echo "transmission port modified successfully"
+            break
+        else
+            echo "transmission Failed to modify the port"
+            # Sleep for a specified amount of time
+            sleep $sleep_time
         fi
-        # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
+    else
+        # Sleep for a specified amount of time
         sleep $sleep_time
     fi
+
+    # Sleep for a specified amount of time
+    sleep $sleep_time
 done
 
-# 修改端口
-while true; do
-    tr_result=$(curl -s -X POST \
-        -H "${trsid}" $trauth \
-        -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
-        "$url")
-
-    if [ "$(echo "$tr_result" | jq -r '.result')" = "success" ]; then
-        echo "transmission port modified successfully"
-        break
-    else
-        echo "transmission Failed to modify the port"
-        sleep 3
-    fi
-done
+if [ $retry_count -eq $max_retries ]; then
+    echo "$GENERAL_NAT_NAME - $LINK_MODE 达到最大重试次数，无法修改"
+    exit 1
+fi
