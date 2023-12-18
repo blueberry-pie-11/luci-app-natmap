@@ -58,16 +58,16 @@ return view.extend({
 		s.tab('link', _('Link Settings'));
 		s.tab('custom', _('Custom Settings'))
 
-		o = s.option(form.DummyValue, '_nat_name', _('Name'));
-		o.modalonly = false;
-		o.textvalue = function (section_id) {
-			var s = status[section_id];
-			if (s) return s.name;
-		};
+		// o = s.option(form.DummyValue, '_nat_name', _('Name'));
+		// o.modalonly = false;
+		// o.textvalue = function (section_id) {
+		// 	var s = status[section_id];
+		// 	if (s) return s.name;
+		// };
 
 		o = s.taboption('general', form.Value, 'general_nat_name', _('Name'));
 		o.datatype = 'string';
-		o.modalonly = true;
+		// o.modalonly = true;
 		o.rmempty = false;
 
 		o = s.taboption('general', form.ListValue, 'general_nat_protocol', _('Protocol'));
