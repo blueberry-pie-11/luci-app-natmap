@@ -124,16 +124,16 @@ return view.extend({
 		// o.rmempty = false;
 
 		//
-		const general_stun_server_customOption = {
+		const Option = {
 			value: "custom",
 			label: _("Custom")
 		};
 
-		const general_stun_server_options = [
+		const options = [
 			{ value: "firewall", label: _("firewall dnat") },
 			{ value: "natmap", label: _("natmap") },
 			{ value: "ikuai", label: _("ikuai") },
-			general_stun_server_customOption
+			Option
 		];
 
 		const o = s.taboption(
@@ -143,12 +143,12 @@ return view.extend({
 			_("STUN server")
 		);
 		o.default = "firewall";
-		o.values(general_stun_server_options);
+		o.values(options);
 
 		// 添加自定义选项的处理逻辑
 		o.modalonly = true;
 		o.validate = function (section_id, value) {
-			if (value === general_stun_server_customOption.value) {
+			if (value === Option.value) {
 				// 处理自定义选项的逻辑
 				// 例如，弹出对话框让用户输入自定义值
 			}
