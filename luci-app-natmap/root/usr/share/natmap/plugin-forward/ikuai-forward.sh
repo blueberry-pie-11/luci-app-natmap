@@ -57,8 +57,8 @@ login_action() {
   # Send the login request, extract the session ID (cookie) from the response headers, and store it in a variable
   local login_cookie=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
-  # Return the login_cookie
-  return "$login_cookie"
+  # echo the login_cookie
+  echo "$login_cookie"
 }
 
 # 查询端口映射
@@ -89,8 +89,8 @@ show_mapping_action() {
   # Extract the show_ids from the response using jq
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
-  # Return the show_ids
-  return "$show_ids"
+  # echo the show_ids
+  echo "$show_ids"
 }
 
 # 删除端口映射
@@ -155,7 +155,7 @@ add_mapping_action() {
   local add_result=$(curl -s -X POST -H "$headers" -b "$add_cookie" -d "$add_payload" "$call_url")
 
   # Output the result
-  return "$add_result"
+  echo "$add_result"
 }
 
 # 初始化参数
