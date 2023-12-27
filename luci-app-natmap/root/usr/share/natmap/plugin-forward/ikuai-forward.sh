@@ -20,7 +20,7 @@ fi
 # login api and call api
 ikuai_login_api="/Action/login"
 ikuai_call_api="/Action/call"
-call_action_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}"
+call_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}"
 login_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_login_api}"
 
 # 浏览器headers
@@ -56,7 +56,7 @@ login_action() {
   local login_cookie=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
   # echo the login_cookie
-  echo $login_cookie
+  echo "$login_cookie"
 }
 
 # 查询端口映射
@@ -83,12 +83,11 @@ show_mapping_action() {
 
   # Send the API request and store the response in show_result variable
   local show_result=$(curl -s -X POST -H "$headers" -b "$show_cookie" -d "$show_payload" "$call_url")
-  echo "show_result: $show_result"
   # Extract the show_ids from the response using jq
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
   # echo the show_ids
-  echo ${show_ids[@]}
+  echo "${show_ids[@]}"
 }
 
 # 删除端口映射
@@ -153,7 +152,7 @@ add_mapping_action() {
   local add_result=$(curl -s -X POST -H "$headers" -b "$add_cookie" -d "$add_payload" "$call_url")
 
   # Output the result
-  echo $add_result
+  echo "$add_result"
 }
 
 # 初始化参数
@@ -186,14 +185,12 @@ for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
   if [ -n "$cookie" ]; then
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
     # 查询端口映射id
-    # dnat_ids=($(show_mapping_action "$cookie" "$comment"))
-    show_mapping_action "$cookie" "$comment"
-    echo "dnat_ids: $dnat_ids"
-    # 删除端口映射
-    del_mapping_action "$cookie" "$dnat_ids"
-    # 再次查询端口映射id
     dnat_ids=($(show_mapping_action "$cookie" "$comment"))
     echo "dnat_ids: $dnat_ids"
+    # 删除端口映射
+    (del_mapping_action "$cookie" "$dnat_ids")
+    # 再次查询端口映射id
+    dnat_ids=($(show_mapping_action "$cookie" "$comment"))
     # 验证对应端口映射是否全部删除
     if [ ${#dnat_ids[@]} -eq 0 ]; then
       # echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
