@@ -24,7 +24,7 @@ call_action_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}
 login_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_login_api}"
 
 # 浏览器headers
-headers = '{
+headers='{
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
     "Content-type": "application/json;charset=utf-8",
@@ -90,7 +90,7 @@ show_mapping_action() {
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
   # echo the show_ids
-  echo "$show_ids"
+  echo "${show_ids[@]}"
 }
 
 # 删除端口映射
@@ -181,25 +181,26 @@ fi
 
 for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
   # 登录
-  cookie=$(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD")
+  cookie=($(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD"))
 
   echo "cookie: $cookie"
 
   if [ -n "$cookie" ]; then
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
     # 查询端口映射id
-    dnat_ids=$(show_mapping_action "$cookie" "$comment")
+    # dnat_ids=($(show_mapping_action "$cookie" "$comment"))
+    show_mapping_action "$cookie" "$comment"
     echo "dnat_ids: $dnat_ids"
     # 删除端口映射
     del_mapping_action "$cookie" "$dnat_ids"
     # 再次查询端口映射id
-    dnat_ids=$(show_mapping_action "$cookie" "$comment")
+    dnat_ids=($(show_mapping_action "$cookie" "$comment"))
     echo "dnat_ids: $dnat_ids"
     # 验证对应端口映射是否全部删除
     if [ ${#dnat_ids[@]} -eq 0 ]; then
       # echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
       # 添加端口映射
-      add_response=$(add_mapping_action "$cookie" "$comment")
+      add_response=($(add_mapping_action "$cookie" "$comment"))
       # Check if the modification was successful
       if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
         echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping modified successfully"
