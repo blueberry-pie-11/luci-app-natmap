@@ -177,14 +177,14 @@ fi
 for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
   # 登录
   cookie=$(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD")
-  echo "cookie: $cookie"
+  # echo "cookie: $cookie"
 
   if [ -n "$cookie" ]; then
-    echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
+    # echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
 
     # 查询端口映射id
     dnat_ids=($(show_mapping_action "$cookie" "$comment"))
-    echo "dnat_ids: ${dnat_ids[@]}"
+    # echo "dnat_ids: ${dnat_ids[@]}"
 
     # 删除端口映射
     for dnat_id in "${dnat_ids[@]}"; do
