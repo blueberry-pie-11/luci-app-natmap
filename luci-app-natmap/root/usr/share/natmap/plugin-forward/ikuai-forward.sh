@@ -85,7 +85,7 @@ show_mapping_action() {
 
   # Send the API request and store the response in show_result variable
   local show_result=$(curl -s -X POST -H "$headers" -b "$show_cookie" -d "$show_payload" "$call_url")
-
+  echo $show_result
   # Extract the show_ids from the response using jq
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
@@ -102,7 +102,7 @@ del_mapping_action() {
   local del_cookie="$1"
   local del_ids="$2"
   # Declare an empty array to store the delete response
-  # local del_result=()
+  local del_result=()
 
   # Loop through the array of DNAT IDs and delete each one
   if [ ${#del_ids[@]} -eq 0 ]; then
@@ -120,7 +120,7 @@ del_mapping_action() {
       }'
 
       # Send the delete request using cURL and store the response.
-      # del_response=$(curl -s -X POST -H "$headers" -b "$del_cookie" -d "$del_payload" "$call_url")
+      del_response=$(curl -s -X POST -H "$headers" -b "$del_cookie" -d "$del_payload" "$call_url")
     done
   fi
 }
