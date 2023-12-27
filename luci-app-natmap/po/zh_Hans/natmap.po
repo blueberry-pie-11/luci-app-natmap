@@ -78,6 +78,9 @@ msgstr "keep-alive 间隔"
 msgid "STUN server"
 msgstr "STUN 服务器"
 
+msgid "custom"
+msgstr "自定义"
+
 #: applications/luci-app-natmap/htdocs/luci-static/resources/view/natmap.js:88
 msgid "HTTP server"
 msgstr "HTTP 服务器"
