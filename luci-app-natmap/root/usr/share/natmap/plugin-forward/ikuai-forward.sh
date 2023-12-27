@@ -20,104 +20,151 @@ fi
 # login api and call api
 ikuai_login_api="/Action/login"
 ikuai_call_api="/Action/call"
-call_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}"
+call_action_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}"
 login_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_login_api}"
 
 # 浏览器headers
-headers='{"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+headers = '{
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
     "Content-type": "application/json;charset=utf-8",
-    "Accept-Language": "zh-CN"}'
+    "Accept-Language": "zh-CN"
+}'
 
-# 初始化参数
-cookie=""
-delete_response=""
-add_response=""
-comment="natmap-${GENERAL_NAT_NAME}"
-
-# 登录
+# 登录ikuai
+# This function performs the login action
+# Parameters:
+#   - login_username: username for login
+#   - login_password: password for login
 login_action() {
-  # 计算密码的 MD5 哈希值并转为十六进制
-  passwd=$(echo -n "$FORWARD_IKUAI_PASSWORD" | openssl dgst -md5 -hex | awk '{print $2}')
-  # 拼接 salt_11 和密码，并使用 base64 进行编码
-  pass=$(echo -n "salt_11$passwd" | openssl enc -base64)
+  local login_username="$1"
+  local login_password="$2"
+
+  # Calculate the MD5 hash value of the password and convert it to hexadecimal
+  local passwd=$(echo -n "$login_password" | openssl dgst -md5 -hex | awk '{print $2}')
+
+  # Concatenate 'salt_11' and the password, and encode it using base64
+  local pass=$(echo -n "salt_11$passwd" | openssl enc -base64)
 
   # Create the JSON payload for the login request
-  login_params='{
-    "username": "'"$FORWARD_IKUAI_USERNAME"'",
+  local login_params='{
+    "username": "'"$login_username"'",
     "passwd": "'"$passwd"'",
     "pass": "'"$pass"'",
     "remember_password": ""
-    }'
+  }'
 
-  # Send the login request and store the response headers
-  login_response=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url")
+  # Send the login request, extract the session ID (cookie) from the response headers, and store it in a variable
+  local login_cookie=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
-  # Extract the session ID (cookie) from the response headers
-  cookie=$(echo "$login_response" | awk -F' ' '/Set-Cookie:/ {print $2}')
+  # Return the login_cookie
+  return "$login_cookie"
+}
 
+# 查询端口映射
+# Function to show the mapping action
+# Parameters:
+#   - show_cookie: Cookie value for authentication
+#   - show_comment: Comment to filter the results
+show_mapping_action() {
+  local show_cookie="$1"
+  local show_comment="$2"
+  # Construct the payload for the API request
+  local show_payload='{
+    "func_name": "dnat",
+    "action": "show",
+    "param": {
+      "FINDS": "lan_addr,lan_port,wan_port,comment",
+      "KEYWORDS": "'"$show_comment"'",
+      "TYPE": "total,data",
+      "limit": "0,20",
+      "ORDER_BY": "",
+      "ORDER": ""
+    }
+  }'
+
+  # Send the API request and store the response in show_result variable
+  local show_result=$(curl -s -X POST -H "$headers" -b "$show_cookie" -d "$show_payload" "$call_url")
+
+  # Extract the show_ids from the response using jq
+  local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
+
+  # Return the show_ids
+  return "$show_ids"
 }
 
 # 删除端口映射
-delete_mapping_action() {
-  # 通过$comment查询端口映射，创建show_payload字典
-  show_payload='{
-  "func_name": "dnat",
-  "action": "show",
-  "param": {
-    "FINDS": "lan_addr,lan_port,wan_port,comment",
-    "KEYWORDS": "'"$comment"'",
-    "TYPE": "total,data",
-    "limit": "0,20",
-    "ORDER_BY": "",
-    "ORDER": ""
-  }
-  }'
+# Deletes a mapping action
+# Arguments:
+#   - del_cookie: The cookie used for authentication
+#   - del_ids: An array of DNAT IDs to be deleted
+del_mapping_action() {
+  local del_cookie="$1"
+  local del_ids="$2"
+  # Declare an empty array to store the delete response
+  # local del_result=()
 
-  show_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$show_payload" "$call_url")
-  # 获取$dnat_id
-  dnat_id=$(echo "$show_response" | jq -r '.Data.data[].id' | awk '{print $0}')
-
-  # 判断$dnat_id是否为空
-  if [ -z "$dnat_id" ]; then
+  # Loop through the array of DNAT IDs and delete each one
+  if [ ${#del_ids[@]} -eq 0 ]; then
+    # If there are no DNAT IDs, print a message indicating no port mappings.
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 查询无端口映射"
   else
-    # echo "ikuai 端口映射 dnat_id: $dnat_id"
-    # 创建delete_payload字典
-    delete_payload='{
-    "func_name": "dnat",
-    "action": "del",
-    "param": {
-      "id": "'"$dnat_id"'"
-    }
-  }'
+    for id in "${del_ids[@]}"; do
+      # Construct the payload for the delete request.
+      local del_payload='{
+        "func_name": "dnat",
+        "action": "del",
+        "param": {
+          "id": "$id"
+        }
+      }'
 
-    # 删除对应端口映射
-    delete_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$delete_payload" "$call_url")
+      # Send the delete request using cURL and store the response.
+      # del_response=$(curl -s -X POST -H "$headers" -b "$del_cookie" -d "$del_payload" "$call_url")
+    done
   fi
 }
 
-# 添加端口映射
+# 增加端口映射
+# Function to add a mapping action
+# Parameters:
+#   - add_cookie - The cookie for authentication
+#   - add_comment - The comment for the mapping action
 add_mapping_action() {
-  # Create the JSON payload for the port mapping modification request
-  enabled="yes"
-  add_payload='{
-  "func_name": "dnat",
-  "action": "add",
-  "param": {
-    "enabled": "'"$enabled"'",
-    "comment": "'"$comment"'",
-    "interface": "'"$FORWARD_IKUAI_MAPPING_WAN_INTERFACE"'",
-    "lan_addr": "'"$FORWARD_TARGET_IP"'",
-    "protocol": "'"$FORWARD_IKUAI_MAPPING_PROTOCOL"'",
-    "wan_port": "'"$GENERAL_BIND_PORT"'",
-    "lan_port": "'"$mapping_lan_port"'",
-    "src_addr": ""
+  local add_cookie="$1"
+  local add_comment="$2"
+  local enabled="yes"
+
+  # Create the payload JSON object
+  local add_payload='{
+    "func_name": "dnat",
+    "action": "add",
+    "param": {
+      "enabled": "'"$enabled"'",
+      "comment": "'"$add_comment"'",
+      "interface": "'"$FORWARD_IKUAI_MAPPING_WAN_INTERFACE"'",
+      "lan_addr": "'"$FORWARD_TARGET_IP"'",
+      "protocol": "'"$FORWARD_IKUAI_MAPPING_PROTOCOL"'",
+      "wan_port": "'"$GENERAL_BIND_PORT"'",
+      "lan_port": "'"$mapping_lan_port"'",
+      "src_addr": ""
     }
-    }'
-  # Send the port mapping modification request and store the response
-  add_response=$(curl -s -X POST -H "$headers" -b "$cookie" -d "$add_payload" "$call_url")
+  }'
+
+  # Send the POST request to the specified URL with the payload
+  local add_result=$(curl -s -X POST -H "$headers" -b "$add_cookie" -d "$add_payload" "$call_url")
+
+  # Output the result
+  return "$add_result"
 }
+
+# 初始化参数
+# cookie
+cookie=""
+# 端口映射id
+dnat_ids=()
+# 端口映射备注，区分不同的端口映射，查询时使用，唯一，不可重复
+comment="natmap-${GENERAL_NAT_NAME}"
 
 # 默认重试次数为1，休眠时间为3s
 max_retries=1
@@ -134,15 +181,20 @@ fi
 
 for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
   # 登录
-  login_action
+  cookie=$(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD")
   if [ -n "$cookie" ]; then
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
+    # 查询端口映射id
+    dnat_ids=$(show_mapping_action "$cookie" "$comment")
     # 删除端口映射
-    delete_mapping_action
-    if [ "$(echo "$delete_response" | jq -r '.ErrMsg')" = "Success" ]; then
+    del_mapping_action "$cookie" "$dnat_ids"
+    # 再次查询端口映射id
+    dnat_ids=$(show_mapping_action "$cookie" "$comment")
+    # 验证对应端口映射是否全部删除
+    if [ ${#dnat_ids[@]} -eq 0 ]; then
       # echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
       # 添加端口映射
-      add_mapping_action
+      add_response=$(add_mapping_action "$cookie" "$comment")
       # Check if the modification was successful
       if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
         echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping modified successfully"
