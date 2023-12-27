@@ -4,7 +4,7 @@
 outter_ip=$1
 outter_port=$2
 
-get_current_rule() {
+function get_current_rule() {
   # Function to get the current rule
   #
   # Returns:

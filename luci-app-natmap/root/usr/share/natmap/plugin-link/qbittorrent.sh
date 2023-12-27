@@ -37,7 +37,7 @@ for ((retry_count = 0; retry_count < max_retries; retry_count++)); do
 
     # 如果qbcookie为空，则重试
     if [ -z "$qbcookie" ]; then
-        echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
+        # echo "$GENERAL_NAT_NAME - $LINK_MODE 登录失败,正在重试..."
         sleep $sleep_time
     else
         echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
