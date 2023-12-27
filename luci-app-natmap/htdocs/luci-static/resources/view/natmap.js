@@ -117,42 +117,11 @@ return view.extend({
 		o.modalonly = true;
 		o.rmempty = false;
 
-		// o = s.taboption('general', form.Value, 'general_stun_server', _('STUN server'));
-		// o.datatype = 'host';
-		// o.modalonly = true;
-		// o.optional = false;
-		// o.rmempty = false;
-
-		const customOption = {
-			value: "custom",
-			label: _("Custom")
-		};
-
-		const options = [
-			{ value: "firewall", label: _("firewall dnat") },
-			{ value: "natmap", label: _("natmap") },
-			{ value: "ikuai", label: _("ikuai") },
-			customOption
-		];
-
-		const o = s.taboption(
-			"general",
-			form.ListValue,
-			"general_stun_server",
-			_("STUN server")
-		);
-		o.default = "firewall";
-		o.values(options);
-
-		// 添加自定义选项的处理逻辑
+		o = s.taboption('general', form.Value, 'general_stun_server', _('STUN server'));
+		o.datatype = 'host';
 		o.modalonly = true;
-		o.validate = function (section_id, value) {
-			if (value === customOption.value) {
-				// 处理自定义选项的逻辑
-				// 例如，弹出对话框让用户输入自定义值
-			}
-		};
-
+		o.optional = false;
+		o.rmempty = false;
 
 		o = s.taboption(
 			"general",
