@@ -24,12 +24,10 @@ call_action_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_call_api}
 login_url="$(echo $FORWARD_IKUAI_WEB_URL | sed 's/\/$//')${ikuai_login_api}"
 
 # 浏览器headers
-headers='{
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+headers='{"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
     "Accept": "application/json",
     "Content-type": "application/json;charset=utf-8",
-    "Accept-Language": "zh-CN"
-}'
+    "Accept-Language": "zh-CN"}'
 
 # 登录ikuai
 # This function performs the login action
@@ -58,7 +56,7 @@ login_action() {
   local login_cookie=$(curl -s -D - -H "$headers" -X POST -d "$login_params" "$login_url" | awk -F' ' '/Set-Cookie:/ {print $2}')
 
   # echo the login_cookie
-  echo "$login_cookie"
+  echo $login_cookie
 }
 
 # 查询端口映射
@@ -85,12 +83,12 @@ show_mapping_action() {
 
   # Send the API request and store the response in show_result variable
   local show_result=$(curl -s -X POST -H "$headers" -b "$show_cookie" -d "$show_payload" "$call_url")
-  echo $show_result
+  echo "show_result: $show_result"
   # Extract the show_ids from the response using jq
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
   # echo the show_ids
-  echo "${show_ids[@]}"
+  echo ${show_ids[@]}
 }
 
 # 删除端口映射
@@ -155,7 +153,7 @@ add_mapping_action() {
   local add_result=$(curl -s -X POST -H "$headers" -b "$add_cookie" -d "$add_payload" "$call_url")
 
   # Output the result
-  echo "$add_result"
+  echo $add_result
 }
 
 # 初始化参数
