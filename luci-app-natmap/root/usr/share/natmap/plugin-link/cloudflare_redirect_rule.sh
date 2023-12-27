@@ -4,7 +4,7 @@
 outter_ip=$1
 outter_port=$2
 
-function get_current_rule() {
+get_current_rule() {
   curl --request GET \
     --url https://api.cloudflare.com/client/v4/zones/$LINK_CLOUDFLARE_ZONE_ID/rulesets/phases/http_request_dynamic_redirect/entrypoint \
     --header "X-Auth-Key: $LINK_CLOUDFLARE_API_KEY" \

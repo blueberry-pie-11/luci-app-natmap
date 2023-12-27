@@ -34,7 +34,7 @@ headers='{"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
 # Parameters:
 #   - login_username: username for login
 #   - login_password: password for login
-function login_action() {
+login_action() {
   local login_username="$1"
   local login_password="$2"
 
@@ -64,7 +64,7 @@ function login_action() {
 # Parameters:
 #   - show_cookie: Cookie value for authentication
 #   - show_comment: Comment to filter the results
-function show_mapping_action() {
+show_mapping_action() {
   local show_cookie="$1"
   local show_comment="$2"
   # Construct the payload for the API request
@@ -98,7 +98,7 @@ function show_mapping_action() {
 # Arguments:
 #   - del_cookie: The cookie used for authentication
 #   - del_ids: An array of DNAT IDs to be deleted
-function del_mapping_action() {
+del_mapping_action() {
   local del_cookie="$1"
   local del_id="$2"
   # Declare an empty array to store the delete response
@@ -124,7 +124,7 @@ function del_mapping_action() {
 # Parameters:
 #   - add_cookie - The cookie for authentication
 #   - add_comment - The comment for the mapping action
-function add_mapping_action() {
+add_mapping_action() {
   local add_cookie="$1"
   local add_comment="$2"
   local enabled="yes"

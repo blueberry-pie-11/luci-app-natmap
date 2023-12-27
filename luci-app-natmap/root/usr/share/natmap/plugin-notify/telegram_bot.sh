@@ -5,7 +5,7 @@ chat_id="${NOTIFY_TELEGRAM_BOT_CHAT_ID}"
 token="${NOTIFY_TELEGRAM_BOT_TOKEN}"
 title="natmap - ${GENERAL_NAT_NAME} 更新"
 
-function curl_proxy() {
+curl_proxy() {
     if [ -z "$NOTIFY_TELEGRAM_BOT_PROXY" ]; then
         curl "$@"
     else
