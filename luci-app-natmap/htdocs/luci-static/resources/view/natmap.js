@@ -136,7 +136,7 @@ return view.extend({
 			general_stun_server_customOption
 		];
 
-		const o = s.taboption(
+		o = s.taboption(
 			"general",
 			form.ListValue,
 			"general_stun_server",
