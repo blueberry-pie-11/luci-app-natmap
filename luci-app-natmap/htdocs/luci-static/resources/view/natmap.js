@@ -123,8 +123,7 @@ return view.extend({
 		// o.optional = false;
 		// o.rmempty = false;
 
-		//
-		const Option = {
+		const customOption = {
 			value: "custom",
 			label: _("Custom")
 		};
@@ -133,7 +132,7 @@ return view.extend({
 			{ value: "firewall", label: _("firewall dnat") },
 			{ value: "natmap", label: _("natmap") },
 			{ value: "ikuai", label: _("ikuai") },
-			Option
+			customOption
 		];
 
 		const o = s.taboption(
@@ -148,12 +147,11 @@ return view.extend({
 		// 添加自定义选项的处理逻辑
 		o.modalonly = true;
 		o.validate = function (section_id, value) {
-			if (value === Option.value) {
+			if (value === customOption.value) {
 				// 处理自定义选项的逻辑
 				// 例如，弹出对话框让用户输入自定义值
 			}
 		};
-
 
 
 		o = s.taboption(
