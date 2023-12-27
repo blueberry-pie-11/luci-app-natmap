@@ -87,7 +87,10 @@ show_mapping_action() {
   local show_ids=$(echo "$show_result" | jq -r '.Data.data[].id')
 
   # echo the show_ids
-  echo "${show_ids[@]}"
+  # echo "${show_ids[@]}"
+  for id in $show_ids; do
+    echo "$id"
+  done
 }
 
 # 删除端口映射
@@ -99,14 +102,14 @@ del_mapping_action() {
   local del_cookie="$1"
   local del_ids="$2"
   # Declare an empty array to store the delete response
-  local del_result=()
+  local del_result=""
 
   # Loop through the array of DNAT IDs and delete each one
   if [ ${#del_ids[@]} -eq 0 ]; then
     # If there are no DNAT IDs, print a message indicating no port mappings.
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 查询无端口映射"
   else
-    for id in "${del_ids[@]}"; do
+    for id in $del_ids; do
       # Construct the payload for the delete request.
       local del_payload='{
         "func_name": "dnat",
@@ -118,6 +121,7 @@ del_mapping_action() {
 
       # Send the delete request using cURL and store the response.
       del_response=$(curl -s -X POST -H "$headers" -b "$del_cookie" -d "$del_payload" "$call_url")
+      echo "del_response: $del_response"
     done
   fi
 }
@@ -178,7 +182,7 @@ fi
 
 for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
   # 登录
-  cookie=($(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD"))
+  cookie=$(login_action "$FORWARD_IKUAI_USERNAME" "$FORWARD_IKUAI_PASSWORD")
 
   echo "cookie: $cookie"
 
@@ -186,16 +190,16 @@ for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
     echo "$GENERAL_NAT_NAME - $FORWARD_MODE 登录成功"
     # 查询端口映射id
     dnat_ids=($(show_mapping_action "$cookie" "$comment"))
-    echo "dnat_ids: $dnat_ids"
+    echo "dnat_ids: ${dnat_ids[@]}"
     # 删除端口映射
-    (del_mapping_action "$cookie" "$dnat_ids")
+    del_mapping_action "$cookie" "$dnat_ids"
     # 再次查询端口映射id
     dnat_ids=($(show_mapping_action "$cookie" "$comment"))
     # 验证对应端口映射是否全部删除
     if [ ${#dnat_ids[@]} -eq 0 ]; then
       # echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping deleted successfully"
       # 添加端口映射
-      add_response=($(add_mapping_action "$cookie" "$comment"))
+      add_response=$(add_mapping_action "$cookie" "$comment")
       # Check if the modification was successful
       if [ "$(echo "$add_response" | jq -r '.ErrMsg')" = "Success" ]; then
         echo "$GENERAL_NAT_NAME - $FORWARD_MODE Port mapping modified successfully"
