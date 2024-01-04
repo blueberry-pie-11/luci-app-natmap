@@ -2,11 +2,6 @@
 
 ####    本脚本为基于 openwrt master 分支的 natmap 插件
 
-## 截图展示
-
-![图1](./natmap-1.png)
-![图2](./natmap-2.png)
-
 ## 基本功能
 
 ### 1.目前支持第三方服务调用功能
@@ -54,6 +49,12 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 
 ### 4.自定义脚本
 支持自定义脚本
+
+
+## 截图展示
+
+![图1](./natmap-1.png)
+![图2](./natmap-2.png)
 
 
 ## 使用
