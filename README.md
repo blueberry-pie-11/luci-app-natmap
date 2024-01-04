@@ -51,6 +51,12 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 支持自定义脚本
 
 
+## 截图展示
+
+![图1](./natmap-1.png)
+![图2](./natmap-2.png)
+
+
 ## 使用
 
 ### openwrt编译时添加软件源至feeds.conf.default首行，以覆盖openwrt内置luci-app-natmap 
