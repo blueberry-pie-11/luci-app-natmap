@@ -14,7 +14,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
+if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
     # 获取最大重试次数
     max_retries=$((LINK_ADVANCED_MAX_RETRIES == "0" ? 1 : LINK_ADVANCED_MAX_RETRIES))
     # 获取休眠时间
@@ -30,7 +30,7 @@ for ((retry_count = 0; retry_count < max_retries; retry_count++)); do
     # 获取qbcookie
     qbcookie=$(
         curl -Ssi -X POST \
-            -d "username=${LINK_QB_USERNAME}&password=${LINK_QB_PASSWORD}" \
+            -d "username=$LINK_QB_USERNAME&password=$LINK_QB_PASSWORD" \
             "$LINK_QB_WEB_URL/api/v2/auth/login" |
             sed -n 's/.*\(SID=.\{32\}\);.*/\1/p'
     )
@@ -43,8 +43,8 @@ for ((retry_count = 0; retry_count < max_retries; retry_count++)); do
         echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
         # 修改端口
         curl -s -X POST \
-            -b "${qbcookie}" \
-            -d 'json={"listen_port":"'${outter_port}'"}' \
+            -b "$qbcookie" \
+            -d 'json={"listen_port":"'$outter_port'"}' \
             "$LINK_QB_WEB_URL/api/v2/app/setPreferences"
         break
     fi
