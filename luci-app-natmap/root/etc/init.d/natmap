@@ -70,11 +70,11 @@ validate_section_natmap() {
 		'link_tr_password:string' \
 		'link_tr_allow_ipv6:bool:0' \
 		'link_tr_ipv6_address:string' \
-		'link_cloudflare_email:string' \
-		'link_cloudflare_api_key:string' \
+		'link_cloudflare_token:string' \
 		'link_cloudflare_zone_id:string' \
-		'link_cloudflare_rule_target_url:string' \
-		'link_cloudflare_rule_name:string' \
+		'link_cloudflare_origin_rule_name:string' \
+		'link_cloudflare_redirect_rule_name:string' \
+		'link_cloudflare_redirect_rule_target_url:string' \
 		'link_advanced_enable:bool:0' \
 		'link_advanced_max_retries:uinteger' \
 		'link_advanced_sleep_time:uinteger' \

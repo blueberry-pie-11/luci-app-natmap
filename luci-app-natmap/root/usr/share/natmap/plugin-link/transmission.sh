@@ -16,7 +16,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
+if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
     # 获取最大重试次数
     max_retries=$((LINK_ADVANCED_MAX_RETRIES == "0" ? 1 : LINK_ADVANCED_MAX_RETRIES))
     # 获取休眠时间
@@ -37,8 +37,8 @@ for ((retry_count = 0; retry_count <= max_retries; retry_count++)); do
 
         # Modify the port using the Transmission API
         tr_result=$(curl -s -X POST \
-            -H "${trsid}" $trauth \
-            -d '{"method":"session-set","arguments":{"peer-port":'${outter_port}'}}' \
+            -H "$trsid" $trauth \
+            -d '{"method":"session-set","arguments":{"peer-port":'$outter_port'}}' \
             "$url")
 
         # Check if the port modification was successful

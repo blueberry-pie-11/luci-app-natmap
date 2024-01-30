@@ -15,7 +15,7 @@
 需要配置 Transmission 地址、账号、密码用于修改端口。
 需要配置 Transmission 使用网卡的 IP 用于配置转发，端口填 0，会转发到修改后的端口。
 
-####   1.3.Emby
+####    1.3.Emby
 配合 Emby Connect 使用时，用户登录账号后，会从服务器获取最新的连接地址信息，此模式就是用于配置这些信息的。
 需要配置 Emby 地址和 API Key 用于修改连接地址信息。
 此模式必须配置转发，默认不更新「外部域」，如果有配置 DDNS，将 DDNS 域名填入外部域后将不需要再次修改。
@@ -49,6 +49,12 @@ API Key 请访问 https://dash.cloudflare.com/profile/api-tokens 复制 Global A
 
 ### 4.自定义脚本
 支持自定义脚本
+
+
+## 截图展示
+
+![图1](./img/natmap-1.png)
+![图2](./img/natmap-2.png)
 
 
 ## 使用

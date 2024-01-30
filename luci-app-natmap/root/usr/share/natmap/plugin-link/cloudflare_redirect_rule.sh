@@ -7,8 +7,7 @@ outter_port=$2
 function get_current_rule() {
   curl --request GET \
     --url https://api.cloudflare.com/client/v4/zones/$LINK_CLOUDFLARE_ZONE_ID/rulesets/phases/http_request_dynamic_redirect/entrypoint \
-    --header "X-Auth-Key: $LINK_CLOUDFLARE_API_KEY" \
-    --header "X-Auth-Email: $LINK_CLOUDFLARE_EMAIL" \
+    --header "Authorization: Bearer $LINK_CLOUDFLARE_TOKEN" \
     --header 'Content-Type: application/json'
 }
 
@@ -17,7 +16,7 @@ max_retries=1
 sleep_time=3
 
 # 判断是否开启高级功能
-if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
+if [ "$LINK_ADVANCED_ENABLE" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && [ -n "$LINK_ADVANCED_SLEEP_TIME" ]; then
   # 获取最大重试次数
   max_retries=$((LINK_ADVANCED_MAX_RETRIES == "0" ? 1 : LINK_ADVANCED_MAX_RETRIES))
   # 获取休眠时间
@@ -25,33 +24,33 @@ if [ "${LINK_ADVANCED_ENABLE}" == 1 ] && [ -n "$LINK_ADVANCED_MAX_RETRIES" ] && 
 fi
 
 # 初始化参数
-currrent_rule=""
+# currrent_rule=""
 retry_count=0
-LINK_CLOUDFLARE_RULESET_ID=""
+# cloudflare_ruleset_id=""
 
 for ((retry_count = 0; retry_count < max_retries; retry_count++)); do
-  currrent_rule=$(get_current_rule)
-  LINK_CLOUDFLARE_RULESET_ID=$(echo "$currrent_rule" | jq '.result.id' | sed 's/"//g')
+  local currrent_rule=$(get_current_rule)
+  local cloudflare_ruleset_id=$(echo "$currrent_rule" | jq '.result.id' | sed 's/"//g')
 
-  if [ -z "$LINK_CLOUDFLARE_RULESET_ID" ]; then
+  if [ -z "$cloudflare_ruleset_id" ]; then
     # echo "$LINK_MODE 登录失败,休眠$sleep_time秒"
     sleep $sleep_time
   else
     echo "$GENERAL_NAT_NAME - $LINK_MODE 登录成功"
 
-    LINK_CLOUDFLARE_RULE_NAME="\"$LINK_CLOUDFLARE_RULE_NAME\""
+    LINK_CLOUDFLARE_REDIRECT_RULE_NAME="\"$LINK_CLOUDFLARE_REDIRECT_RULE_NAME\""
     # replace NEW_PORT with outter_port
-    LINK_CLOUDFLARE_RULE_TARGET_URL=$(echo $LINK_CLOUDFLARE_RULE_TARGET_URL | sed 's/NEW_PORT/'"$outter_port"'/g')
-    new_rule=$(echo "$currrent_rule" | jq '.result.rules| to_entries | map(select(.value.description == '"$LINK_CLOUDFLARE_RULE_NAME"')) | .[].key')
-    new_rule=$(echo "$currrent_rule" | jq '.result.rules['"$new_rule"'].action_parameters.from_value.target_url.value = "'"$LINK_CLOUDFLARE_RULE_TARGET_URL"'"')
+    LINK_CLOUDFLARE_REDIRECT_RULE_TARGET_URL=$(echo $LINK_CLOUDFLARE_REDIRECT_RULE_TARGET_URL | sed 's/NEW_PORT/'"$outter_port"'/g')
+    local new_rule=$(echo "$currrent_rule" | jq '.result.rules| to_entries | map(select(.value.description == '"$LINK_CLOUDFLARE_REDIRECT_RULE_NAME"')) | .[].key')
+    new_rule=$(echo "$currrent_rule" | jq '.result.rules['"$new_rule"'].action_parameters.from_value.target_url.value = "'"$LINK_CLOUDFLARE_REDIRECT_RULE_TARGET_URL"'"')
 
-    body=$(echo "$new_rule" | jq '.result')
+    local body=$(echo "$new_rule" | jq '.result')
+
     # delete last_updated
     body=$(echo "$body" | jq 'del(.last_updated)')
     curl --request PUT \
-      --url https://api.cloudflare.com/client/v4/zones/$LINK_CLOUDFLARE_ZONE_ID/rulesets/$LINK_CLOUDFLARE_RULESET_ID \
-      --header "X-Auth-Key: $LINK_CLOUDFLARE_API_KEY" \
-      --header "X-Auth-Email: $LINK_CLOUDFLARE_EMAIL" \
+      --url https://api.cloudflare.com/client/v4/zones/$LINK_CLOUDFLARE_ZONE_ID/rulesets/$cloudflare_ruleset_id \
+      --header "Authorization: Bearer $LINK_CLOUDFLARE_TOKEN" \
       --header 'Content-Type: application/json' \
       --data "$body"
 
