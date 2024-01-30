@@ -15,28 +15,28 @@ fi
 
 # notify_mode 判断
 notify_script=""
-case $NOTIFY_MODE in
-"telegram_bot")
-	notify_script="/usr/share/natmap/plugin-notify/telegram_bot.sh"
-	;;
-"pushplus")
-	notify_script="/usr/share/natmap/plugin-notify/pushplus.sh"
-	;;
-"serverchan")
-	notify_script="/usr/share/natmap/plugin-notify/serverchan.sh"
-	;;
-"gotify")
-	notify_script="/usr/share/natmap/plugin-notify/gotify.sh"
-	;;
-*)
-	notify_script=""
-	;;
-esac
+# case $NOTIFY_MODE in
+# "telegram_bot")
+# 	notify_script="/usr/share/natmap/plugin-notify/telegram_bot.sh"
+# 	;;
+# "pushplus")
+# 	notify_script="/usr/share/natmap/plugin-notify/pushplus.sh"
+# 	;;
+# "serverchan")
+# 	notify_script="/usr/share/natmap/plugin-notify/serverchan.sh"
+# 	;;
+# "gotify")
+# 	notify_script="/usr/share/natmap/plugin-notify/gotify.sh"
+# 	;;
+# *)
+# 	notify_script=""
+# 	;;
+# esac
 
-# # 如果$NOTIFY_MODE非空则执行对应的脚本
-# if [ -n "${NOTIFY_MODE}" ]; then
-# 	notify_script="/usr/share/natmap/plugin-notify/$NOTIFY_MODE.sh"
-# fi
+# 如果$NOTIFY_MODE非空则执行对应的脚本
+if [ -n "${NOTIFY_MODE}" ]; then
+	notify_script="/usr/share/natmap/plugin-notify/$NOTIFY_MODE.sh"
+fi
 
 if [ -n "${notify_script}" ]; then
 	echo "$GENERAL_NAT_NAME execute notify script"
