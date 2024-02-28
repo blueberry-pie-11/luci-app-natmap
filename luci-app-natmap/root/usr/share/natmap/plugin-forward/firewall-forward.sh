@@ -10,17 +10,21 @@ protocol=$5
 # 	exit 0
 # fi
 
+# 如果$forward_target_port为空则退出
 if [ -z "$FORWARD_TARGET_PORT" ]; then
+	echo "FORWARD_TARGET_PORT is empty"
 	exit 0
 fi
 
+# 如果$forward_target_ip为空则退出
 if [ -z "$FORWARD_TARGET_IP" ]; then
+	echo "FORWARD_TARGET_IP is empty"
 	exit 0
 fi
 
 # get forward target port
-# final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "${FORWARD_TARGET_PORT}")
-final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
+final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "${FORWARD_TARGET_PORT}")
+# final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
 
 # ipv4 firewall
 rule_name_v4=$(echo "${GENERAL_NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
@@ -40,6 +44,7 @@ uci set firewall.$rule_name_v4.dest_port="${final_forward_target_port}"
 # QB and TR ipv6 forward
 # 检测link_enable
 if [ "${LINK_ENABLE}" != 1 ]; then
+	echo "LINK_ENABLE is not 1,exit,don't forward ipv6"
 	exit 0
 fi
 
