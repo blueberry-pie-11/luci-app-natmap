@@ -13,7 +13,7 @@ protocol=$5
 mapping_lan_port=""
 # 如果$FORWARD_TARGET_PORT为空或者$FORWARD_TARGET_PORT为0则退出
 if [ -z "${FORWARD_TARGET_PORT}" ] || [ "${FORWARD_TARGET_PORT}" -eq 0 ]; then
-  echo "FORWARD_TARGET_PORT is empty"
+  echo "FORWARD_TARGET_PORT is empty,set to outter_port"
   mapping_lan_port=$outter_port
 else
   mapping_lan_port=${FORWARD_TARGET_PORT}
