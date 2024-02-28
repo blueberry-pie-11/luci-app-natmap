@@ -12,7 +12,7 @@ protocol=$5
 
 # 如果$forward_target_port为空则退出
 if [ -z "$FORWARD_TARGET_PORT" ]; then
-	echo "FORWARD_TARGET_PORT is empty"
+	echo "FORWARD_TARGET_PORT is empty,firewall forward exit"
 	exit 0
 fi
 
@@ -28,13 +28,14 @@ final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "
 
 # ipv4 firewall
 rule_name_v4=$(echo "${GENERAL_NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
+echo "rule_name_v4: $rule_name_v4"
 
 # ipv4 redirect
 uci set firewall.$rule_name_v4=redirect
 uci set firewall.$rule_name_v4.name="$rule_name_v4"
 uci set firewall.$rule_name_v4.proto="$protocol"
 uci set firewall.$rule_name_v4.src="$GENERAL_WAN_INTERFACE"
-uci set firewall.$rule_name_v4.dest="$FORWOARD_TARGET_INTERFACE"
+uci set firewall.$rule_name_v4.dest="$FORWARD_FIREWALL_TARGET_INTERFACE"
 uci set firewall.$rule_name_v4.target='DNAT'
 uci set firewall.$rule_name_v4.src_dport="${inner_port}"
 uci set firewall.$rule_name_v4.dest_ip="${FORWARD_TARGET_IP}"
@@ -58,7 +59,7 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 	uci set firewall.$rule_name_v6=rule
 	uci set firewall.$rule_name_v6.name="$rule_name_v6"
 	uci set firewall.$rule_name_v6.src="$GENERAL_WAN_INTERFACE"
-	uci set firewall.$rule_name_v6.dest="$FORWOARD_TARGET_INTERFACE"
+	uci set firewall.$rule_name_v6.dest="$FORWARD_FIREWALL_TARGET_INTERFACE"
 	uci set firewall.$rule_name_v6.target='ACCEPT'
 	uci set firewall.$rule_name_v6.proto="$protocol"
 	uci set firewall.$rule_name_v6.family='ipv6'
