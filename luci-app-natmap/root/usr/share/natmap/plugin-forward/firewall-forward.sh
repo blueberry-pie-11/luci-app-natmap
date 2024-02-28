@@ -25,10 +25,11 @@ fi
 # get forward target port
 final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "${FORWARD_TARGET_PORT}")
 # final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
+echo "firewall_final_forward_target_port: $final_forward_target_port"
 
 # ipv4 firewall
 rule_name_v4=$(echo "${GENERAL_NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
-echo "rule_name_v4: $rule_name_v4"
+echo "firewall_rule_name_v4: $rule_name_v4"
 
 # ipv4 redirect
 uci set firewall.$rule_name_v4=redirect
@@ -39,7 +40,7 @@ uci set firewall.$rule_name_v4.dest="$FORWARD_FIREWALL_TARGET_INTERFACE"
 uci set firewall.$rule_name_v4.target='DNAT'
 uci set firewall.$rule_name_v4.src_dport="${inner_port}"
 uci set firewall.$rule_name_v4.dest_ip="${FORWARD_TARGET_IP}"
-uci set firewall.$rule_name_v4.dest_port="${final_forward_target_port}"
+uci set firewall.$rule_name_v4.dest_port=="${final_forward_target_port}"
 
 # --------------------------------------------------------------------------------------------
 # QB and TR ipv6 forward
@@ -54,7 +55,7 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 	# get rule name
 	rule_name_v6=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 
-	echo "rule_name_v6: $rule_name_v6"
+	echo "firewall_rule_name_v6: $rule_name_v6"
 	# ipv6 allow
 	uci set firewall.$rule_name_v6=rule
 	uci set firewall.$rule_name_v6.name="$rule_name_v6"
