@@ -12,13 +12,13 @@ protocol=$5
 
 # 如果$forward_target_port为空则退出
 if [ -z "$FORWARD_TARGET_PORT" ]; then
-	echo "FORWARD_TARGET_PORT is empty,firewall forward exit"
+	# echo "FORWARD_TARGET_PORT is empty,firewall forward exit"
 	exit 0
 fi
 
 # 如果$forward_target_ip为空则退出
 if [ -z "$FORWARD_TARGET_IP" ]; then
-	echo "FORWARD_TARGET_IP is empty"
+	# echo "FORWARD_TARGET_IP is empty"
 	exit 0
 fi
 
@@ -33,7 +33,7 @@ fi
 # fi
 
 final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
-echo "firewall_final_forward_target_port: $final_forward_target_port"
+# echo "firewall_final_forward_target_port: $final_forward_target_port"
 
 # ipv4 firewall
 rule_name_v4=$(echo "${GENERAL_NAT_NAME}_v4" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
