@@ -46,9 +46,9 @@ uci set firewall.$rule_name_v4.proto=$protocol
 uci set firewall.$rule_name_v4.src=$GENERAL_WAN_INTERFACE
 uci set firewall.$rule_name_v4.dest=$FORWARD_FIREWALL_TARGET_INTERFACE
 uci set firewall.$rule_name_v4.target=DNAT
-uci set firewall.$rule_name_v4.src_dport=${inner_port}
-uci set firewall.$rule_name_v4.dest_ip=${FORWARD_TARGET_IP}
-uci set firewall.$rule_name_v4.dest_port==${final_forward_target_port}
+uci set firewall.$rule_name_v4.src_dport=$inner_port
+uci set firewall.$rule_name_v4.dest_ip=$FORWARD_TARGET_IP
+uci set firewall.$rule_name_v4.dest_port=$final_forward_target_port
 
 # reload
 uci commit firewall
@@ -87,12 +87,12 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 	case "${LINK_MODE}" in
 	"transmission")
 		for ip in $LINK_TR_IPV6_ADDRESS; do
-			uci add_list firewall.$rule_name_v6.dest_ip=${ip}
+			uci add_list firewall.$rule_name_v6.dest_ip=$ip
 		done
 		;;
 	"qbittorrent")
 		for ip in $LINK_QB_IPV6_ADDRESS; do
-			uci add_list firewall.$rule_name_v6.dest_ip=${ip}
+			uci add_list firewall.$rule_name_v6.dest_ip=$ip
 		done
 		;;
 	esac
