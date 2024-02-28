@@ -42,13 +42,17 @@ echo "firewall_rule_name_v4: $rule_name_v4"
 # ipv4 redirect
 uci set firewall.$rule_name_v4=redirect
 uci set firewall.$rule_name_v4.name="$rule_name_v4"
-uci set firewall.$rule_name_v4.proto="$protocol"
-uci set firewall.$rule_name_v4.src="$GENERAL_WAN_INTERFACE"
-uci set firewall.$rule_name_v4.dest="$FORWARD_FIREWALL_TARGET_INTERFACE"
+uci set firewall.$rule_name_v4.proto=$protocol
+uci set firewall.$rule_name_v4.src='$GENERAL_WAN_INTERFACE'
+uci set firewall.$rule_name_v4.dest='$FORWARD_FIREWALL_TARGET_INTERFACE'
 uci set firewall.$rule_name_v4.target='DNAT'
 uci set firewall.$rule_name_v4.src_dport="${inner_port}"
 uci set firewall.$rule_name_v4.dest_ip="${FORWARD_TARGET_IP}"
 uci set firewall.$rule_name_v4.dest_port=="${final_forward_target_port}"
+
+# reload
+uci commit firewall
+/etc/init.d/firewall reload
 
 # --------------------------------------------------------------------------------------------
 # QB and TR ipv6 forward
@@ -67,10 +71,10 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 	# ipv6 allow
 	uci set firewall.$rule_name_v6=rule
 	uci set firewall.$rule_name_v6.name="$rule_name_v6"
-	uci set firewall.$rule_name_v6.src="$GENERAL_WAN_INTERFACE"
-	uci set firewall.$rule_name_v6.dest="$FORWARD_FIREWALL_TARGET_INTERFACE"
+	uci set firewall.$rule_name_v6.src='$GENERAL_WAN_INTERFACE'
+	uci set firewall.$rule_name_v6.dest='$FORWARD_FIREWALL_TARGET_INTERFACE'
 	uci set firewall.$rule_name_v6.target='ACCEPT'
-	uci set firewall.$rule_name_v6.proto="$protocol"
+	uci set firewall.$rule_name_v6.proto='$protocol'
 	uci set firewall.$rule_name_v6.family='ipv6'
 	uci set firewall.$rule_name_v6.dest_port="$final_forward_target_port"
 
@@ -92,8 +96,8 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 		done
 		;;
 	esac
-fi
+	# reload
+	uci commit firewall
+	/etc/init.d/firewall reload
 
-# reload
-uci commit firewall
-/etc/init.d/firewall reload
+fi
