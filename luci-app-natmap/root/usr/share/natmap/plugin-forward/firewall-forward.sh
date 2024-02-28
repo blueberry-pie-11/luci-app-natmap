@@ -54,7 +54,7 @@ if [ [ "${LINK_MODE}" = transmission ] && [ "${LINK_TR_ALLOW_IPV6}" = 1 ] ] || [
 	# get rule name
 	rule_name_v6=$(echo "${GENERAL_NAT_NAME}_v6_allow" | sed 's/[^a-zA-Z0-9]/_/g' | awk '{print tolower($0)}')
 
-	# echo "rule_name_v6: $rule_name_v6"
+	echo "rule_name_v6: $rule_name_v6"
 	# ipv6 allow
 	uci set firewall.$rule_name_v6=rule
 	uci set firewall.$rule_name_v6.name="$rule_name_v6"
