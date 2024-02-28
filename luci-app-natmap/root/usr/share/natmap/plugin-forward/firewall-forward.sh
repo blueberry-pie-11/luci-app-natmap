@@ -23,8 +23,16 @@ if [ -z "$FORWARD_TARGET_IP" ]; then
 fi
 
 # get forward target port
-final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "${FORWARD_TARGET_PORT}")
-# final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
+# final_forward_target_port=$([ "${FORWARD_TARGET_PORT}" == 0 ] ? $outter_port : "${FORWARD_TARGET_PORT}")
+# if [ "${FORWARD_TARGET_PORT}" == 0 ]; then
+# 	echo "FORWARD_TARGET_PORT is 0"
+# 	final_forward_target_port=$outter_port
+# else
+# 	echo "FORWARD_TARGET_PORT is not 0"
+# 	final_forward_target_port=$FORWARD_TARGET_PORT
+# fi
+
+final_forward_target_port=$((FORWARD_TARGET_PORT == 0 ? outter_port : FORWARD_TARGET_PORT))
 echo "firewall_final_forward_target_port: $final_forward_target_port"
 
 # ipv4 firewall
